@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BlackTools v2.5.5 — Documentation</title>
+<style>
+:root{
+  --bg:#0b0e13;
+  --bg2:#10141b;
+  --panel:#151a23;
+  --panel2:#1a2029;
+  --border:#242c38;
+  --border2:#2e3947;
+  --text:#d7dee8;
+  --muted:#8b98a9;
+  --faint:#5c6a7d;
+  --accent:#e8433f;          /* maple red */
+  --accent-soft:#ff6b57;
+  --gold:#e5b567;
+  --green:#4ec98a;
+  --blue:#58a6ff;
+  --purple:#bc8cff;
+  --orange:#f0883e;
+  --pink:#ff7eb6;
+  --cyan:#39c5cf;
+  --code-bg:#0d1117;
+  --radius:10px;
+  --sidebar-w:275px;
+  --mono:'Cascadia Code','JetBrains Mono',Consolas,'Fira Code',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font:15px/1.65 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+::selection{background:rgba(232,67,63,.35)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:.88em;background:var(--panel2);border:1px solid var(--border);padding:1px 6px;border-radius:5px;color:var(--gold)}
+kbd{font-family:var(--mono);font-size:.8em;background:var(--panel2);border:1px solid var(--border2);border-bottom-width:2px;padding:1px 6px;border-radius:5px;color:var(--muted)}
+
+/* ---------- layout ---------- */
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;
+  background:var(--bg2);border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  padding:22px 16px 40px;
+  scrollbar-width:thin;scrollbar-color:var(--border2) transparent;
+}
+.main{flex:1;min-width:0;padding:0 42px 90px}
+.wrap{max-width:900px;margin:0 auto}
+
+/* ---------- sidebar ---------- */
+.logo{display:flex;align-items:center;gap:10px;padding:2px 8px 14px;border-bottom:1px solid var(--border);margin-bottom:14px}
+.logo .leaf{font-size:24px;filter:drop-shadow(0 0 8px rgba(232,67,63,.6))}
+.logo b{font-size:17px;letter-spacing:.4px}
+.logo b span{color:var(--accent)}
+.logo small{display:block;color:var(--faint);font-size:11px;letter-spacing:.5px}
+#search{
+  width:100%;background:var(--panel);border:1px solid var(--border2);border-radius:8px;
+  color:var(--text);padding:8px 12px;font-size:13px;margin-bottom:6px;outline:none;
+}
+#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(232,67,63,.15)}
+.search-hint{font-size:11px;color:var(--faint);padding:0 4px 10px}
+#search-count{color:var(--accent-soft);font-weight:600;display:none}
+.nav h5{
+  font-size:10.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--faint);
+  margin:16px 8px 6px;
+}
+.nav a{
+  display:block;padding:4px 10px;border-radius:6px;color:var(--muted);
+  font-size:13.5px;border-left:2px solid transparent;
+}
+.nav a:hover{color:var(--text);background:var(--panel);text-decoration:none}
+.nav a.active{color:var(--accent-soft);background:rgba(232,67,63,.08);border-left-color:var(--accent)}
+
+/* ---------- hero ---------- */
+.hero{
+  padding:56px 0 34px;border-bottom:1px solid var(--border);margin-bottom:38px;
+  background:
+    radial-gradient(ellipse 60% 120% at 70% -20%, rgba(232,67,63,.13), transparent),
+    radial-gradient(ellipse 40% 90% at 20% -10%, rgba(229,181,103,.07), transparent);
+}
+.hero h1{font-size:40px;letter-spacing:-.5px;line-height:1.1}
+.hero h1 span{color:var(--accent)}
+.hero .tagline{color:var(--muted);font-size:17px;margin-top:8px}
+.hero .tagline em{color:var(--gold);font-style:normal}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.badge{
+  font-size:12px;font-weight:600;padding:4px 12px;border-radius:99px;
+  background:var(--panel);border:1px solid var(--border2);color:var(--muted);
+}
+.badge.hot{background:rgba(232,67,63,.12);border-color:rgba(232,67,63,.4);color:var(--accent-soft)}
+.badge.gold{background:rgba(229,181,103,.1);border-color:rgba(229,181,103,.35);color:var(--gold)}
+
+/* ---------- sections ---------- */
+section{margin-bottom:58px}
+section>h2{
+  font-size:26px;letter-spacing:-.3px;padding-bottom:10px;margin-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+section>h2 .hash{color:var(--accent);margin-right:6px}
+.sec-intro{color:var(--muted);margin-bottom:22px;max-width:72ch}
+h3.sub{font-size:18px;margin:34px 0 14px;color:var(--gold)}
+
+/* ---------- callouts ---------- */
+.note{
+  background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.25);
+  border-left:3px solid var(--blue);border-radius:8px;padding:12px 16px;margin:16px 0;
+  font-size:14px;color:var(--text);
+}
+.warn{
+  background:rgba(240,136,62,.06);border:1px solid rgba(240,136,62,.3);
+  border-left:3px solid var(--orange);border-radius:8px;padding:12px 16px;margin:16px 0;
+  font-size:14px;
+}
+.tip{
+  background:rgba(78,201,138,.05);border:1px solid rgba(78,201,138,.25);
+  border-left:3px solid var(--green);border-radius:8px;padding:12px 16px;margin:16px 0;
+  font-size:14px;
+}
+.note b,.warn b,.tip b{color:inherit}
+
+/* ---------- command cards ---------- */
+.cmd{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px 20px 16px;margin:14px 0;
+  transition:border-color .15s;
+}
+.cmd:hover{border-color:var(--border2)}
+.cmd.hidden{display:none}
+.cmd-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.cmd-head h4{font-size:16.5px;font-family:var(--mono);color:#fff;font-weight:600}
+.cmd-head h4 .amp{color:var(--accent)}
+.cmd p{color:var(--muted);font-size:14px;margin-bottom:10px;max-width:78ch}
+.cmd p strong{color:var(--text)}
+.opt{font-size:13px;color:var(--faint);margin-top:10px}
+.opt code{font-size:.92em}
+
+/* level badges */
+.lvl{
+  font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:2.5px 9px;border-radius:99px;border:1px solid;
+}
+.lvl.voice  {color:var(--green); border-color:rgba(78,201,138,.45); background:rgba(78,201,138,.08)}
+.lvl.op     {color:var(--blue);  border-color:rgba(88,166,255,.45); background:rgba(88,166,255,.08)}
+.lvl.admin  {color:var(--purple);border-color:rgba(188,140,255,.45);background:rgba(188,140,255,.08)}
+.lvl.manager{color:var(--orange);border-color:rgba(240,136,62,.45); background:rgba(240,136,62,.08)}
+.lvl.owner  {color:var(--accent-soft);border-color:rgba(232,67,63,.5);background:rgba(232,67,63,.08)}
+.lvl.master {color:var(--pink); border-color:rgba(255,126,182,.45);background:rgba(255,126,182,.08)}
+.lvl.boss   {color:var(--gold); border-color:rgba(229,181,103,.5); background:rgba(229,181,103,.08)}
+.lvl.all    {color:var(--cyan); border-color:rgba(57,197,207,.45); background:rgba(57,197,207,.08)}
+
+/* ---------- code blocks ---------- */
+.code{position:relative;margin:10px 0}
+.code pre{
+  background:var(--code-bg);border:1px solid var(--border);border-radius:8px;
+  padding:12px 90px 12px 15px;overflow-x:auto;
+  font-family:var(--mono);font-size:13px;line-height:1.75;color:#c9d1d9;
+  scrollbar-width:thin;
+}
+.code.syntax pre{border-left:3px solid var(--accent)}
+.code.example pre{border-left:3px solid var(--green)}
+.code .tag{
+  position:absolute;top:9px;right:44px;font-size:9.5px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;color:var(--faint);user-select:none;
+}
+.copy{
+  position:absolute;top:6px;right:8px;cursor:pointer;
+  background:var(--panel2);border:1px solid var(--border2);border-radius:6px;
+  color:var(--muted);width:26px;height:24px;font-size:12px;line-height:1;
+}
+.copy:hover{color:var(--text);border-color:var(--faint)}
+.copy.ok{color:var(--green);border-color:var(--green)}
+/* syntax highlight-ish helpers inside pre */
+pre .c{color:#586e81;font-style:italic}       /* comment */
+pre .t{color:var(--accent-soft);font-weight:600} /* trigger/cmd */
+pre .a{color:#79c0ff}                          /* argument */
+pre .o{color:#8b98a9}                          /* optional */
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th{
+  text-align:left;padding:9px 13px;background:var(--panel2);color:var(--muted);
+  font-size:11px;text-transform:uppercase;letter-spacing:1px;border:1px solid var(--border);
+}
+td{padding:8px 13px;border:1px solid var(--border);color:var(--text);vertical-align:top}
+tr:nth-child(even) td{background:rgba(255,255,255,.014)}
+td code{white-space:nowrap}
+.table-scroll{overflow-x:auto}
+
+/* ---------- misc ---------- */
+.pill-row{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.pill{font-family:var(--mono);font-size:12px;background:var(--panel2);border:1px solid var(--border);padding:3px 10px;border-radius:6px;color:var(--muted)}
+#top-btn{
+  position:fixed;bottom:26px;right:26px;width:42px;height:42px;border-radius:50%;
+  background:var(--panel2);border:1px solid var(--border2);color:var(--muted);
+  cursor:pointer;font-size:17px;display:none;z-index:50;
+}
+#top-btn:hover{color:var(--accent-soft);border-color:var(--accent)}
+footer{
+  border-top:1px solid var(--border);margin-top:70px;padding-top:24px;
+  color:var(--faint);font-size:13px;
+}
+footer a{color:var(--muted)}
+@media(max-width:900px){
+  .sidebar{display:none}
+  .main{padding:0 18px 60px}
+  .hero h1{font-size:30px}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ======================= SIDEBAR ======================= -->
+<nav class="sidebar">
+  <div class="logo">
+    <span class="leaf">🛠️</span>
+    <div><b>Black<span>Tools</span></b><small>v2.5.5 · DOCUMENTATION</small></div>
+  </div>
+  <input id="search" type="text" placeholder="Filter commands… ( / )" autocomplete="off">
+  <div class="search-hint"><span id="search-count"></span>&nbsp;</div>
+  <div class="nav" id="nav">
+    <h5>Start here</h5>
+    <a href="#overview">Overview</a>
+    <a href="#whatsnew">What's new in 2.5.5</a>
+    <a href="#install">Installation</a>
+    <a href="#using">Using the bot</a>
+    <a href="#levels">Access levels</a>
+    <h5>Commands</h5>
+    <a href="#cmd-general">General commands</a>
+    <a href="#cmd-chanops">Channel op commands</a>
+    <a href="#cmd-bans">Kick &amp; ban commands</a>
+    <a href="#cmd-users">User management</a>
+    <a href="#cmd-chan">Channel management</a>
+    <a href="#cmd-owner">Bot owner commands</a>
+    <h5>Features</h5>
+    <a href="#protections">Protections</a>
+    <a href="#modules">Modules</a>
+    <a href="#myset">Personal settings</a>
+    <h5>Reference</h5>
+    <a href="#egg">Eggdrop.conf via IRC</a>
+    <a href="#native">Native eggdrop settings</a>
+    <a href="#reference">Ban methods &amp; masks</a>
+  </div>
+</nav>
+
+<!-- ======================= MAIN ======================= -->
+<div class="main"><div class="wrap">
+
+<div class="hero">
+  <h1>Black<span>Tools</span> Documentation</h1>
+  <p class="tagline">The Ultimate Channel Control Script — <em>One TCL. One smart Eggdrop.</em><br>
+  A complete reference for every command, protection and module.</p>
+  <div class="badges">
+    <span class="badge hot">v2.5.5</span>
+    <span class="badge">Eggdrop ≥ 1.8</span>
+    <span class="badge">Tcl ≥ 8.5</span>
+    <span class="badge gold">Undernet · X service</span>
+    <span class="badge">EN · RO · ES · FR</span>
+    <span class="badge">by BLaCkShaDoW · tclscripts.net</span>
+  </div>
+</div>
+
+<!-- ================= OVERVIEW ================= -->
+<section id="overview">
+  <h2><span class="hash">#</span>Overview</h2>
+  <p class="sec-intro">
+    BlackTools is a complete channel-management script for Eggdrop bots. It bundles
+    <strong>~70 commands</strong>, <strong>25+ protections</strong> (flood, spam, advert, badword, clone
+    detection…) and <strong>25+ modules</strong> (seen, quotes, notes, greets, topic control, X
+    integration…) into one package. Every channel can be configured independently — each
+    owner/manager toggles the protections, modules and commands they want.
+  </p>
+  <table>
+    <tr><th style="width:170px">Script</th><td>BlackTools v2.5.5 (GitHub master, 2021)</td></tr>
+    <tr><th>Author</th><td>Daniel Voipan (BLaCkShaDoW) — <a href="http://www.tclscripts.net">www.tclscripts.net</a></td></tr>
+    <tr><th>Requirements</th><td>Eggdrop 1.8.x or newer · Tcl 8.5 or newer</td></tr>
+    <tr><th>Languages</th><td>English · Romanian · Spanish · French (lang files auto-loaded from <code>lang/</code>)</td></tr>
+    <tr><th>Home channel</th><td>Set via <code>black(homechan)</code> in <code>BlackTools.tcl</code> (default: none)</td></tr>
+    <tr><th>Network services</th><td>Undernet <code>X</code> (x@channels.undernet.org) — auto-login supported</td></tr>
+    <tr><th>Online help</th><td><code>#TCL-HELP</code> on Undernet · <a href="https://github.com/tclscripts/BlackToolS-TCL">GitHub</a></td></tr>
+  </table>
+  <div class="tip"><b>The two most important commands:</b> <code>!h</code> shows every command available
+  <em>to you</em> at your access level, and <code>!man &lt;command&gt;</code> shows the built-in manual page for any
+  command, protection or module. When in doubt — <code>!man</code> it.</div>
+</section>
+
+<!-- ================= WHAT'S NEW ================= -->
+<section id="whatsnew">
+  <h2><span class="hash">#</span>What's new in 2.5.5</h2>
+  <p class="sec-intro">Summary of the changes between v2.5.3 (2018) and v2.5.5 (GitHub master, 2021),
+  compiled from the shipped <code>ChangeLog</code> and a comparison of the sources.</p>
+
+  <h3 class="sub">New modules &amp; protections</h3>
+  <div class="table-scroll"><table>
+    <tr><th style="width:160px">Feature</th><th>Description</th></tr>
+    <tr><td><code>AutoUpdate</code></td><td>The bot updates itself from GitHub when a new BT version or bugfix is released — on a timer or by command (<code>!update</code>). All BT files and your <code>BlackTools.tcl</code> settings are backed up and restored. Powered by the new <code>Addons/</code> folder (http, json, github helper libraries) — no external TLS package needed. Can auto-restart the bot when an update requires it.</td></tr>
+    <tr><td><code>Alias</code></td><td>Users can build their own personalized commands on top of BT commands, with <code>%1%</code>/<code>%2%</code> argument placeholders.</td></tr>
+    <tr><td><code>Vote</code></td><td>Full channel voting system: open votings with multiple options, expiry times, access-only or everyone participation, and result listings.</td></tr>
+    <tr><td><code>NoProxy</code></td><td>New protection that bans users joining from IPs identified as proxies. The ban reason supports an <code>%isp%</code> placeholder.</td></tr>
+    <tr><td><code>AntiBotIdle</code></td><td>New egg setting that keeps the eggdrop itself from idling on the server.</td></tr>
+    <tr><td>ChanServ mass-ban detector</td><td>The bot detects mass-bans done through X and suspends the abuser (configurable coverage percent, suspend level and time).</td></tr>
+  </table></div>
+
+  <h3 class="sub">Regex ban system</h3>
+  <p class="sec-intro">The ban engine (rewritten in the new <code>BT.Ban.tcl</code>, faster) now supports
+  <strong>regular-expression bans</strong>: <code>!b -regex</code>,
+  <code>!ub -regex</code>, <code>!sb -regex</code> and <code>!banlist regex</code>. Regexes match against
+  <code>nick!ident@host/[realname]/[banmask type]</code>. The BadChan module also accepts regex badchans
+  (<code>!badchan regex &lt;#regex&gt;</code>) and got a faster, safer scanning mode.</p>
+
+  <h3 class="sub">Other changes</h3>
+  <div class="table-scroll"><table>
+    <tr><th>Change</th><th>Detail</th></tr>
+    <tr><td>DCC party-line support</td><td>All commands now work through DCC chat: <code>.bt &lt;command&gt; [#channel] [arguments]</code> (with <code>!myset mychan</code> set, the channel can be omitted).</td></tr>
+    <tr><td>Languages</td><td>Spanish translation added; French language files are also shipped.</td></tr>
+    <tr><td><b>GuestNick removed</b></td><td>The GuestNick module was removed in the 2021-03-15 update.</td></tr>
+    <tr><td>Quote access control</td><td>New <code>quote:usage</code> setting: choose whether only users with access, or everyone, may add/list/remove quotes.</td></tr>
+    <tr><td>AntiColor tuning</td><td>New option to punish only specific colour codes (<code>anticolor:specific_colors</code>).</td></tr>
+    <tr><td>DNS on-join toggle</td><td><code>black(dns_onjoin)</code> lets you disable DNS lookups on join (faster on big channels).</td></tr>
+    <tr><td>Flood action change</td><td>The private-message antiflood action changed from server SILENCE to IGNORE.</td></tr>
+    <tr><td>Fixes</td><td>Gag durations for all access levels, TopWords now counts all users, NickServ login, clonescan bans, Idle module vs. SecureMode <code>+mD</code> interaction, alias/notes/suspends cleaned up when users expire, and assorted minor bugs.</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= INSTALL ================= -->
+<section id="install">
+  <h2><span class="hash">#</span>Installation</h2>
+  <p class="sec-intro">From the <code>INSTALL</code> file — how to get BlackTools running on a fresh eggdrop.</p>
+  <div class="code example"><span class="tag">shell</span><button class="copy" title="Copy">⧉</button><pre><span class="c"># 1. get the latest version (or unpack the release archive)</span>
+git clone https://github.com/tclscripts/BlackToolS-TCL
+
+<span class="c"># 2. edit BlackTools.tcl to your liking (homechan, cmdchar, X login, defaults…)</span>
+
+<span class="c"># 3. copy everything into your eggdrop's scripts/ directory (case sensitive!)</span>
+cp -r BlackTools/    /home/of/your_eggdrop/scripts/
+cp BlackTools.tcl    /home/of/your_eggdrop/scripts/
+
+<span class="c"># 4. add this line at the END of your eggdrop config file</span>
+source scripts/BlackTools.tcl
+
+<span class="c"># 5. restart the eggdrop, then in any channel type:</span>
+.h</pre></div>
+  <div class="warn"><b>Warning:</b> running BlackTools together with the <b>A&amp;A</b> script "works in
+  theory" only — the author explicitly does not support that combination.</div>
+  <p class="sec-intro" style="margin-top:16px">The directory layout that must live under <code>scripts/</code>:</p>
+  <div class="pill-row">
+    <span class="pill">BlackTools.tcl — main config</span>
+    <span class="pill">BlackTools/BT.Core.tcl</span>
+    <span class="pill">BlackTools/BT.Ban.tcl — ban engine</span>
+    <span class="pill">BlackTools/BT.Loader.tcl</span>
+    <span class="pill">BlackTools/BT.Binds.tcl</span>
+    <span class="pill">BlackTools/BT.Timers.tcl</span>
+    <span class="pill">BlackTools/Addons/ — http, json, github</span>
+    <span class="pill">BlackTools/Commands/ — 10 files</span>
+    <span class="pill">BlackTools/Modules/ — 26 files</span>
+    <span class="pill">BlackTools/Protections/ — 19 files</span>
+    <span class="pill">BlackTools/lang/ — EN · RO · ES · FR</span>
+  </div>
+</section>
+
+<!-- ================= USING ================= -->
+<section id="using">
+  <h2><span class="hash">#</span>Using the bot</h2>
+  <p class="sec-intro">Every BlackTools command can be triggered <strong>four ways</strong>. All examples in
+  this documentation use <code>!</code>, but the bot answers to any of the configured trigger characters
+  (stock: <code>!</code> <code>.</code> <code>`</code> <code>^</code> — change them with
+  <code>set cmdchar</code>) — plus the botnick prefix, private message, and (new in 2.5.5) DCC chat.</p>
+  <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!command</span> <span class="a">&lt;args&gt;</span>                       <span class="c"># trigger char, in the channel</span>
+<span class="t">BotNick command</span> <span class="a">&lt;args&gt;</span>                <span class="c"># address the bot by nick, in the channel</span>
+<span class="t">/msg BotNick command</span> <span class="a">#channel &lt;args&gt;</span>  <span class="c"># private message — add the #channel</span>
+<span class="t">.bt command</span> <span class="a">[#channel] &lt;args&gt;</span>         <span class="c"># DCC party-line (channel optional with myset mychan)</span></pre></div>
+  <div class="note"><b>Convention used below:</b> <code>&lt;required&gt;</code> arguments are mandatory,
+  <code>[optional]</code> arguments may be omitted. <code>[#chan]</code> is only needed when messaging the bot
+  privately or acting on another channel. Durations are written <code>10m</code> (minutes), <code>3h</code>
+  (hours), <code>2d</code> (days) — and <code>0</code> means <em>permanent</em>.</div>
+  <h3 class="sub">The help menu</h3>
+  <div class="cmd" data-k="h help menu categories">
+    <div class="cmd-head"><h4><span class="amp">!</span>h</h4><span class="lvl all">Any access</span></div>
+    <p>The most important command. Shows all commands available at <strong>your</strong> access level,
+    plus category submenus. Disabled commands are hidden or greyed out.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!h</span> <span class="o">[category]</span>       <span class="c"># categories: cmds · ban · add · manager · master · owner</span>
+                      <span class="c">#             btinfo · chaninfo · module · egg</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!h</span>                    <span class="c"># your main menu</span>
+<span class="t">!h</span> ban                <span class="c"># every kick/ban command you can use</span>
+<span class="t">!h</span> module             <span class="c"># which modules are ON (+) or OFF (-) on #channel</span>
+<span class="t">!h</span> chaninfo           <span class="c"># channel flags &amp; eggdrop flood settings</span>
+/msg BotNick h #channel ban</pre></div>
+  </div>
+  <div class="cmd" data-k="man manual help">
+    <div class="cmd-head"><h4><span class="amp">!</span>man</h4><span class="lvl all">Any access</span></div>
+    <p>The built-in user manual. Displays usage information for every command, protection and module —
+    the same content as this page, live on IRC.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!man</span> <span class="a">&lt;command&gt;</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!man</span> b                <span class="c"># manual for the ban command</span>
+<span class="t">!man</span> antipub          <span class="c"># manual for the anti-advertising protection</span>
+<span class="t">!man</span> banmethod        <span class="c"># explains the 7 punishment methods</span></pre></div>
+  </div>
+</section>
+
+<!-- ================= LEVELS ================= -->
+<section id="levels">
+  <h2><span class="hash">#</span>Access levels</h2>
+  <p class="sec-intro">BlackTools layers its own named levels on top of eggdrop flags. Channel levels apply
+  per-channel; global levels apply bot-wide. Each level inherits everything below it.</p>
+  <div class="table-scroll"><table>
+    <tr><th>Level</th><th>Scope</th><th>Eggdrop flag</th><th>Typical powers</th></tr>
+    <tr><td><span class="lvl voice">Voice</span></td><td>channel</td><td><code>|V</code></td><td>voice self, seen, invite, kick/warn, myset, h/man</td></tr>
+    <tr><td><span class="lvl op">Op</span></td><td>channel</td><td><code>|O</code></td><td>+ op/deop, modes, topic, cycle, most ban commands</td></tr>
+    <tr><td><span class="lvl admin">Admin</span></td><td>channel</td><td><code>|A</code></td><td>+ say/act, add users, suspend, black/stick bans, stats</td></tr>
+    <tr><td><span class="lvl manager">Manager</span></td><td>channel</td><td><code>|M</code></td><td>+ set/unset channel settings, enable/disable commands, exempt, purge, del/chuser</td></tr>
+    <tr><td><span class="lvl master">Master</span></td><td>global</td><td><code>o</code></td><td>manager powers on every channel + addchan/delchan, suspend chans, status</td></tr>
+    <tr><td><span class="lvl owner">Owner</span></td><td>global</td><td><code>m</code></td><td>+ global bans, broadcast, die/restart/jump, cp, TCL loading</td></tr>
+    <tr><td><span class="lvl boss">Boss owner</span></td><td>global</td><td><code>n</code></td><td>everything, incl. editing eggdrop.conf settings from IRC (<code>egg</code>)</td></tr>
+  </table></div>
+  <div class="note">Two auxiliary levels exist for the userlist: <b>PROTECT</b> (never punished by
+  protections) and <b>BAN</b> (auto-banned on sight). Ops and voices can additionally be shielded per-channel
+  with <code>!set +oprotect</code> / <code>+vprotect</code> / <code>+hoprotect</code>.</div>
+</section>
+
+<!-- ================= GENERAL COMMANDS ================= -->
+<section id="cmd-general">
+  <h2><span class="hash">#</span>General commands</h2>
+  <p class="sec-intro">Everyday commands available from the lowest access level upward.</p>
+
+  <div class="cmd" data-k="version info script">
+    <div class="cmd-head"><h4><span class="amp">!</span>version</h4><span class="lvl all">Any access</span></div>
+    <p>Displays the BlackTools version the eggdrop is running.</p>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!version</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="i invite user channel">
+    <div class="cmd-head"><h4><span class="amp">!</span>i &nbsp;/&nbsp; <span class="amp">!</span>invite</h4><span class="lvl voice">Voice+</span></div>
+    <p>Invites a user to the channel. The bot must be opped (@) for the invite to work.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!i</span> <span class="a">&lt;nick&gt;</span>          <span class="c"># in channel</span>
+<span class="t">/msg BotNick i</span> <span class="a">#channel &lt;nick&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!i</span> JohnDoe           <span class="c"># invite JohnDoe to #channel</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="seen last seen nick host ip database">
+    <div class="cmd-head"><h4><span class="amp">!</span>seen</h4><span class="lvl voice">Voice+</span></div>
+    <p>Searches the per-channel seen database for a nick, IP or host (wildcards supported). Shows when the
+    person was last seen and what they did. Owners+ can search <code>global</code> across all channels.
+    Flood-protected (2 searches / 20s by default).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!seen</span> <span class="a">&lt;nick|ip|host&gt;</span>
+<span class="t">!seen</span> global <span class="a">&lt;nick|ip|host&gt;</span>       <span class="c"># owners+ — all channels</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!seen</span> JohnDoe
+<span class="t">!seen</span> *!*@*.videotron.ca</pre></div>
+    <p class="opt">Related: <code>+seen</code> module toggle · <code>+seenlastmsg</code> (show last message) ·
+    <code>+seenreply</code> (notify people they were searched for)</p>
+  </div>
+
+  <div class="cmd" data-k="activ activity last action user">
+    <div class="cmd-head"><h4><span class="amp">!</span>activ</h4><span class="lvl voice">Voice+</span></div>
+    <p>Shows the last recorded channel activity of a user (last join, part, kick, ban, text…), pulled from
+    the bot's action tracker.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!activ</span> <span class="a">&lt;nick&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="for multiple bots simultaneous command">
+    <div class="cmd-head"><h4><span class="amp">!</span>for</h4><span class="lvl voice">Voice+</span></div>
+    <p>Makes multiple eggdrops (all running BlackTools) execute the same command simultaneously —
+    handy when several bots guard the channel.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">for</span> <span class="a">&lt;botnick1&gt;,&lt;botnick2&gt;..</span> <span class="a">&lt;command&gt;</span> <span class="o">[option]</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">for</span> Bot1,Bot2 say Good morning everyone!</pre></div>
+  </div>
+
+  <div class="cmd" data-k="info user channel details access greet automode">
+    <div class="cmd-head"><h4><span class="amp">!</span>info</h4><span class="lvl admin">Admin+</span></div>
+    <p>Displays database information about a user or a channel: access level, added hostmasks, automode,
+    greet line, last-seen info, channel topic/URL/manager, and more.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!info</span> <span class="a">&lt;handle|#chan&gt;</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!info</span> JohnDoe
+<span class="t">!info</span> #channel</pre></div>
+  </div>
+
+  <div class="cmd" data-k="addinfo greeting personal join message">
+    <div class="cmd-head"><h4><span class="amp">!</span>addinfo</h4><span class="lvl voice">Voice+</span></div>
+    <p>Sets a personalised greeting line for yourself, shown in <code>!info</code> and announced by the bot
+    when you join (requires <code>+greet</code> on the channel). Same as <code>!myset greet</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!addinfo</span> <span class="a">&lt;text|reset&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!addinfo</span> Hello everyone, glad to be here!</pre></div>
+  </div>
+</section>
+
+<!-- ================= CHANNEL OP COMMANDS ================= -->
+<section id="cmd-chanops">
+  <h2><span class="hash">#</span>Channel op commands</h2>
+  <p class="sec-intro">Op/voice management, modes, topic and channel messages.</p>
+
+  <div class="cmd" data-k="v voice devoice mass">
+    <div class="cmd-head"><h4><span class="amp">!</span>v</h4><span class="lvl voice">Voice+</span></div>
+    <p>Gives or removes voice <strong>(+v)</strong> for one or more users. With no nick, voices
+    <em>you</em> (if you aren't voiced already).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!v</span> <span class="o">[nick1] [nick2]..</span>
+<span class="t">!v +</span>        <span class="c"># mass voice everyone</span>
+<span class="t">!v -</span>        <span class="c"># mass devoice</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!v</span> JohnDoe JaneDoe</pre></div>
+  </div>
+
+  <div class="cmd" data-k="o op deop mass operator">
+    <div class="cmd-head"><h4><span class="amp">!</span>o</h4><span class="lvl op">Op+</span></div>
+    <p>Gives or removes op <strong>(@)</strong> for one or more users. With no nick, ops <em>you</em>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!o</span> <span class="o">[nick1] [nick2]..</span>
+<span class="t">!o +</span>        <span class="c"># mass op</span>
+<span class="t">!o -</span>        <span class="c"># mass deop</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="ho halfop dehalfop mass">
+    <div class="cmd-head"><h4><span class="amp">!</span>ho</h4><span class="lvl op">Op+</span></div>
+    <p>Gives or removes halfop <strong>(+h %)</strong> for the specified users. <code>!ho +</code> /
+    <code>!ho -</code> perform a mass halfop / dehalfop.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!ho</span> <span class="o">[nick1] [nick2]..</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="mode channel modes lock key moderate">
+    <div class="cmd-head"><h4><span class="amp">!</span>mode</h4><span class="lvl op">Op+</span></div>
+    <p>Applies or removes channel modes.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!mode</span> <span class="a">&lt;+/-modes&gt;</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!mode</span> +m          <span class="c"># moderate the channel</span>
+<span class="t">!mode</span> -m+ntr</pre></div>
+  </div>
+
+  <div class="cmd" data-k="t topic set text">
+    <div class="cmd-head"><h4><span class="amp">!</span>t</h4><span class="lvl op">Op+</span></div>
+    <p>Sets the channel topic. With <code>!set +showhandle</code>, the bot appends the handle of whoever
+    changed it.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!t</span> <span class="a">&lt;text&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!t</span> Welcome to #Channel — read the rules and have fun!</pre></div>
+  </div>
+
+  <div class="cmd" data-k="r refresh topic reload">
+    <div class="cmd-head"><h4><span class="amp">!</span>r</h4><span class="lvl op">Op+</span></div>
+    <p>Manually refreshes/re-applies the stored channel topic (see also the <code>+refresh</code> and
+    <code>+autotopic</code> settings).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!r</span> <span class="o">[#chan]</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="cycle hop part rejoin">
+    <div class="cmd-head"><h4><span class="amp">!</span>cycle</h4><span class="lvl op">Op+</span></div>
+    <p>Makes the bot cycle (part and re-join) the channel, optionally waiting a given duration.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!cycle</span> <span class="o">[duration|reason]</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="omsg operators message notice ops">
+    <div class="cmd-head"><h4><span class="amp">!</span>omsg</h4><span class="lvl op">Op+</span></div>
+    <p>Sends a message to all users with op (@) on the channel — or on every channel with
+    <code>all</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!omsg</span> <span class="a">&lt;#chan|all&gt;</span> <span class="a">&lt;text&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!omsg</span> #channel Watch for the spambot wave, set +m if it gets bad</pre></div>
+  </div>
+
+  <div class="cmd" data-k="say message channel speak">
+    <div class="cmd-head"><h4><span class="amp">!</span>say</h4><span class="lvl admin">Admin+</span></div>
+    <p>Makes the bot say a message to the channel.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!say</span> <span class="o">[#chan]</span> <span class="a">&lt;message&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!say</span> Quiz night starts in 10 minutes!</pre></div>
+  </div>
+
+  <div class="cmd" data-k="act action me emote">
+    <div class="cmd-head"><h4><span class="amp">!</span>act</h4><span class="lvl admin">Admin+</span></div>
+    <p>Makes the bot send an action (<code>/me</code>) to the channel.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!act</span> <span class="o">[#chan]</span> <span class="a">&lt;message&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!act</span> waves at everyone</pre></div>
+  </div>
+
+  <div class="cmd" data-k="msg private message target query">
+    <div class="cmd-head"><h4><span class="amp">!</span>msg</h4><span class="lvl owner">Owner+</span></div>
+    <p>Sends a message to any target — a channel, a nick (query) or a chat window.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!msg</span> <span class="o">[target]</span> <span class="a">&lt;message&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="broadcast all channels message">
+    <div class="cmd-head"><h4><span class="amp">!</span>broadcast</h4><span class="lvl owner">Owner+</span></div>
+    <p>Sends a message to <strong>all</strong> channels the bot is in.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!broadcast</span> <span class="a">&lt;message&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="check verify user virus advertise private">
+    <div class="cmd-head"><h4><span class="amp">!</span>check</h4><span class="lvl op">Op+</span></div>
+    <p>Sends a private verification message to a user — used to test whether they are infected/advertising
+    (drones often auto-reply). The message text is configurable.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!check</span> <span class="a">&lt;nick&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>check-message</code> (default check text)</p>
+  </div>
+</section>
+
+<!-- ================= KICK & BAN COMMANDS ================= -->
+<section id="cmd-bans">
+  <h2><span class="hash">#</span>Kick &amp; ban commands</h2>
+  <p class="sec-intro">The heart of BlackTools: a full ban system with per-ban levels, durations, sticky
+  bans, global bans, comments and searchable banlists. Durations: <code>m</code>inutes /
+  <code>h</code>ours / <code>d</code>ays, <code>0</code> = permanent. Most commands accept a nick
+  <em>or</em> a mask — if the nick isn't on the channel, the bot will <code>WHOIS</code> it.</p>
+
+  <div class="cmd" data-k="k kick user reason">
+    <div class="cmd-head"><h4><span class="amp">!</span>k</h4><span class="lvl voice">Voice+</span></div>
+    <p>Kicks a user (or everyone matching a mask) from the channel.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!k</span> <span class="a">&lt;nick|mask&gt;</span> <span class="o">[reason]</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!k</span> Troublemaker
+<span class="t">!k</span> Troublemaker Please keep it civil</pre></div>
+    <p class="opt">Optional settings: <code>k-reason</code> (default kick reason)</p>
+  </div>
+
+  <div class="cmd" data-k="w warn warning kick">
+    <div class="cmd-head"><h4><span class="amp">!</span>w</h4><span class="lvl voice">Voice+</span></div>
+    <p>Delivers a <strong>warning kick</strong> — a kick with a configurable warning reason and message.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!w</span> <span class="a">&lt;nick&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>w-reason</code> · <code>w-message</code></p>
+  </div>
+
+  <div class="cmd" data-k="b ban duration level global link comment permanent">
+    <div class="cmd-head"><h4><span class="amp">!</span>b</h4><span class="lvl op">Op+</span></div>
+    <p>The main ban command. Bans a nick or mask for a duration (stock default: <strong>2 days</strong>).
+    A duration of <code>0</code> makes the ban permanent (blacklisted). <code>-level</code> protects the
+    ban from removal by lower access. Owners+ can add <code>global</code> (all channels) or
+    <code>link</code> (linked channels). <code>-c comment</code> attaches a note visible on the ban entry.
+    Supports CIDR masks like <code>*!*@192.168.0.1/17</code> — and, new in 2.5.5,
+    <strong>regex bans</strong> with <code>-regex</code>, matched against
+    <code>nick!ident@host/[realname]/[banmask type]</code> (bracketed fields optional).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!b</span> <span class="o">[-regex]</span> <span class="a">&lt;nick|mask|regex&gt;</span> <span class="o">[-level] [duration] [reason] [-c comment]</span>
+<span class="t">!b</span> <span class="o">[-regex]</span> <span class="a">&lt;nick|mask|regex&gt;</span> <span class="o">[-level] [duration] [global|link] [reason]</span>   <span class="c"># owner+</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!b</span> SpamGuy 2d advertising
+<span class="t">!b</span> *!*@198.51.100.* 12h botnet range
+<span class="t">!b</span> Griefer -400 0 permanent, level 400 protection
+<span class="t">!b</span> Flooder 3d flooding -c third offence this week
+<span class="t">!b</span> -regex [a-z]+[0-9][0-9]!*@* 1d drone pattern</pre></div>
+    <p class="opt">Optional settings: <code>b-reason</code> · <code>b-bantime</code> (default 2d) ·
+    <code>b-banmask</code> (default <code>*!*@host</code>)</p>
+  </div>
+
+  <div class="cmd" data-k="ub unban remove ban wildcards global">
+    <div class="cmd-head"><h4><span class="amp">!</span>ub</h4><span class="lvl op">Op+</span></div>
+    <p>Removes a ban by nick, mask or ban ID (wildcards supported). If the nick isn't on channel the bot
+    WHOISes and unbans by ident/host/nick — matching regex bans are removed too. Use <code>-regex</code>
+    to remove a stored regex ban directly. <strong>Careful:</strong> <code>!ub *</code> removes
+    <em>all</em> channel bans.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!ub</span> <span class="o">[-regex]</span> <span class="a">&lt;nick|mask|id|regex&gt;</span> <span class="o">[global|link]</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!ub</span> SpamGuy
+<span class="t">!ub</span> 1234              <span class="c"># by ban ID (see +showid / !sb)</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="sb search ban details wildcards id">
+    <div class="cmd-head"><h4><span class="amp">!</span>sb</h4><span class="lvl op">Op+</span></div>
+    <p>Searches the banlist and shows full details of a ban — who set it, when, why, expiry, comment.
+    Also matches and inspects regex bans (<code>-regex</code>).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!sb</span> <span class="o">[-regex]</span> <span class="a">&lt;nick|mask|id|regex&gt;</span> <span class="o">[global]</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!sb</span> *!*@*.example.net</pre></div>
+  </div>
+
+  <div class="cmd" data-k="banlist list bans active">
+    <div class="cmd-head"><h4><span class="amp">!</span>banlist</h4><span class="lvl op">Op+</span></div>
+    <p>Shows the active bans on the channel — all of them, only yours, other people's, regex bans only,
+    gags only, or (owners+) the global list. Paged output; follow with <code>-next</code> for more
+    entries.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!banlist</span> <span class="a">&lt;all|handle|regex|gag|other&gt;</span>
+<span class="t">!banlist</span> global                    <span class="c"># owner+</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="black permanent blacklist ban unlimited">
+    <div class="cmd-head"><h4><span class="amp">!</span>black</h4><span class="lvl admin">Admin+</span></div>
+    <p>Bans a user <strong>permanently</strong> (blacklist). Equivalent to <code>!b ... 0</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!black</span> <span class="a">&lt;nick|mask&gt;</span> <span class="o">[reason] [-c comment]</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!black</span> KnownTroll repeat offender -c do not remove</pre></div>
+    <p class="opt">Optional settings: <code>black-reason</code> · <code>black-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="stick sticky ban reactivate">
+    <div class="cmd-head"><h4><span class="amp">!</span>stick</h4><span class="lvl admin">Admin+</span></div>
+    <p>Sets a <strong>sticky</strong> ban: if anyone removes it from the channel banlist, the bot puts it
+    right back. Stock default duration: 2 days.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!stick</span> <span class="a">&lt;nick|mask&gt;</span> <span class="o">[duration] [reason] [-c comment]</span></pre></div>
+    <p class="opt">Optional settings: <code>stick-reason</code> · <code>stick-bantime</code> · <code>stick-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="n nickname ban nick">
+    <div class="cmd-head"><h4><span class="amp">!</span>n</h4><span class="lvl op">Op+</span></div>
+    <p>Bans on the user's <strong>nickname</strong> (mask <code>nick!*@*</code>). Default: 2h.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!n</span> <span class="a">&lt;nick&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>n-reason</code> · <code>n-bantime</code> · <code>n-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="id ident ban">
+    <div class="cmd-head"><h4><span class="amp">!</span>id</h4><span class="lvl op">Op+</span></div>
+    <p>Bans on the user's <strong>ident</strong> (mask <code>*!user@*</code>). Given a nick, the bot grabs
+    the ident automatically. Default: 2h.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!id</span> <span class="a">&lt;nick|ident&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>id-reason</code> · <code>id-bantime</code> · <code>id-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="mb ident ban reason auto">
+    <div class="cmd-head"><h4><span class="amp">!</span>mb</h4><span class="lvl op">Op+</span></div>
+    <p>Bans a nickname automatically on <strong>ident</strong>, with an optional reason. Default: 2d.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!mb</span> <span class="a">&lt;nick&gt;</span> <span class="o">[reason]</span></pre></div>
+    <p class="opt">Optional settings: <code>mb-reason</code> · <code>mb-bantime</code></p>
+  </div>
+
+  <div class="cmd" data-k="dr drone ban">
+    <div class="cmd-head"><h4><span class="amp">!</span>dr</h4><span class="lvl op">Op+</span></div>
+    <p>Bans with a default <strong>DRONE</strong> reason — for compromised clients/drones. Default: 15d.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!dr</span> <span class="a">&lt;nick|mask&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>dr-reason</code> · <code>dr-bantime</code> · <code>dr-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="vr virus trojan ban">
+    <div class="cmd-head"><h4><span class="amp">!</span>vr</h4><span class="lvl op">Op+</span></div>
+    <p>Bans with a default <strong>VIRUS/TROJAN</strong> reason. Default: 3d.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!vr</span> <span class="a">&lt;nick|mask&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>vr-reason</code> · <code>vr-bantime</code> · <code>vr-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="bot ban clone bot reason">
+    <div class="cmd-head"><h4><span class="amp">!</span>bot</h4><span class="lvl op">Op+</span></div>
+    <p>Bans with a default <strong>BOT</strong> reason — for unauthorised bots. Default: 7d.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!bot</span> <span class="a">&lt;nick|mask&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>bot-reason</code> · <code>bot-bantime</code> · <code>bot-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="spam ban spammer reason">
+    <div class="cmd-head"><h4><span class="amp">!</span>spam</h4><span class="lvl op">Op+</span></div>
+    <p>Bans with a default <strong>SPAM</strong> reason. Default: 7d.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!spam</span> <span class="a">&lt;nick|mask&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>spam-reason</code> · <code>spam-bantime</code> · <code>spam-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="bw badword ban">
+    <div class="cmd-head"><h4><span class="amp">!</span>bw</h4><span class="lvl op">Op+</span></div>
+    <p>Bans with a default <strong>bad word</strong> reason. Default: 1d.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!bw</span> <span class="a">&lt;nick|mask&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>bw-reason</code> · <code>bw-bantime</code> · <code>bw-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="troll ban troll showtroll">
+    <div class="cmd-head"><h4><span class="amp">!</span>troll</h4><span class="lvl op">Op+</span></div>
+    <p>Bans with a default <strong>TROLL</strong> reason. With <code>+showtroll</code> enabled, the bot
+    notices a "trolls of the day" list to access-holders when they join (reset at midnight).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!troll</span> <span class="a">&lt;nick&gt;</span></pre></div>
+    <p class="opt">Optional settings: <code>troll-reason</code> · <code>+showtroll</code></p>
+  </div>
+
+  <div class="cmd" data-k="gag ungag mute silence">
+    <div class="cmd-head"><h4><span class="amp">!</span>gag &nbsp;/&nbsp; <span class="amp">!</span>ungag</h4><span class="lvl op">Op+</span></div>
+    <p>Silences a user — they can't write on the channel — for a period (default: 10m). The bot re-bans
+    (+b with mute) if the gag is removed early. <code>!ungag</code> lifts it.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!gag</span> <span class="a">&lt;nick&gt;</span> <span class="o">[duration] [reason]</span>
+<span class="t">!ungag</span> <span class="a">&lt;nick|mask&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!gag</span> LoudGuy 30m take a breather</pre></div>
+    <p class="opt">Optional settings: <code>gag-reason</code> · <code>gag-bantime</code> · <code>gag-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="exempt ban exception whitelist">
+    <div class="cmd-head"><h4><span class="amp">!</span>exempt</h4><span class="lvl manager">Manager+</span></div>
+    <p>Manages the ban-exempt list: hosts on it are never banned by the bot. Owners+ can make an exempt
+    <code>global</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!exempt</span> add <span class="a">&lt;ip|host&gt;</span> <span class="o">[period] [global] [reason]</span>
+<span class="t">!exempt</span> list <span class="o">[global]</span>
+<span class="t">!exempt</span> del <span class="a">&lt;ip|host&gt;</span> <span class="o">[global]</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!exempt</span> add *!*@trusted.users.undernet.org 0 our regular helper</pre></div>
+  </div>
+
+  <div class="cmd" data-k="stats statistics bans kicks user">
+    <div class="cmd-head"><h4><span class="amp">!</span>stats</h4><span class="lvl admin">Admin+</span></div>
+    <p>Shows ban/command statistics for a user. Managers+ can <code>reset</code>. Requires the
+    <code>+banstats</code> setting to collect data (see also <code>!banstats total|reset</code>).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!stats</span> <span class="a">&lt;handle&gt;</span> <span class="o">[total|reset]</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="report reportnick advert spam nickname regular users">
+    <div class="cmd-head"><h4><span class="amp">!</span>report</h4><span class="lvl all">Everyone</span></div>
+    <p>Lets <em>regular users</em> (and voice/protect) report a nickname for adverts or spam. The bot
+    relays the report to channel ops via @notice. Needs <code>+reportnick</code> and the bot opped.
+    Flood-limited (2 reports / 60s).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!report</span> <span class="a">&lt;nick&gt;</span> <span class="a">&lt;comment&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!report</span> LinkSpammer keeps pasting shady links in PM</pre></div>
+  </div>
+</section>
+
+<!-- ================= USER MANAGEMENT ================= -->
+<section id="cmd-users">
+  <h2><span class="hash">#</span>User management</h2>
+  <p class="sec-intro">Adding people to the bot, hostmasks, automodes and suspensions. You can only act on
+  users with access <em>lower</em> than your own.</p>
+
+  <div class="cmd" data-k="add user access level chanserv username">
+    <div class="cmd-head"><h4><span class="amp">!</span>add</h4><span class="lvl admin">Admin+</span></div>
+    <p>Adds a user to the channel's userlist at a given level (<code>voice</code>, <code>op</code>,
+    <code>admin</code>, <code>manager</code>…). If the user is on channel, their current hostmask is added
+    (default style: <code>*!*@host</code>). If not, the Undernet default is used:
+    <code>*!*@&lt;user&gt;.users.undernet.org</code> — so you can add people by X username.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!add</span> <span class="a">&lt;level&gt;</span> <span class="a">&lt;nick|Xusername&gt;</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!add</span> op JohnDoe          <span class="c"># JohnDoe is on channel → current host added</span>
+<span class="t">!add</span> voice SomeUserX     <span class="c"># not on channel → *!*@SomeUserX.users.undernet.org</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="userlist access list level all">
+    <div class="cmd-head"><h4><span class="amp">!</span>userlist</h4><span class="lvl admin">Admin+</span></div>
+    <p>Shows the channel's access list, filtered by level or all of it.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!userlist</span> <span class="a">&lt;level|all&gt;</span>       <span class="c"># levels: voice · op · admin · manager · owner · master</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!userlist</span> op</pre></div>
+  </div>
+
+  <div class="cmd" data-k="delacc remove access delete user channel">
+    <div class="cmd-head"><h4><span class="amp">!</span>delacc</h4><span class="lvl admin">Admin+</span></div>
+    <p>Removes a user's access from the channel (their record stays in the bot). Must target someone with
+    lower access than you. Owners can strip global <code>owner|master</code> access too.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!delacc</span> <span class="a">&lt;handle&gt;</span>
+<span class="t">!delacc</span> <span class="a">&lt;owner|master&gt;</span> <span class="a">&lt;handle&gt;</span>       <span class="c"># remove a global level</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="del delete user database totally">
+    <div class="cmd-head"><h4><span class="amp">!</span>del</h4><span class="lvl manager">Manager+</span></div>
+    <p>Deletes a user <strong>entirely</strong> from the bot's database — all channels, all hosts.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!del</span> <span class="a">&lt;handle&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="auto automode autoop autovoice global">
+    <div class="cmd-head"><h4><span class="amp">!</span>auto</h4><span class="lvl admin">Admin+</span></div>
+    <p>Sets a user's automode — the bot automatically ops or voices them on join. The user must already
+    have access on the channel. Owners+ can apply it <code>-global</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!auto</span> <span class="a">&lt;+/-o&gt;</span> <span class="a">&lt;nick|handle&gt;</span> <span class="o">[-global]</span>       <span class="c"># auto-op</span>
+<span class="t">!auto</span> <span class="a">&lt;+/-v&gt;</span> <span class="a">&lt;nick|handle&gt;</span> <span class="o">[-global]</span>       <span class="c"># auto-voice</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!auto</span> +v JohnDoe</pre></div>
+  </div>
+
+  <div class="cmd" data-k="s suspend access user duration">
+    <div class="cmd-head"><h4><span class="amp">!</span>s &nbsp;/&nbsp; <span class="amp">!</span>us</h4><span class="lvl admin">Admin+</span></div>
+    <p><code>!s</code> suspends a user's access on the channel for a period (default: 2d);
+    <code>!us</code> lifts the suspension. Only works downward in the hierarchy.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!s</span> <span class="a">&lt;handle&gt;</span> <span class="o">[duration] [reason]</span>
+<span class="t">!us</span> <span class="a">&lt;handle&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!s</span> RogueOp 3d abusing kick command</pre></div>
+  </div>
+
+  <div class="cmd" data-k="addhost delhost hostmask user">
+    <div class="cmd-head"><h4><span class="amp">!</span>addhost &nbsp;/&nbsp; <span class="amp">!</span>delhost</h4><span class="lvl admin">Admin+</span></div>
+    <p>Adds or removes a hostmask on a user's record.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!addhost</span> <span class="a">&lt;handle&gt;</span> <span class="a">&lt;mask&gt;</span>
+<span class="t">!delhost</span> <span class="a">&lt;handle&gt;</span> <span class="a">&lt;mask&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!addhost</span> JohnDoe *!*@JohnDoe.users.undernet.org</pre></div>
+  </div>
+
+  <div class="cmd" data-k="chuser rename handle user">
+    <div class="cmd-head"><h4><span class="amp">!</span>chuser</h4><span class="lvl manager">Manager+</span></div>
+    <p>Renames a user's handle in the bot's database.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!chuser</span> <span class="a">&lt;handle&gt;</span> <span class="a">&lt;newhandle&gt;</span></pre></div>
+  </div>
+</section>
+
+<!-- ================= CHANNEL MANAGEMENT ================= -->
+<section id="cmd-chan">
+  <h2><span class="hash">#</span>Channel management</h2>
+  <p class="sec-intro">Settings, toggles and channel administration — the manager's toolbox.</p>
+
+  <div class="cmd" data-k="set flag option setting toggle chanmode key">
+    <div class="cmd-head"><h4><span class="amp">!</span>set</h4><span class="lvl manager">Manager+</span></div>
+    <p>The universal switchboard. Turns protections/modules on or off (<code>+flag</code> /
+    <code>-flag</code>) and assigns values to string options. Owners+ can use <code>global</code> to apply a
+    setting to every channel. See the <a href="#protections">Protections</a> and
+    <a href="#modules">Modules</a> sections for every flag.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> <span class="a">&lt;+/-flag&gt;</span>                     <span class="c"># toggle</span>
+<span class="t">!set</span> <span class="a">&lt;option&gt;</span> <span class="a">&lt;value&gt;</span>              <span class="c"># assign</span>
+<span class="t">!set</span> global <span class="a">&lt;option&gt;</span> <span class="a">&lt;value&gt;</span>       <span class="c"># owner+ — all channels</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antipub                     <span class="c"># enable anti-advertising</span>
+<span class="t">!set</span> chanmode +ntk s3cret         <span class="c"># enforce modes incl. a key</span>
+<span class="t">!set</span> b-bantime 4h                 <span class="c"># default !b duration → 4 hours</span>
+<span class="t">!set</span> url https://www.example.com</pre></div>
+  </div>
+
+  <div class="cmd" data-k="unset reset option flag remove">
+    <div class="cmd-head"><h4><span class="amp">!</span>unset</h4><span class="lvl manager">Manager+</span></div>
+    <p>Resets a setting/option back to default. Owners+ can <code>unset global</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!unset</span> <span class="a">&lt;flag|option&gt;</span>
+<span class="t">!unset</span> global <span class="a">&lt;flag|option&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="show setting value view">
+    <div class="cmd-head"><h4><span class="amp">!</span>show</h4><span class="lvl manager">Manager+</span></div>
+    <p>Shows the current value of any setting.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!show</span> <span class="a">&lt;setting&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!show</span> antipub-bantime</pre></div>
+  </div>
+
+  <div class="cmd" data-k="enable disable command user global">
+    <div class="cmd-head"><h4><span class="amp">!</span>enable &nbsp;/&nbsp; <span class="amp">!</span>disable</h4><span class="lvl manager">Manager+</span></div>
+    <p>Enables/disables a command on the channel — for everyone or for a specific user. Masters+ can apply
+    it <code>global</code>ly (commands only, not users). Disabled commands show greyed-out in
+    <code>!h</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!disable</span> <span class="a">&lt;command|all&gt;</span> <span class="o">[user] [global]</span>
+<span class="t">!enable</span> <span class="a">&lt;command|all&gt;</span> <span class="o">[user] [global]</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!disable</span> k TriggerHappyOp     <span class="c"># take !k away from one user</span>
+<span class="t">!enable</span> all</pre></div>
+  </div>
+
+  <div class="cmd" data-k="ignore host bot ignore list">
+    <div class="cmd-head"><h4><span class="amp">!</span>ignore</h4><span class="lvl manager">Manager+</span></div>
+    <p>Adds, lists or removes bot-level ignores (default duration: 6h).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!ignore</span> add <span class="a">&lt;ip|mask&gt;</span> <span class="o">[duration] [reason]</span>
+<span class="t">!ignore</span> list
+<span class="t">!ignore</span> del <span class="a">&lt;ip|host&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="purge delete channel data manager">
+    <div class="cmd-head"><h4><span class="amp">!</span>purge</h4><span class="lvl manager">Manager+</span></div>
+    <p>Deletes the channel from the bot's channel database (manager-only variant of
+    <code>delchan</code>).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!purge</span> <span class="a">&lt;#chan&gt;</span> <span class="a">&lt;reason&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="addchan delchan add channel remove join key">
+    <div class="cmd-head"><h4><span class="amp">!</span>addchan &nbsp;/&nbsp; <span class="amp">!</span>delchan</h4><span class="lvl master">Master+</span></div>
+    <p>Adds a channel to the bot (it joins immediately; an optional key is used to get in) or removes
+    one.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!addchan</span> <span class="a">&lt;#chan&gt;</span> <span class="o">[key]</span>
+<span class="t">!delchan</span> <span class="a">&lt;#chan&gt;</span> <span class="a">&lt;reason&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="suspend unsuspend channel">
+    <div class="cmd-head"><h4><span class="amp">!</span>suspend &nbsp;/&nbsp; <span class="amp">!</span>unsuspend</h4><span class="lvl master">Master+</span></div>
+    <p>Suspends a channel — the bot leaves and won't join or act in it — or reverses that.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!suspend</span> <span class="a">&lt;#chan&gt;</span> <span class="a">&lt;reason&gt;</span>
+<span class="t">!unsuspend</span> <span class="a">&lt;#chan&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="channels list joined">
+    <div class="cmd-head"><h4><span class="amp">!</span>channels</h4><span class="lvl master">Master+</span></div>
+    <p>Lists all channels the bot is joined to (channels flagged <code>+invisible</code> are hidden from
+    non-boss users).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!channels</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="cp copy settings userlist banlist badchans channel">
+    <div class="cmd-head"><h4><span class="amp">!</span>cp</h4><span class="lvl owner">Owner+</span></div>
+    <p>Copies configuration from one channel to another.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!cp</span> <span class="a">&lt;userlist|banlist|settings|badchans&gt;</span> <span class="a">&lt;#chan1&gt;</span> <span class="a">&lt;#chan2&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!cp</span> settings #channel #channel-ops</pre></div>
+  </div>
+
+  <div class="cmd" data-k="link chanlink synchronize bans channels">
+    <div class="cmd-head"><h4><span class="amp">!</span>link</h4><span class="lvl owner">Owner+</span></div>
+    <p>ChanLink module — synchronises bans across two or more channels: a ban added on one linked channel
+    is mirrored to the others (and removed everywhere on unban).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!link</span> <span class="a">&lt;#chan1&gt;</span> <span class="a">&lt;#chan2&gt;</span> | all
+<span class="t">!link</span> del <span class="a">&lt;#chan&gt;</span>
+<span class="t">!link</span> <span class="a">&lt;list|reset&gt;</span>
+<span class="c"># then, ad hoc:</span>
+<span class="t">!b</span> <span class="a">&lt;nick|mask&gt;</span> <span class="o">[duration]</span> link <span class="o">[reason]</span>
+<span class="t">!ub</span> <span class="a">&lt;nick|mask&gt;</span> link</pre></div>
+  </div>
+</section>
+
+<!-- ================= BOT OWNER COMMANDS ================= -->
+<section id="cmd-owner">
+  <h2><span class="hash">#</span>Bot owner commands</h2>
+  <p class="sec-intro">Bot lifecycle and shell-free administration. Boss owners can even edit
+  <code>eggdrop.conf</code> values straight from IRC — see <a href="#egg">Eggdrop.conf via IRC</a>.</p>
+
+  <div class="cmd" data-k="uptime status server connected">
+    <div class="cmd-head"><h4><span class="amp">!</span>uptime &nbsp;/&nbsp; <span class="amp">!</span>status</h4><span class="lvl master">Master+</span></div>
+    <p><code>!uptime</code> shows how long the bot has been up, when it connected and to which server.
+    <code>!status</code> shows monitored channels, total users, version and bot owner.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!uptime</span>
+<span class="t">!status</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="die restart rehash save shutdown reload">
+    <div class="cmd-head"><h4><span class="amp">!</span>die · <span class="amp">!</span>restart · <span class="amp">!</span>rehash · <span class="amp">!</span>save</h4><span class="lvl boss">Boss owner</span></div>
+    <p><code>die</code> shuts the bot down. <code>restart</code> restarts it as a background process
+    (use when lagged/malfunctioning). <code>rehash</code> reloads all files after user/channel record
+    changes. <code>save</code> writes the user/channel files to disk.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!die</span> <span class="o">[reason]</span>   ·   <span class="t">!restart</span>   ·   <span class="t">!rehash</span>   ·   <span class="t">!save</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="jump server change connect">
+    <div class="cmd-head"><h4><span class="amp">!</span>jump</h4><span class="lvl boss">Boss owner</span></div>
+    <p>Makes the bot connect to a different IRC server.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!jump</span> <span class="o">[irc server]</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!jump</span> Ashburn.Va.Us.UnderNet.org</pre></div>
+  </div>
+
+  <div class="cmd" data-k="nick change botnick">
+    <div class="cmd-head"><h4><span class="amp">!</span>nick</h4><span class="lvl boss">Boss owner</span></div>
+    <p>Changes the bot's nickname. <code>!set nick &lt;newnick&gt;</code> makes it permanent (written to
+    the config).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!nick</span> <span class="a">&lt;newnick&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="login chanserv x authentication">
+    <div class="cmd-head"><h4><span class="amp">!</span>login</h4><span class="lvl boss">Boss owner</span></div>
+    <p>Manually logs the bot in to ChanServ (<code>X</code> on Undernet) using the configured
+    username/password. Auto-login is controlled by <code>black(autologin)</code> in
+    <code>BlackTools.tcl</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!login</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="chat botnet dcc partyline">
+    <div class="cmd-head"><h4><span class="amp">!</span>chat</h4><span class="lvl boss">Boss owner</span></div>
+    <p>Connects you to the bot's botnet/partyline — same as <code>/CTCP BotNick CHAT</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!chat</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="tcl load unload wget script upload">
+    <div class="cmd-head"><h4><span class="amp">!</span>tcl</h4><span class="lvl boss">Boss owner</span></div>
+    <p>Manages Tcl scripts live: list, download from a URL (restricted to <code>*.tcl</code>), load,
+    unload, or inspect.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!tcl</span> list
+<span class="t">!tcl</span> wget <span class="a">&lt;link/name.tcl&gt;</span>
+<span class="t">!tcl</span> load <span class="a">&lt;name.tcl&gt;</span>
+<span class="t">!tcl</span> unload <span class="a">&lt;name.tcl&gt;</span>
+<span class="t">!tcl</span> info <span class="a">&lt;name.tcl&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="timer start kill list processes pro">
+    <div class="cmd-head"><h4><span class="amp">!</span>timer</h4><span class="lvl boss">Boss owner</span></div>
+    <p>PRO module — start/stop internal process timers or list active ones.
+    <strong>Do not touch unless you know exactly what you're doing.</strong></p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!timer</span> start <span class="a">&lt;timer:setting&gt;</span>
+<span class="t">!timer</span> kill <span class="a">&lt;pid&gt;</span>
+<span class="t">!timer</span> list</pre></div>
+  </div>
+</section>
+
+<!-- ================= PROTECTIONS ================= -->
+<section id="protections">
+  <h2><span class="hash">#</span>Protections</h2>
+  <p class="sec-intro">Each protection is toggled per channel with <code>!set +name</code> /
+  <code>!set -name</code> and tuned via optional settings (<code>name-reason</code>,
+  <code>name-bantime</code>, <code>name-banmethod</code>, <code>name-banmask</code>…). Punishments follow
+  the <a href="#reference">ban-method scale</a> (warn → kick → ban). The "defaults" line on each card shows
+  the stock values shipped in <code>BlackTools.tcl</code>. Users with
+  <code>PROTECT</code> level — and ops/voices when <code>+oprotect</code>/<code>+vprotect</code> is on —
+  are exempt.</p>
+
+  <div class="cmd" data-k="antipub advertising links spam channel protection">
+    <div class="cmd-head"><h4>AntiPub</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans users advertising channels/links (<code>*#*</code>, <code>*www.*</code>,
+    <code>*http://*</code>…). Wildcard word list with exceptions — YouTube links are excepted by
+    default.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antipub
+<span class="t">!antipub</span> add <span class="a">&lt;link|#chan&gt;</span>     <span class="c"># add pattern</span>
+<span class="t">!antipub</span> add <span class="a">+word</span>            <span class="c"># add exception</span>
+<span class="t">!antipub</span> list · <span class="t">!antipub</span> del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 2d · method 6 (kick→ban) · mask <code>*!*@host</code> ·
+    settings: <code>antipub-reason/-bantime/-warn/-banmethod/-banmask</code></p>
+  </div>
+
+  <div class="cmd" data-k="antinotice notice protection">
+    <div class="cmd-head"><h4>AntiNotice</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes users who send NOTICEs to the channel.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antinotice</pre></div>
+    <p class="opt">Stock defaults: ban 2d · method 3 (ban) · mask <code>*!*@host</code> · sets channel mode
+    <code>+mr</code> for 45s during an attack</p>
+  </div>
+
+  <div class="cmd" data-k="antictcp ctcp protection">
+    <div class="cmd-head"><h4>AntiCTCP</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes users who send CTCPs to the channel.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antictcp</pre></div>
+    <p class="opt">Stock defaults: ban 3d · method 3 (ban) · mask <code>*!*@host</code> · mode
+    <code>+mC</code> for 45s</p>
+  </div>
+
+  <div class="cmd" data-k="antibadword badword swear words protection">
+    <div class="cmd-head"><h4>AntiBadWord</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes use of forbidden words/phrases (wildcards). Words can carry their own punishment method:
+    <code>word:6</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antibadword
+<span class="t">!badword</span> add <span class="a">&lt;word|phrase&gt;</span> · <span class="t">!badword</span> add <span class="a">&lt;word:method&gt;</span>
+<span class="t">!badword</span> add <span class="a">+word</span> <span class="c"># exception</span> · <span class="t">!badword</span> list · del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 6h · method 6 (kick→ban) · mask <code>*!*@host</code></p>
+  </div>
+
+  <div class="cmd" data-k="antilongtext long text lines protection">
+    <div class="cmd-head"><h4>AntiLongText</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes messages that are too long (stock limit: 215 characters).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antilongtext</pre></div>
+    <p class="opt">Stock defaults: ban 30m · method 6 · mask <code>*!*@host</code> · setting
+    <code>antilongtextmax</code></p>
+  </div>
+
+  <div class="cmd" data-k="badquitpart quit part message protection quitpartcolor quitpartmsgflood">
+    <div class="cmd-head"><h4>AntiBadQuitPart</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes forbidden words in part/quit messages. Extras: <code>+quitpartcolor</code> (colours in
+    quit/part) and <code>+quitpartmsgflood</code> (overlong quit/part messages, default 120 chars).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +badquitpart
+<span class="t">!badquitpart</span> add <span class="a">&lt;word&gt;</span> · add <span class="a">+word</span> · list · del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 1h · mask <code>*!user@host</code></p>
+  </div>
+
+  <div class="cmd" data-k="antispam spam private message join protection spamjoinmessage">
+    <div class="cmd-head"><h4>AntiSpam</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans users who private-spam channel members (patterns with <code>#</code> or <code>*www.*</code>).
+    The optional <code>+spamjoinmessage</code> extra sends a bait verification PM to every joiner —
+    spambots that reply get caught. Scan cycle: 60m.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antispam
+<span class="t">!antispam</span> add <span class="a">&lt;*text*&gt;</span> · add <span class="a">+word</span> · list · del <span class="a">&lt;no.&gt;</span>
+<span class="t">!set</span> +spamjoinmessage · <span class="t">!set</span> antispam-message <span class="a">&lt;text&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 6d · mask <code>*!*@host</code> · settings:
+    <code>antispam-scantime</code></p>
+  </div>
+
+  <div class="cmd" data-k="antirepeat repeat flood text protection">
+    <div class="cmd-head"><h4>AntiRepeat</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes repeating the same text (stock default: 3 repeats within 5s).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antirepeat</pre></div>
+    <p class="opt">Stock defaults: ban 10m · method 7 (warn→ban) · mask <code>*!*@host</code> · setting
+    <code>antirepeat-setting</code> (repeats:seconds)</p>
+  </div>
+
+  <div class="cmd" data-k="anticolor antibold antiunderline anticaps formatting colours caps protection">
+    <div class="cmd-head"><h4>AntiColor · AntiBold · AntiUnderline · AntiCaps</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>The formatting police: punishes colours, bold, underline, or CAPS abuse (stock caps limit:
+    50 chars). Since 2.5.5, AntiColor can be limited to specific colour codes via
+    <code>black(anticolor:specific_colors)</code> in the config.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +anticolor · <span class="t">!set</span> +antibold · <span class="t">!set</span> +antiunderline · <span class="t">!set</span> +anticaps</pre></div>
+    <p class="opt">Stock defaults: ban 10m · method 7 (warn→ban) · mask <code>*!*@host</code> each</p>
+  </div>
+
+  <div class="cmd" data-k="repetitivechars repeated characters protection">
+    <div class="cmd-head"><h4>RepetitiveChars</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes consecutive repeated characters (stock default: 10 in a line — "aaaaaaaaaa").</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +repetitivechars</pre></div>
+    <p class="opt">Stock defaults: ban 10m · method 7 · mask <code>*!user@host</code> · setting
+    <code>repetitivechars-char</code></p>
+  </div>
+
+  <div class="cmd" data-k="badnick nickname forbidden protection">
+    <div class="cmd-head"><h4>BadNick</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans nicknames containing forbidden words (checked on join and nick change). Method 1 warns first
+    and gives 30s to change nick before banning.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +badnick
+<span class="t">!badnick</span> add <span class="a">&lt;word&gt;</span> · add <span class="a">+word</span> · list · del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 1h · mask <code>nick!*@*</code> · settings:
+    <code>badnick-bmethod</code> (1 = warn→ban, 2 = ban) · <code>badnick-banwait</code> (30s)</p>
+  </div>
+
+  <div class="cmd" data-k="badident ident forbidden protection">
+    <div class="cmd-head"><h4>BadIdent</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans idents containing forbidden words (checked on join).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +badident
+<span class="t">!badident</span> add <span class="a">&lt;word&gt;</span> · add <span class="a">+word</span> · list · del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 1h · mask <code>*!user@*</code></p>
+  </div>
+
+  <div class="cmd" data-k="badrealname realname forbidden protection">
+    <div class="cmd-head"><h4>BadRealname</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans realnames containing forbidden words/links (checked on join).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +badrealname
+<span class="t">!badrealname</span> add <span class="a">&lt;word&gt;</span> · add <span class="a">+word</span> · list · del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 2h · mask <code>*!*@host</code> · default patterns include
+    <code>*www.*</code>, <code>*#*</code>, <code>*http://*</code></p>
+  </div>
+
+  <div class="cmd" data-k="badhost host vhost ip forbidden protection">
+    <div class="cmd-head"><h4>BadHost</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans users whose IP/vhost contains forbidden words.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +badhost
+<span class="t">!badhost</span> add <span class="a">&lt;ip|mask&gt;</span> · add <span class="a">+word</span> · list · del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 3h · mask <code>*!*@host</code></p>
+  </div>
+
+  <div class="cmd" data-k="antijoinflood massjoin join flood protection">
+    <div class="cmd-head"><h4>AntiJoinFlood</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Counters mass-join floods: locks the channel (<code>+mr</code> here, 45s) and bans flooders. Also
+    catches join/part-quit cycling. Per-user limit here: 3 joins / 15s.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antijoinflood
+<span class="t">!set</span> joinflood <span class="a">&lt;joins:seconds&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 1h · mask <code>*!*@host</code> · see also
+    <code>+antijoinpart</code></p>
+  </div>
+
+  <div class="cmd" data-k="antichanflood channel text flood protection">
+    <div class="cmd-head"><h4>AntiChanFlood</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes text flooding (stock default: 4 lines / 5s). Locks the channel <code>+mr</code> for 45s
+    while it cleans up.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +antichanflood
+<span class="t">!set</span> chanflood <span class="a">&lt;lines:seconds&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 10m · method 6 (kick→ban) · mask <code>*!*@host</code></p>
+  </div>
+
+  <div class="cmd" data-k="nickflood nick change flood protection">
+    <div class="cmd-head"><h4>NickFlood</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Punishes rapid nick-changing (stock default: 3 changes / 120s).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +nickflood</pre></div>
+    <p class="opt">Stock defaults: ban 10m · method 7 (warn→ban) · mask <code>nick!user@host</code> ·
+    setting <code>nickflood-repeat</code></p>
+  </div>
+
+  <div class="cmd" data-k="noproxy proxy ip ban isp protection new">
+    <div class="cmd-head"><h4>NoProxy <span style="font-size:10px;color:var(--green)">NEW in 2.5.5</span></h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans users joining from IPs identified as <strong>proxies</strong>. The ban reason supports the
+    <code>%isp%</code> placeholder, replaced with the IP's ISP name. An except-hosts list lives in the
+    config (<code>black(noproxy:excepts)</code>).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +noproxy</pre></div>
+    <p class="opt">Stock defaults: ban 1h · settings: <code>noproxy-reason</code> ·
+    <code>noproxy-bantime</code></p>
+  </div>
+
+  <div class="cmd" data-k="inviteban invite bot unauthorized protection">
+    <div class="cmd-head"><h4>InviteBan</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans users who try to invite the bot into unauthorised channels.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +inviteban</pre></div>
+    <p class="opt">Stock defaults: ban 3h · mask <code>*!*@host</code></p>
+  </div>
+
+  <div class="cmd" data-k="antitake dontop dontdeop op protection takeover">
+    <div class="cmd-head"><h4>AntiTake (dontop / dontdeop)</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Anti-takeover. <code>+dontdeop</code>: unauthorised users who deop others get deopped, victims get
+    re-opped. <code>+dontop</code>: unauthorised users who op someone get both parties deopped.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +dontdeop
+<span class="t">!set</span> +dontop</pre></div>
+  </div>
+
+  <div class="cmd" data-k="securemode botnet join flood undernet +Dm strictsecured code">
+    <div class="cmd-head"><h4>SecureMode</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Undernet-specific botnet shield. Works with channel modes <code>+Dm</code>: each first-time joiner
+    receives a unique code to confirm before being let in. <code>+strictsecured</code> requires the code on
+    <em>every</em> join. Known-good hosts can be whitelisted.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +securemode
+<span class="t">!securemode</span> add <span class="a">&lt;ip|mask&gt;</span> · del <span class="a">&lt;no.&gt;</span> · list
+<span class="t">!set</span> +strictsecured</pre></div>
+  </div>
+
+  <div class="cmd" data-k="clonescan clones scan ban protection">
+    <div class="cmd-head"><h4>CloneScan</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Periodically scans for clones (multiple connections from one host) and bans them. Stock defaults:
+    max 3 clones, scan every 45m, ban 180m.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +clonescan
+<span class="t">!clonescan</span> add <span class="a">&lt;ip|mask&gt;</span> <span class="c"># whitelist</span> · del <span class="a">&lt;no.&gt;</span> · list</pre></div>
+    <p class="opt">Settings: <code>clonescan-maxclone</code> · <code>clonescan-bantime</code> ·
+    <code>clonescan-reason</code> · <code>clonescan-scantime</code></p>
+  </div>
+
+  <div class="cmd" data-k="badchan bad channels forbidden co-channel scan">
+    <div class="cmd-head"><h4>BadChan</h4><span class="lvl manager">Manager+ to configure</span></div>
+    <p>Bans users who sit in forbidden channels (wardriving hack/warez/adult channels — a default list
+    ships in the config). Scans every 10m; method 1 warns and gives 30s to leave the bad channel first.
+    <code>+showbadchan</code> tells the ops which bad channel triggered it. Rewritten in 2.5.5 — faster
+    and safer — and now accepts <strong>regex badchans</strong>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!badchan</span> <span class="a">&lt;ON|OFF&gt;</span>
+<span class="t">!badchan</span> add <span class="a">&lt;#badchan&gt;</span> <span class="o">[global] [reason]</span>
+<span class="t">!badchan</span> regex <span class="a">&lt;#regex&gt;</span> <span class="o">[reason]</span>    <span class="c"># e.g. #[a-z]+[0-9][0-9]</span>
+<span class="t">!badchan</span> add <span class="a">+#chan</span> <span class="c"># exception</span> · list <span class="o">[-global]</span> · del <span class="a">&lt;no.&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 6h · mask <code>*!*@host</code> · settings:
+    <code>badchan-scantime</code> · <code>badchan-bmethod</code> · <code>badchan-banwait</code> ·
+    <code>badchan-floodcontrol</code> (join-flood pause, 5:5)</p>
+  </div>
+</section>
+
+<!-- ================= MODULES ================= -->
+<section id="modules">
+  <h2><span class="hash">#</span>Modules</h2>
+  <p class="sec-intro">Feature modules, toggled per channel. Check what's enabled with
+  <code>!h module</code> — green [+] is on, red [−] is off.</p>
+
+  <div class="cmd" data-k="xtools x op voice invite unban undernet module">
+    <div class="cmd-head"><h4>XTools</h4><span class="lvl manager">Manager+</span></div>
+    <p>Lets the bot ask Undernet's <code>X</code> for op, voice, invite, or to unban itself when it needs
+    help.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +xtools</pre></div>
+  </div>
+
+  <div class="cmd" data-k="xonly x administration undernet module ban through x">
+    <div class="cmd-head"><h4>XOnly</h4><span class="lvl manager">Manager+</span></div>
+    <p>Full channel administration <em>through X</em>: the bot performs all BlackTools commands via
+    <code>X</code> even when it isn't opped. X bans use their own level and duration.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +xonly
+<span class="t">!set</span> xbantime <span class="a">&lt;time&gt;</span> · <span class="t">!set</span> xbanlevel <span class="a">&lt;level&gt;</span></pre></div>
+    <p class="opt">Stock defaults: X ban time 1 · X ban level 100</p>
+  </div>
+
+  <div class="cmd" data-k="seen module database channel">
+    <div class="cmd-head"><h4>Seen</h4><span class="lvl manager">Manager+</span></div>
+    <p>Per-channel seen database powering the <code>!seen</code> command. Extras:
+    <code>+seenlastmsg</code> (include the person's last message) and <code>+seenreply</code> (tell users
+    who searched for them). Entries expire after 730 days.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +seen · <span class="t">!set</span> +seenlastmsg · <span class="t">!set</span> +seenreply</pre></div>
+  </div>
+
+  <div class="cmd" data-k="greet leave welcome part message count module">
+    <div class="cmd-head"><h4>Greet &amp; Leave</h4><span class="lvl manager">Manager+</span></div>
+    <p>Channel welcome and goodbye messages. Greet supports the <strong>Count</strong> variables:
+    <code>%nick%</code>, <code>%countchan%</code>, <code>%count%</code> (join number),
+    <code>%time%</code>. Use <code>~</code> to split into multiple sentences.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!greet</span> <span class="a">&lt;ON|OFF&gt;</span> · <span class="t">!greet</span> set <span class="a">&lt;message&gt;</span>
+<span class="t">!leave</span> <span class="a">&lt;ON|OFF&gt;</span> · <span class="t">!leave</span> set <span class="a">&lt;message&gt;</span>
+<span class="t">!set</span> greet-method <span class="a">&lt;NOTICE|PRIVMSG&gt;</span> · <span class="t">!set</span> leave-method <span class="a">&lt;NOTICE|PRIVMSG&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!greet</span> set Welcome to %countchan%, %nick%!~You are visitor number %count% since %time%</pre></div>
+  </div>
+
+  <div class="cmd" data-k="anunt advert announcement ads module">
+    <div class="cmd-head"><h4>Anunt (Advert)</h4><span class="lvl manager">Manager+</span></div>
+    <p>Rotates announcements/ads on the channel — but only while the channel is active (no activity =
+    no ads). Supports <code>%chan%</code> and <code>%botnick%</code>, multi-sentence with
+    <code>~</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!anunt</span> <span class="a">&lt;ON|OFF&gt;</span>
+<span class="t">!anunt</span> add <span class="a">&lt;text&gt;</span> · list · del <span class="a">&lt;no.&gt;</span>
+<span class="t">!set</span> anunt-showtime <span class="a">&lt;period&gt;</span></pre></div>
+    <p class="opt">Stock interval: 52m</p>
+  </div>
+
+  <div class="cmd" data-k="autobroadcast bt broadcast all channels module silent">
+    <div class="cmd-head"><h4>AutoBroadcast (bt)</h4><span class="lvl owner">Owner+</span></div>
+    <p>Broadcasts stored messages, one at a time, across <em>all</em> channels. Channels flagged
+    <code>+silent</code> are skipped.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!bt</span> <span class="a">&lt;ON|OFF&gt;</span>
+<span class="t">!bt</span> add <span class="a">&lt;message&gt;</span> · list · del <span class="a">&lt;no.&gt;</span>
+<span class="t">!set</span> +silent          <span class="c"># opt this channel out</span></pre></div>
+    <p class="opt">Stock interval: 55m, sent as ACTION</p>
+  </div>
+
+  <div class="cmd" data-k="limit channel limit handling module">
+    <div class="cmd-head"><h4>Limit</h4><span class="lvl manager">Manager+</span></div>
+    <p>Keeps the channel limit (+l) floating a few places above the current user count — an old-school
+    anti-massjoin trick. Stock margin: 6.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!limit</span> <span class="a">&lt;ON|OFF&gt;</span>
+<span class="t">!limit</span> set <span class="a">&lt;number&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="topic autotopic refresh url module">
+    <div class="cmd-head"><h4>Topic · AutoTopic · Url</h4><span class="lvl manager">Manager+</span></div>
+    <p>Stores the official channel topic and URL. <code>+autotopic</code> re-applies them whenever someone
+    changes the topic; <code>+refresh</code> re-applies on an interval; <code>!r</code> does it manually.
+    <code>+showurl</code> appends the URL to ban reasons.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!topic</span> set <span class="a">&lt;text&gt;</span> · <span class="t">!topic</span> unset
+<span class="t">!set</span> url <span class="a">&lt;url&gt;</span>
+<span class="t">!set</span> +autotopic · <span class="t">!set</span> +refresh · <span class="t">!set</span> +showurl</pre></div>
+  </div>
+
+  <div class="cmd" data-k="idle antiidle op voice halfop deop module">
+    <div class="cmd-head"><h4>Idle (Anti-Idle)</h4><span class="lvl manager">Manager+</span></div>
+    <p>De-ops/-voices/-halfops users who idle too long. Stock defaults: ops 10m, voices 30m, halfops 30m,
+    scanned every 5m. An exception list is available. Since 2.5.5 the module waits while the channel is
+    <code>+mD</code> under SecureMode.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!idle</span> <span class="a">&lt;+/-o | +/-v | +/-ho&gt;</span>
+<span class="t">!idle</span> add <span class="a">&lt;nick&gt;</span> · list · del <span class="a">&lt;nick&gt;</span>
+<span class="t">!set</span> idleopmax <span class="a">&lt;period&gt;</span> · idlevoicemax · idlehalfopmax · idle-scantime</pre></div>
+  </div>
+
+  <div class="cmd" data-k="voiceme voice x logged module nologged onlyonmode">
+    <div class="cmd-head"><h4>VoiceMe</h4><span class="lvl manager">Manager+</span></div>
+    <p>Lets X-logged users voice themselves with <code>/msg BotNick voiceme #channel</code>. Extras:
+    <code>+onlyonmode</code> restricts it to when the channel is <code>+m</code> (with a periodic channel
+    hint, default 25m); <code>+nologged</code> allows users without an X username too.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +voiceme
+<span class="t">!set</span> +onlyonmode · <span class="t">!set</span> +nologged · <span class="t">!set</span> voiceme-showtime <span class="a">&lt;period&gt;</span>
+<span class="c"># users then do:</span>
+/msg BotNick voiceme #channel</pre></div>
+  </div>
+
+  <div class="cmd" data-k="voiceonmsg voice active chatters lines idle module">
+    <div class="cmd-head"><h4>VoiceOnMsg</h4><span class="lvl manager">Manager+</span></div>
+    <p>Auto-voices active chatters (stock default: after 3 lines) and devoices them after idling too long
+    (default: 2h). Users with access are ignored.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +voiceonmsg
+<span class="t">!set</span> voiceonmsg-linenum <span class="a">&lt;lines&gt;</span> · <span class="t">!set</span> voiceonmsg-idletime <span class="a">&lt;duration&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="private access only channel ban module">
+    <div class="cmd-head"><h4>Private</h4><span class="lvl manager">Manager+</span></div>
+    <p>Makes the channel access-only: anyone without bot access (or an exception) is banned on join.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +private
+<span class="t">!private</span> add <span class="a">&lt;nick&gt; &lt;ip|mask&gt;</span> · list · del <span class="a">&lt;nick&gt;</span></pre></div>
+    <p class="opt">Stock defaults: ban 60m · mask <code>*!*@host</code></p>
+  </div>
+
+  <div class="cmd" data-k="autoupdate update github self-update module new">
+    <div class="cmd-head"><h4>AutoUpdate <span style="font-size:10px;color:var(--green)">NEW in 2.5.5</span></h4><span class="lvl boss">Boss owner</span></div>
+    <p>Lets the script <strong>update itself from GitHub</strong> when a new version or bugfix is
+    released — automatically on a timer, or by command. All BT files and the settings from
+    <code>BlackTools.tcl</code> are backed up and restored; the bot can auto-restart when an update
+    requires it. Config: <code>update_on</code> (kill switch), <code>update_type</code>
+    (0 = timer + command, 1 = command only), <code>update_time_check</code> (stock: 60m).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!update</span> <span class="a">&lt;on|off&gt;</span>       <span class="c"># enable/disable autoupdate</span>
+<span class="t">!update</span> check          <span class="c"># check for new versions</span>
+<span class="t">!update</span> start          <span class="c"># run the update now</span>
+<span class="t">!update</span> time <span class="o">[period]</span>  <span class="c"># get/set the check interval (Xm/Xh/Xd)</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="alias custom command personalized module new">
+    <div class="cmd-head"><h4>Alias <span style="font-size:10px;color:var(--green)">NEW in 2.5.5</span></h4><span class="lvl voice">Voice+</span></div>
+    <p>Lets users create their <strong>own personalized commands</strong> on top of any BT command, with
+    <code>%1%</code>, <code>%2%</code>… as argument placeholders. Aliases follow the user (renamed with
+    <code>chuser</code>, removed when the user is deleted or expires).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!alias</span> add <span class="a">&lt;command&gt;</span> <span class="a">&lt;BT command&gt;</span> <span class="o">[arguments]</span>
+<span class="t">!alias</span> del <span class="a">&lt;command&gt;</span></pre></div>
+    <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!alias</span> add lamer b %1% 0 You are a lamer !!   <span class="c"># then: !lamer BadGuy</span>
+<span class="t">!alias</span> add beer cycle %1% %2% Gone for a beer, back soon</pre></div>
+  </div>
+
+  <div class="cmd" data-k="vote voting poll options module new votegreet">
+    <div class="cmd-head"><h4>Vote <span style="font-size:10px;color:var(--green)">NEW in 2.5.5</span></h4><span class="lvl manager">Manager+ to toggle</span></div>
+    <p>Channel <strong>voting system</strong>: open a voting with multiple options, an optional expiry
+    time, and choose whether only users with access or everyone may vote. Users answer with the option
+    letter. <code>+votegreet</code> tells joiners when votings are open.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +vote
+<span class="t">!vote</span> add <span class="a">&lt;vote_name&gt;</span> -option <span class="a">&lt;opt1&gt;</span> -option <span class="a">&lt;opt2&gt;</span>.. <span class="o">[-time DD/MM/YY HH:MM] [-type 1|0]</span>
+<span class="t">!vote</span> <span class="a">&lt;ID&gt;</span> <span class="a">&lt;letter&gt;</span>              <span class="c"># cast your vote</span>
+<span class="t">!vote</span> list <span class="o">[ID]</span> · <span class="t">!vote</span> time <span class="a">&lt;ID&gt;</span> <span class="a">&lt;DD/MM/YY HH:MM&gt;</span> · <span class="t">!vote</span> end <span class="a">&lt;ID&gt;</span> · <span class="t">!vote</span> del <span class="a">&lt;ID&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!vote</span> add NewTopic -option Keep it -option Change it -time 31/12/25 20:00 -type 0</pre></div>
+    <p class="opt">Optional settings: <code>vote-mask</code> (voter identity mask, stock
+    <code>*!*@host</code>) · <code>-type</code> default: all users</p>
+  </div>
+
+  <div class="cmd" data-k="next helped noidle skip queue help channel module nextshortcmd">
+    <div class="cmd-head"><h4>Next</h4><span class="lvl manager">Manager+</span></div>
+    <p>Help-queue system (built for support channels like #TCL-HELP): users wait in line, helpers voice
+    the next one in order. <code>+nextshortcmd</code> enables the short aliases.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +next
+<span class="t">!next</span>            <span class="c"># voice the next user in the queue</span>
+<span class="t">!next</span> list · <span class="t">!helped</span> <span class="a">&lt;nick&gt;</span> · <span class="t">!noidle</span> <span class="a">&lt;nick&gt;</span> · <span class="t">!skip</span> <span class="a">&lt;nick&gt;</span></pre></div>
+    <p class="opt">Settings: <code>next-reason</code> · <code>next-bantime</code> (noidle ban, default 1m)</p>
+  </div>
+
+  <div class="cmd" data-k="topwords statistics words lines activity module accessonly">
+    <div class="cmd-head"><h4>TopWords</h4><span class="lvl manager">Manager+</span></div>
+    <p>Records chat statistics per user (words, lines, letters — daily and total).
+    <code>+accessonly</code> restricts counting to users with bot access.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +topwords
+<span class="t">!topwords</span> <span class="a">&lt;nick&gt;</span> <span class="o">[total|reset]</span>
+<span class="t">!set</span> +accessonly</pre></div>
+  </div>
+
+  <div class="cmd" data-k="quote quoteofday quotes module q">
+    <div class="cmd-head"><h4>Quote · QuoteOfDay</h4><span class="lvl manager">Manager+</span></div>
+    <p>Channel quote database with add/search/list/delete — plus an optional "Quote of the Day" that posts
+    a random stored quote on an interval (stock default: every 3h). Since 2.5.5 the
+    <code>quote:usage</code> config setting chooses who may add/list/remove quotes: users with access
+    only (stock) or everyone.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +quote
+<span class="t">!q</span> <span class="a">&lt;text&gt;</span>          <span class="c"># add (use ~ for multi-sentence)</span>
+<span class="t">!q</span> <span class="a">&lt;word&gt;</span>          <span class="c"># search</span>
+<span class="t">!q</span> list · <span class="t">!q</span> del <span class="a">&lt;no.&gt;</span>
+<span class="t">!set</span> +quoteofday · <span class="t">!set</span> quoteofday-showtime <span class="a">&lt;period&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="note notes send read inbox message module noteexpire">
+    <div class="cmd-head"><h4>Note</h4><span class="lvl manager">Manager+ to toggle</span></div>
+    <p>Private note system: store personal notes or send them to other handles — delivered when they next
+    appear. The bot also notes global owners whenever it gets banned or locked out of a channel. Inbox
+    expires after 365 days (per-user override: <code>!myset noteexpire</code>).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +note
+<span class="t">!note</span> send <span class="a">&lt;handle&gt;</span> <span class="a">&lt;message&gt;</span>
+<span class="t">!note</span> <span class="a">&lt;read|list|inbox&gt;</span> · <span class="t">!note</span> del <span class="a">&lt;no.|all&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="backchan chanreport back channel report bans module">
+    <div class="cmd-head"><h4>BackChan (ChanReport)</h4><span class="lvl manager">Manager+</span></div>
+    <p>Gives the channel a private "back-channel" where the bot reports every ban it sets on the main
+    channel — and where you can issue ban commands that apply to the main channel. One backchan per
+    channel.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> backchan <span class="a">&lt;#backchan&gt;</span></pre></div>
+    <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> backchan #channel-ops</pre></div>
+  </div>
+
+  <div class="cmd" data-k="banstats statistics kicks bans module">
+    <div class="cmd-head"><h4>BanStats</h4><span class="lvl manager">Manager+</span></div>
+    <p>Keeps statistics of every kick and ban on the channel (feeds the <code>!stats</code> command).
+    Daily counters reset at midnight.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +banstats
+<span class="t">!banstats</span> <span class="a">&lt;total|reset&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="language lang romanian english module">
+    <div class="cmd-head"><h4>Language</h4><span class="lvl manager">Manager+</span></div>
+    <p>Sets the channel's reply language and the language used in kick/ban reasons. Available:
+    <code>EN</code> (english) · <code>RO</code> (romanian). Each user can override with
+    <code>!myset lang</code>.</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> lang <span class="a">&lt;EN|RO&gt;</span></pre></div>
+  </div>
+
+  <div class="cmd" data-k="forward invisible misc flags module">
+    <div class="cmd-head"><h4>Misc flags: Forward · Invisible · ExpireBans</h4><span class="lvl boss">Boss owner</span></div>
+    <p><code>+forward</code> forwards PMs the bot receives (from strangers) to a channel.
+    <code>+invisible</code> hides the channel from the bot's channel list. <code>expirebans</code> sets
+    how long channel bans live before auto-removal (stock default: 120m; <code>0</code> = never remove).</p>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> +forward · <span class="t">!set</span> +invisible · <span class="t">!set</span> expirebans <span class="a">&lt;period&gt;</span></pre></div>
+  </div>
+</section>
+
+<!-- ================= MYSET ================= -->
+<section id="myset">
+  <h2><span class="hash">#</span>Personal settings — <code style="font-size:.75em">!myset</code></h2>
+  <p class="sec-intro">Every user with access carries their own preferences, applied wherever they use the
+  bot. Append <code>show</code> to view a value or <code>reset</code> to clear it.</p>
+  <div class="cmd" data-k="myset personal lang output mychar colors noteexpire autoinvite greet mychan handle">
+    <div class="cmd-head"><h4><span class="amp">!</span>myset</h4><span class="lvl voice">Voice+</span></div>
+    <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!myset</span> <span class="a">&lt;option&gt;</span> <span class="o">[value] [show|reset]</span></pre></div>
+    <div class="table-scroll"><table>
+      <tr><th>Option</th><th>What it does</th><th>Example</th></tr>
+      <tr><td><code>lang</code></td><td>Your reply language (EN/RO)</td><td><code>!myset lang EN</code></td></tr>
+      <tr><td><code>output</code></td><td>How the bot answers you: NOTICE or CHAN</td><td><code>!myset output chan</code></td></tr>
+      <tr><td><code>mychar</code></td><td>Your personal trigger character</td><td><code>!myset mychar .</code></td></tr>
+      <tr><td><code>colors</code></td><td>4 personal reply colours (bold, red, grey, green…)</td><td><code>!myset colors bold red grey green</code></td></tr>
+      <tr><td><code>greet</code></td><td>Your join greet/info line (see <code>!addinfo</code>)</td><td><code>!myset greet Hello there!</code></td></tr>
+      <tr><td><code>mychan</code></td><td>Base channel for PRIVMSG commands — skip typing <code>#channel</code></td><td><code>!myset mychan #channel</code></td></tr>
+      <tr><td><code>auto</code></td><td>Your own automode (+/-o, +/-v; owners may add <code>-global</code>)</td><td><code>!myset auto +v</code></td></tr>
+      <tr><td><code>autoinvite</code></td><td>Bot invites you automatically if you get banned out</td><td><code>!myset autoinvite #channel ON</code></td></tr>
+      <tr><td><code>noteexpire</code></td><td>Auto-expiry period for your note inbox</td><td><code>!myset noteexpire 90d</code></td></tr>
+      <tr><td><code>addhost / delhost</code></td><td>Manage your own hostmasks</td><td><code>!myset addhost *!*@me.users.undernet.org</code></td></tr>
+      <tr><td><code>handle</code></td><td>Change your own handle</td><td><code>!myset handle NewName</code></td></tr>
+      <tr><td><code>notes</code></td><td>Accept notes ON/OFF</td><td><code>!myset notes ON</code></td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ================= EGG ================= -->
+<section id="egg">
+  <h2><span class="hash">#</span>Eggdrop.conf via IRC — the <code style="font-size:.75em">egg</code> settings</h2>
+  <p class="sec-intro"><span class="lvl boss">Boss owner</span>&nbsp; Boss owners can edit the bot's config
+  files straight from IRC — no shell needed. View current values with <code>!h egg</code>; change them with
+  <code>!set &lt;option&gt; &lt;value&gt;</code>.</p>
+  <div class="table-scroll"><table>
+    <tr><th>Option</th><th>Controls</th><th>Current / default</th></tr>
+    <tr><td><code>nick</code></td><td>Bot nickname (permanent)</td><td>—</td></tr>
+    <tr><td><code>realname</code></td><td>IRC real-name field (needs restart)</td><td>—</td></tr>
+    <tr><td><code>away</code></td><td>Away message on connect (empty = none)</td><td>""</td></tr>
+    <tr><td><code>homechan</code></td><td>Home channel — joined first, receives abuse/ban reports, never purged</td><td><code>#no_home_chan</code> (unset)</td></tr>
+    <tr><td><code>chanserv</code> / <code>hostchanserv</code></td><td>Service nick &amp; host</td><td><code>X</code> / <code>x@channels.undernet.org</code></td></tr>
+    <tr><td><code>userlogin</code> / <code>userpass</code></td><td>X username &amp; password (password displays masked)</td><td>—</td></tr>
+    <tr><td><code>cmdchar</code></td><td>Trigger characters (several allowed)</td><td><code>! . ` ^</code></td></tr>
+    <tr><td><code>defaultlang</code></td><td>Script default language</td><td><code>EN</code></td></tr>
+    <tr><td><code>defaultoutput</code></td><td>Reply method: 0 NOTICE · 1 CHAN · 2 PRIVMSG</td><td><code>0</code> (NOTICE)</td></tr>
+    <tr><td><code>add-mask</code></td><td>Hostmask style for <code>!add</code> (1–5, see <a href="#reference">masks</a>)</td><td><code>1</code></td></tr>
+    <tr><td><code>add-defaultmask</code></td><td>Mask used when the added user is offline</td><td><code>*!*@%user%.users.undernet.org</code></td></tr>
+    <tr><td><code>floodmenuprot</code></td><td>Command flood limit (cmds:sec)</td><td><code>3:5</code></td></tr>
+    <tr><td><code>floodmsgprot</code></td><td>PRIVMSG flood limit</td><td><code>10:10</code></td></tr>
+    <tr><td><code>floodnotcprot</code></td><td>NOTICE flood limit</td><td><code>2:2</code></td></tr>
+    <tr><td><code>massfloodmsgprot</code> / <code>massfloodsilencetime</code></td><td>Botnet mass-flood shield (since 2.5.5 the PM antiflood action uses IGNORE)</td><td><code>0:0</code> / 60s</td></tr>
+    <tr><td><code>chanremove-setting</code></td><td>Wipe all channel data on channel removal (1/0)</td><td><code>0</code></td></tr>
+    <tr><td><code>user-expire</code></td><td>Remove inactive users after N days</td><td><code>1500</code></td></tr>
+    <tr><td><code>banmethod-expire</code></td><td>How long warn/kick escalation counters live</td><td><code>60m</code></td></tr>
+    <tr><td><code>broadcast-showtime</code></td><td>AutoBroadcast interval</td><td><code>55m</code></td></tr>
+    <tr><td><code>pagelimit</code></td><td>Entries per page in <code>list</code> outputs</td><td><code>7</code></td></tr>
+    <tr><td><code>antibotidle</code></td><td>Keep the eggdrop itself from idling (1 = no idle, 0 = idle) — new in 2.5.5</td><td><code>0</code></td></tr>
+  </table></div>
+  <div class="note"><b>Also new in the 2.5.5 config file</b> (edited in <code>BlackTools.tcl</code>
+  directly): <code>dns_onjoin</code> (DNS lookups on join, off by stock — faster on busy channels),
+  the AutoUpdate block (<code>update_on</code>, <code>update_type</code>,
+  <code>update_time_check</code>), and the ChanServ mass-ban detector
+  (<code>chanserv:percent_ban</code> 50%, <code>chanserv:suspend_level</code> 400,
+  <code>chanserv:suspend_time</code> 1d) which suspends anyone who mass-bans through X.</div>
+  <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> cmdchar ! .
+<span class="t">!set</span> homechan #channel
+<span class="t">!set</span> defaultoutput 0</pre></div>
+</section>
+
+<!-- ================= NATIVE ================= -->
+<section id="native">
+  <h2><span class="hash">#</span>Native eggdrop settings</h2>
+  <p class="sec-intro">These are standard eggdrop channel flags — not BlackTools features — but
+  <code>!set</code> manages them too, so they're documented here. View them with
+  <code>!h chaninfo</code>.</p>
+  <div class="table-scroll"><table>
+    <tr><th>Setting</th><th>What it does</th></tr>
+    <tr><td><code>+enforcebans</code></td><td>Kick users matching a freshly-set ban</td></tr>
+    <tr><td><code>+dynamicbans</code></td><td>Only place bans on the channel when someone matching joins (keeps +b list short)</td></tr>
+    <tr><td><code>+userbans</code> / <code>+userexempts</code> / <code>+userinvites</code></td><td>Allow bans/exempts/invites to be set directly on IRC</td></tr>
+    <tr><td><code>+dynamicexempts</code> / <code>+dynamicinvites</code></td><td>Only activate +e/+I entries when needed</td></tr>
+    <tr><td><code>+autoop</code> / <code>+autovoice</code> / <code>+autohalfop</code></td><td>Auto-op/voice/halfop users carrying the +o/+v/+l flag on join</td></tr>
+    <tr><td><code>+bitch</code></td><td>Only +o-flagged users may hold @ (insecure, not recommended)</td></tr>
+    <tr><td><code>+greet</code></td><td>Say users' greet lines on join (enables the Greet/Count module output)</td></tr>
+    <tr><td><code>+protectops</code> / <code>+protectfriends</code> / <code>+protecthalfops</code></td><td>Re-op/halfop protected users if they lose status</td></tr>
+    <tr><td><code>+dontkickops</code></td><td>Never kick users with +o flag</td></tr>
+    <tr><td><code>+revenge</code> / <code>+revengebot</code></td><td>Punish whoever deops/kicks/bans the bot (or valid ops)</td></tr>
+    <tr><td><code>+inactive</code></td><td>Leave the channel without losing its settings</td></tr>
+    <tr><td><code>+secret</code></td><td>Hide the channel from the botnet</td></tr>
+    <tr><td><code>+shared</code></td><td>Share channel user records across the botnet</td></tr>
+    <tr><td><code>+cycle</code></td><td>Cycle the channel when it has no ops</td></tr>
+    <tr><td><code>+nodesynch</code></td><td>Tolerate mode changes from non-ops (plays nice with services)</td></tr>
+    <tr><td><code>+statuslog</code></td><td>Log the channel status line every 5 minutes</td></tr>
+    <tr><td><code>+static</code></td><td>Only permanent owners may remove the channel</td></tr>
+    <tr><td><code>chanmode</code></td><td>Enforced channel modes, e.g. <code>!set chanmode +ntk key</code></td></tr>
+    <tr><td><code>ban-time</code></td><td>Eggdrop-internal temp-ban lifetime (BlackTools uses its own <code>expirebans</code> instead)</td></tr>
+    <tr><td><code>flood-chan / -join / -kick / -ctcp / -nick / -deop</code></td><td>Native flood limits as <code>events:seconds</code>; <code>0:0</code> disables</td></tr>
+  </table></div>
+  <div class="code example"><span class="tag">example</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!set</span> flood-chan 15:60      <span class="c"># 15 lines in 60s from one host = flood</span></pre></div>
+</section>
+
+<!-- ================= REFERENCE ================= -->
+<section id="reference">
+  <h2><span class="hash">#</span>Ban methods, masks &amp; durations</h2>
+
+  <h3 class="sub">The 7 ban methods</h3>
+  <p class="sec-intro">Every protection has a <code>-banmethod</code> setting choosing how offenders are
+  escalated. Counters expire after <code>banmethod-expire</code> (60m here). Set with
+  <code>!set &lt;protection&gt;-banmethod &lt;n&gt;</code>.</p>
+  <div class="table-scroll"><table>
+    <tr><th>#</th><th>Escalation</th><th></th></tr>
+    <tr><td><code>1</code></td><td>warn</td><td>just a warning kick/notice</td></tr>
+    <tr><td><code>2</code></td><td>kick</td><td></td></tr>
+    <tr><td><code>3</code></td><td>ban</td><td>straight to ban</td></tr>
+    <tr><td><code>4</code></td><td>warn → kick</td><td>second offence gets the kick</td></tr>
+    <tr><td><code>5</code></td><td>warn → kick → ban</td><td>the full ladder</td></tr>
+    <tr><td><code>6</code></td><td>kick → ban</td><td></td></tr>
+    <tr><td><code>7</code></td><td>warn → ban</td><td></td></tr>
+  </table></div>
+
+  <h3 class="sub">The 5 banmask styles</h3>
+  <p class="sec-intro">Every ban command has a <code>-banmask</code> setting choosing the mask shape, built
+  from <code>nick!user@host</code>:</p>
+  <div class="table-scroll"><table>
+    <tr><th>#</th><th>Mask</th><th>Bans on…</th></tr>
+    <tr><td><code>1</code></td><td><code>*!*@host</code></td><td>host only (the usual default)</td></tr>
+    <tr><td><code>2</code></td><td><code>*!user@host</code></td><td>ident + host</td></tr>
+    <tr><td><code>3</code></td><td><code>nick!user@host</code></td><td>the exact triple</td></tr>
+    <tr><td><code>4</code></td><td><code>nick!*@*</code></td><td>nickname only</td></tr>
+    <tr><td><code>5</code></td><td><code>*!user@*</code></td><td>ident only</td></tr>
+  </table></div>
+  <div class="note"><b>Webchat users</b> (mibbit, kiwiirc, irccloud…) are automatically banned on
+  <em>ident only</em> regardless of the mask setting — their host is shared, their ident carries the
+  user's hex IP.</div>
+
+  <h3 class="sub">Durations</h3>
+  <div class="pill-row">
+    <span class="pill">10m — ten minutes</span>
+    <span class="pill">3h — three hours</span>
+    <span class="pill">2d — two days</span>
+    <span class="pill">0 — permanent</span>
+  </div>
+
+  <h3 class="sub">Good to know</h3>
+  <div class="tip"><b>CIDR bans work:</b> <code>!b *!*@192.0.2.1/24</code> bans the whole range.</div>
+  <div class="tip"><b>Ban comments:</b> nearly every ban command accepts <code>-c &lt;comment&gt;</code> —
+  other ops see it when they inspect the ban with <code>!sb</code>.</div>
+  <div class="tip"><b>Full banlist handling:</b> when the channel +b list fills up (Undernet numeric 478),
+  the bot auto-removes the 10 oldest bans, holding <code>+m</code> for 10 seconds while it cleans.</div>
+  <div class="tip"><b>Multi-sentence texts:</b> greets, quotes, ads and notes split on <code>~</code> —
+  <code>text1~text2</code> is delivered as two lines.</div>
+</section>
+
+<footer>
+  <p><b>BlackTools v2.5.5</b> — © 2008–2021 Daniel Voipan (BLaCkShaDoW) ·
+  <a href="http://www.tclscripts.net">tclscripts.net</a> ·
+  <a href="https://github.com/tclscripts/BlackToolS-TCL">GitHub</a> ·
+  help: <code>#TCL-HELP</code> @ Undernet</p>
+  <p style="margin-top:6px">This documentation page was generated from the script sources
+  (<code>BT.man-en.lang.tcl</code>, <code>BT.en.lang.tcl</code>, <code>BlackTools.tcl</code>,
+  <code>ChangeLog</code>). Press <kbd>/</kbd> to search.</p>
+</footer>
+
+</div></div></div>
+<button id="top-btn" title="Back to top">↑</button>
+<script>
+/* copy buttons */
+document.addEventListener('click',function(e){
+  if(!e.target.classList.contains('copy'))return;
+  var pre=e.target.parentElement.querySelector('pre');
+  var txt=pre.innerText.replace(/^\s*#.*$/gm,'').replace(/\s+#.*$/gm,'').replace(/\n{2,}/g,'\n').trim();
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+    e.target.classList.add('ok');e.target.textContent='✓';
+    setTimeout(function(){e.target.classList.remove('ok');e.target.textContent='⧉';},1200);
+  }).catch(function(){});
+});
+/* search filter */
+var search=document.getElementById('search'),count=document.getElementById('search-count');
+var cards=[];window.addEventListener('DOMContentLoaded',function(){cards=[].slice.call(document.querySelectorAll('.cmd'));});
+search.addEventListener('input',function(){
+  var q=search.value.trim().toLowerCase(),n=0;
+  cards.forEach(function(c){
+    var hit=!q||(c.getAttribute('data-k')||'').toLowerCase().indexOf(q)>-1||c.innerText.toLowerCase().indexOf(q)>-1;
+    c.classList.toggle('hidden',!hit);if(hit)n++;
+  });
+  if(q){count.style.display='inline';count.textContent=n+' match'+(n==1?'':'es');}
+  else{count.style.display='none';}
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='/'&&document.activeElement!==search){e.preventDefault();search.focus();}
+  if(e.key==='Escape'&&document.activeElement===search){search.value='';search.dispatchEvent(new Event('input'));search.blur();}
+});
+/* scrollspy */
+var navLinks=[].slice.call(document.querySelectorAll('.nav a'));
+var secs=navLinks.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+function spy(){
+  var y=window.scrollY+120,cur=null;
+  secs.forEach(function(s){if(s&&s.offsetTop<=y)cur=s.id;});
+  navLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+  document.getElementById('top-btn').style.display=window.scrollY>600?'block':'none';
+}
+window.addEventListener('scroll',spy);spy();
+document.getElementById('top-btn').onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+</script>
+</body>
+</html>
