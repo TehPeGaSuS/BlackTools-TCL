@@ -111,3 +111,7 @@ GREETS   : o Special thanks to QueenElsa and Florian for testing, suggesting fix
              - Website: wWw.TclScriptS.NeT
              - #TCL-HELP (BlackTools TCL Project Official Channel)
 -----------------------------------------------------------------------------------------------------------
+
+Footnote: from version 2.5.6 on, this script continues at:
+  https://github.com/TehPeGaSuS/BlackTools-TCL
+where the work above is simply being improved upon. What changed is listed in the ChangeLog.
