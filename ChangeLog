@@ -4,6 +4,10 @@
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
  2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
+  * man: new setting black(docs_url) in BlackTools.tcl (empty = off). When set,
+    "man" also tells the user to visit that address (the hosted docs.html) to read
+    the syntax of the commands more calmly. Messages in en/es/fr/ro.
+ 2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
   * BadChan: new per-channel option "badchanall" (+/-), off by default (issue #12).
     When on, BadChan has no exceptions: it also checks users added to the bot
     (except flags) and the ops/voices/halfops protected by oprotect, vprotect

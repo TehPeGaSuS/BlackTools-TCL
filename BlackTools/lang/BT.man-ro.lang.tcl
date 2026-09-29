@@ -31,6 +31,7 @@
 
 
 set black(say.ro.man.1) "\005\[BT\]\005 Sintaxa folosire: \002%char%man\002 <comanda>"
+set black(say.ro.man.docs) "\005\[BT\]\005 Daca vrei sa citesti sintaxa comenzilor mai in liniste, viziteaza: \002%msg.1%\002"
 set black(say.ro.man.2) "\005\[BT\]\005 Sintaxa folosire: \002%botnick% man\002 <comanda>"
 set black(say.ro.man.2_1) "\005\[BT\]\005 Sintaxa folosire: \002man\002 <comanda>"
 

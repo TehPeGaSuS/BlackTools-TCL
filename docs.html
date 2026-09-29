@@ -416,7 +416,9 @@ source scripts/BlackTools.tcl
   <div class="cmd" data-k="man manual help">
     <div class="cmd-head"><h4><span class="amp">!</span>man</h4><span class="lvl all">Any access</span></div>
     <p>The built-in user manual. Displays usage information for every command, protection and module —
-    the same content as this page, live on IRC.</p>
+    the same content as this page, live on IRC. If the bot's owner set <code>black(docs_url)</code> in
+    <code>BlackTools.tcl</code> (empty by default), <code>!man</code> also points users to this page, for reading
+    the syntax more calmly.</p>
     <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!man</span> <span class="a">&lt;command&gt;</span></pre></div>
     <div class="code example"><span class="tag">examples</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!man</span> b                <span class="c"># manual for the ban command</span>
 <span class="t">!man</span> antipub          <span class="c"># manual for the anti-advertising protection</span>

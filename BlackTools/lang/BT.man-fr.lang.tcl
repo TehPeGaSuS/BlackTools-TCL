@@ -31,6 +31,7 @@
 
 
 set black(say.fr.man.1) "\005\[BT\]\005 Utilisation : \002%char%man\002 <commande>"
+set black(say.fr.man.docs) "\005\[BT\]\005 Si vous voulez lire la syntaxe des commandes plus tranquillement, rendez-vous sur : \002%msg.1%\002"
 set black(say.fr.man.2) "\005\[BT\]\005 Utilisation : \002%botnick% man\002 <commande>"
 set black(say.fr.man.2_1) "\005\[BT\]\005 Utilisation : \002man\002 <commande>"
 

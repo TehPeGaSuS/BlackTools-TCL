@@ -166,6 +166,15 @@ set black(cmdchar) "! . ` \^"
 set black(default_lang) "EN"
 
 ###########################################################################
+#-------------------- Online documentation (Optional) --------------------#
+# Where the online documentation (docs.html, hosted somewhere) can be     #
+# read. When you set it, "!man" also tells users to visit it, for when    #
+# they want to read the syntax of the commands more calmly. Leave it ""   #
+# (empty) to turn this off.                                               #
+###
+set black(docs_url) ""
+
+###########################################################################
 #-------------------------- Default host ---------------------------------#
 ###									###
 #Default hostmask for BOSS OWNER

@@ -14,6 +14,18 @@
 ##					                               ##
 #########################################################################
 
+###
+# If black(docs_url) is set (BlackTools.tcl), tell the user where the online documentation is.
+# Nothing is said when it is empty (the default) or is not a single word.
+proc man:docs {nick host hand chan chan1} {
+	global black
+if {![info exists black(docs_url)]} { return }
+	set url [string trim $black(docs_url)]
+if {$url == "" || [regexp {\s} $url]} { return }
+	blacktools:tell $nick $host $hand $chan $chan1 man.docs $url
+}
+
+###
 proc man:process {nick host hand chan chan1 type command} {
 	global black
 	set cmd_status [btcmd:status $chan $hand "man" 0]
@@ -65,6 +77,7 @@ switch $type {
 	blacktools:tell $nick $host $hand $chan $chan1 man.2_1 none
 		}
 	}
+	man:docs $nick $host $hand $chan $chan1
 	return
 }
 if {[regexp {[+-]} $command]} {
@@ -2633,6 +2646,7 @@ default {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1_1 $nick
 		}
 	}
+	man:docs $nick $host $hand $chan $chan1
 }
 
 ##############
