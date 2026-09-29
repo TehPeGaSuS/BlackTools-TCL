@@ -166,13 +166,13 @@ set black(cmdchar) "! . ` \^"
 set black(default_lang) "EN"
 
 ###########################################################################
-#-------------------- Online documentation (Optional) --------------------#
-# Where the online documentation (docs.html, hosted somewhere) can be     #
-# read. When you set it, "!man" also tells users to visit it, for when    #
-# they want to read the syntax of the commands more calmly. Leave it ""   #
-# (empty) to turn this off.                                               #
+#------------------------- Online documentation --------------------------#
+# Where the online documentation (the docs.html of this script) can be    #
+# read. "!man" also tells users to visit it, for when they want to read   #
+# the syntax of the commands more calmly. Set it to "" (empty) to turn    #
+# this off, or to the address of your own copy of docs.html.              #
 ###
-set black(docs_url) ""
+set black(docs_url) "https://blacktools-tcl.v-m-m-l.workers.dev/"
 
 ###########################################################################
 #-------------------------- Default host ---------------------------------#
@@ -210,7 +210,7 @@ set black(default_colors) "bold underline none underline"
 ###									###
 #Default away (you can change'it online ofcourse.)
 
-set black(default_away) "BlackTools 2.5.6 - The Next Generation TCL - www.TCLScripts.Net"
+set black(default_away) "BlackTools 2.5.7 - The Next Generation TCL - www.TCLScripts.Net"
 
 ###########################################################################
 #------------------------- Default BanTime -------------------------------#
@@ -1789,7 +1789,7 @@ set black(exempt:default_time) "0"
 
 set black(name) "BlackToolS"
 set black(author) "BLaCkShaDoW"
-set black(vers) "2.5.6"
+set black(vers) "2.5.7"
 set black(site) "wWw.TclScriptS.NeT"
 
 	bind evnt - init-server loginpublic
