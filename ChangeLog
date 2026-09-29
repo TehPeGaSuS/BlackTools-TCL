@@ -10,6 +10,13 @@
     and hoprotect. The bot itself is always skipped, the channel exceptions
     (+#chan) still apply and the other modules are not affected.
   * manual for the new option (man badchanall) in en/es/fr/ro, and docs.html
+  * version 2.5.6
+  * AutoUpdate: updates now come from the TehPeGaSuS/BlackTools-TCL repository
+    (its default branch). The owner and repository are set at the top of
+    BT.AutoUpdate.tcl (black(update_owner), black(update_repo)). The changelog
+    link shown after an update points there too (the Spanish one was broken).
+  * VERSION: SIZE is the number of files under BlackTools/ (80). It had been left
+    at 78, so the updater could never tell that the download was complete.
  2021-04-19 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * implemented spanish language
  2021-04-16 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
