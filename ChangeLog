@@ -3,6 +3,13 @@
   * to implement category TCL in witch you have all tcl and also .tcl info
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
+ 2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
+  * BadChan: new per-channel option "badchanall" (+/-), off by default (issue #12).
+    When on, BadChan has no exceptions: it also checks users added to the bot
+    (except flags) and the ops/voices/halfops protected by oprotect, vprotect
+    and hoprotect. The bot itself is always skipped, the channel exceptions
+    (+#chan) still apply and the other modules are not affected.
+  * manual for the new option (man badchanall) in en/es/fr/ro, and docs.html
  2021-04-19 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>
   * implemented spanish language
  2021-04-16 BLaCkShaDoW  <BLaCkShaDoW@tclscripts.net>

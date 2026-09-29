@@ -625,6 +625,16 @@ if {[matchattr $hand nmo|M $chan]} {
 	}	
 }
 
+badchanall {
+if {[matchattr $hand nmo|M $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2234 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.1211 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.2235 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.1213 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}
+}
+
 showtroll {
 if {[matchattr $hand nmo|M $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1214 none

@@ -18,11 +18,33 @@ bind RAW - 319 badchan:execute
 bind RAW - 401 badchan:nosuchnick
 
 ###
+# Users are normally exempt from BadChan when their flags match
+# $black(exceptflags), or when they are an op/voice/halfop the channel protects
+# (oprotect, vprotect, hoprotect). With the "badchanall" setting on, BadChan
+# has no exceptions and checks everyone (the bot itself is always skipped).
+# The channel exceptions (+#chan) are about channels, not users, and still apply.
+proc badchan:except:flags {hand chan} {
+	global black
+if {[setting:get $chan badchanall]} {
+	return 0
+}
+	return [matchattr $hand $black(exceptflags) $chan]
+}
+
+###
+proc badchan:protected {nick chan} {
+if {[setting:get $chan badchanall]} {
+	return 0
+}
+	return [blacktools:protect $nick $chan]
+}
+
+###
 proc badchanpublic:join {nick host hand chan} {
 	global black badchan
 if {![validchan $chan]} { return }
 if {[setting:get $chan antibadchan]} {
-if {[matchattr $hand $black(exceptflags) $chan]} {
+if {[badchan:except:flags $hand $chan]} {
 	return
 }
 if {[isbotnick $nick]} { return }
@@ -109,7 +131,7 @@ if {![onchan $nick $chan]} {
 	set text [join [check:badchan:except $channels $chan]]
 	set getlang [string tolower [setting:get $chan lang]]
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
-	set bl_protect [blacktools:protect $nick $chan]
+	set bl_protect [badchan:protected $nick $chan]
 if {$bl_protect == "1"} { 
 	badchan:unset $nick $chan $banmask
 	return 
@@ -637,7 +659,7 @@ foreach nick [chanlist $chan] {
 	set host [getchanhost $nick $chan]
 	set hand [nick2hand $nick]
 if {[isbotnick $nick]} { continue  }
-if {[matchattr $hand $black(exceptflags) $chan]} {
+if {[badchan:except:flags $hand $chan]} {
 	continue
 }
 if {[info exists badchan(flood:$host:$chan:act)]} {
@@ -645,7 +667,7 @@ if {[info exists badchan(flood:$host:$chan:act)]} {
 }
 	set banmask [return_mask [return_host_num "badchan" $chan $host] $host $nick]
 if {[info exists badchan(checkagain:$banmask:$chan)]} {continue}
-	set bl_protect [blacktools:protect $nick $chan]
+	set bl_protect [badchan:protected $nick $chan]
 if {$bl_protect == "1"} { continue }
 	set position [lsearch -exact [string tolower $badchanscan_list] "[string tolower $nick]:[string tolower $chan]:$banmask"]
 if {$position < 0} {

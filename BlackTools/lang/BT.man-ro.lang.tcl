@@ -565,7 +565,7 @@ set black(say.ro.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick
 set black(say.ro.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[motiv\] (adauga badchan) ; \002%char%badchan \[#canal\] list\002 (vezi lista badchans)"
 set black(say.ro.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[motiv\]\002 ; %char%badchan del\002 <nr. lista> \[global\] ; \002%char%badchan list\002 \[global\]"
 set black(say.ro.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (adauga exceptie) ; \002%char%badchan regex\002 <#regex> \[motiv\] \001(exemplu \001regex: #\[a-z\]+\[0-9\]\[0-9\])\001 , adauga badchan de tip REGEX, canalele ce vor corespunde expresiei vor fi considerate BADCHAN)"
-set black(say.ro.man.416) "\[MAN\] Setari optionale: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan"
+set black(say.ro.man.416) "\[MAN\] Setari optionale: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan, badchanall"
 
 #Anunt
 
@@ -1202,6 +1202,8 @@ set black(say.ro.man.1210) "\[MAN\] \002ShowBadChan\002 este o extra optiune a m
 set black(say.ro.man.1211) "\[MAN\] SINTAXA FOLOSIRE:"
 set black(say.ro.man.1212) "\[MAN\] \002%char%set\002 (+/-)showbadchan ; \002%botnick% set\002 (+/-)showbadchan ; \002(PRIVMSG) set\002 <#canal> (+/-)showbadchan"
 set black(say.ro.man.1213) "\[MAN\] Vizualizare setari optiuni: \002%char%show\002 <setare> ; \002%botnick% show\002 <setare> ; \002(PRIVMSG) show\002 <#canal> <setare>"
+set black(say.ro.man.2234) "\[MAN\] \002BadChanAll\002 este o extra optiune a modulului \002BadChan\002. Cand este activata, BadChan \002nu face nicio exceptie\002: verifica pe oricine intra sau se afla pe canal, inclusiv userii adaugati in bot (flag-uri de exceptie) si op-urile, voice-urile si halfop-urile protejate. Doar botul insusi este ignorat. Canalele interzise marcate ca exceptie (+#chan) se aplica in continuare. Implicit: dezactivata."
+set black(say.ro.man.2235) "\[MAN\] \002%char%set\002 (+/-)badchanall ; \002%botnick% set\002 (+/-)badchanall ; \002(PRIVMSG) set\002 <#canal> (+/-)badchanall"
 
 #ShowTroll
 

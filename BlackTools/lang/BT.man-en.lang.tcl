@@ -564,7 +564,7 @@ set black(say.en.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick
 set black(say.en.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[reason\] (add badchan) ; \002%char%badchan \[#chan\] list\002 (see badchans list)"
 set black(say.en.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[reason\]\002 ; %char%badchan del\002 <no. list> \[global\] ; \002%char%badchan list\002 \[global\]"
 set black(say.en.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (add exceptions) ; \002%char%badchan regex\002 <#regex> \[reason\] \001(regex \001example: #\[a-z\]+\[0-9\]\[0-9\])\001 , adds a REGEX type BADCHAN, the channels that matches this expression will be considered BADCHANS)"
-set black(say.en.man.416) "\[MAN\] Optional settings: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan"
+set black(say.en.man.416) "\[MAN\] Optional settings: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan, badchanall"
 
 #Anunt
 
@@ -1203,6 +1203,8 @@ set black(say.en.man.1210) "\[MAN\] \002ShowBadChan\002 is an extra option for t
 set black(say.en.man.1211) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.1212) "\[MAN\] \002%char%set\002 (+/-)showbadchan ; \002%botnick% set\002 (+/-)showbadchan ; \002(PRIVMSG) set\002 <#chan> (+/-)showbadchan"
 set black(say.en.man.1213) "View options settings: \002%char%show\002 <setting> ; \002%botnick% show\002 <setting> ; \002(PRIVMSG) show\002 <#chan> <setting>"
+set black(say.en.man.2234) "\[MAN\] \002BadChanAll\002 is an extra option for the \002BadChan\002 module. When it is on, BadChan has \002no exceptions\002: it checks everyone who joins or is on the channel, including users added to the bot (except flags) and protected ops, voices and halfops. Only the bot itself is skipped. Bad channels marked as exceptions (+#chan) still apply. Default: off."
+set black(say.en.man.2235) "\[MAN\] \002%char%set\002 (+/-)badchanall ; \002%botnick% set\002 (+/-)badchanall ; \002(PRIVMSG) set\002 <#chan> (+/-)badchanall"
 
 #ShowTroll
 

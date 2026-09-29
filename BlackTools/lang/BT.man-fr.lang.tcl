@@ -564,7 +564,7 @@ set black(say.fr.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick
 set black(say.fr.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[raison\] (ajouter badchan) ; \002%char%badchan \[#chan\] list\002 (voir la liste des badchans)"
 set black(say.fr.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[raison\]\002 ; \002%char%badchan del\002 <no. list> \[global\] ; \002%char%badchan list\002 \[global\]"
 set black(say.fr.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (ajouter des exceptions) ; \002%char%badchan regex\002 <#regex> \[raison\] \001(regex \001exemple : #\[a-z\]+\[0-9\]\[0-9\])\001 , ajoute un type BADCHAN REGEX, les canaux qui correspondent à cette expression seront considérés comme des BADCHANS)"
-set black(say.fr.man.416) "\[MAN\] Paramètres optionnels : \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan"
+set black(say.fr.man.416) "\[MAN\] Paramètres optionnels : \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan, badchanall"
 
 #Anunt
 
@@ -1203,6 +1203,8 @@ set black(say.fr.man.1210) "\[MAN\] \002ShowBadChan\002 est une option suppléme
 set black(say.fr.man.1211) "\[MAN\] SYNTAXE D'UTILISATION :"
 set black(say.fr.man.1212) "\[MAN\] \002%char%set\002 (+/-)showbadchan ; \002%botnick% set\002 (+/-)showbadchan ; \002(PRIVMSG) set\002 <#chan> (+/-)showbadchan"
 set black(say.fr.man.1213) "Voir les paramètres des options : \002%char%show\002 <paramètre> ; \002%botnick% show\002 <paramètre> ; \002(PRIVMSG) show\002 <#chan> <paramètre>"
+set black(say.fr.man.2234) "\[MAN\] \002BadChanAll\002 est une option supplémentaire pour le module \002BadChan\002. Lorsqu'elle est activée, BadChan \002ne fait aucune exception\002 : il vérifie tous ceux qui rejoignent ou se trouvent sur le canal, y compris les utilisateurs ajoutés au bot (flags d'exception) et les ops, voices et halfops protégés. Seul le bot lui-même est ignoré. Les canaux interdits marqués comme exception (+#chan) continuent de s'appliquer. Par défaut : désactivée."
+set black(say.fr.man.2235) "\[MAN\] \002%char%set\002 (+/-)badchanall ; \002%botnick% set\002 (+/-)badchanall ; \002(PRIVMSG) set\002 <#chan> (+/-)badchanall"
 
 #ShowTroll
 

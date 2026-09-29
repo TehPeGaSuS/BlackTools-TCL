@@ -1242,6 +1242,9 @@ source scripts/BlackTools.tcl
     ships in the config). Scans every 10m; method 1 warns and gives 30s to leave the bad channel first.
     <code>+showbadchan</code> tells the ops which bad channel triggered it. Rewritten in 2.5.5 — faster
     and safer — and now accepts <strong>regex badchans</strong>.</p>
+    <p>Users added to the bot (except flags) and protected ops/voices/halfops are normally skipped.
+    <code>+badchanall</code> removes those exceptions so BadChan checks <strong>everyone</strong> who
+    joins or is on the channel (only the bot itself is skipped); off by default, per channel.</p>
     <div class="code syntax"><span class="tag">syntax</span><button class="copy" title="Copy">⧉</button><pre><span class="t">!badchan</span> <span class="a">&lt;ON|OFF&gt;</span>
 <span class="t">!badchan</span> add <span class="a">&lt;#badchan&gt;</span> <span class="o">[global] [reason]</span>
 <span class="t">!badchan</span> regex <span class="a">&lt;#regex&gt;</span> <span class="o">[reason]</span>    <span class="c"># e.g. #[a-z]+[0-9][0-9]</span>

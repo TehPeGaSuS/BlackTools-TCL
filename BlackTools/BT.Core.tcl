@@ -261,7 +261,7 @@ set black(extra_str) {
 set black(extra_flag) {
 	antipub antinotice antictcp antilongtext antibadword antispam spamjoinmessage antirepeat
 	anticolor antibold antiunderline anticaps badrealname badnick badident repetitivechars
-	antijoinflood antichanflood xtools antibadchan anunt limit clonescan seen autoop showbadchan showtroll
+	antijoinflood antichanflood xtools antibadchan anunt limit clonescan seen autoop showbadchan badchanall showtroll
 	autovoice leave topwords dontop dontdeop private silent quote note reportnick invisible forward
 	showhandle showid showcount showtime showurl next voiceonmsg autotopic greet xonly nologged settingsaved
 	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
@@ -782,7 +782,7 @@ if {[string equal -nocase $hand "CLONESCAN"]} {
 	set finduser [finduser $banmask]
 	set said [lindex $split_hand 1]
 if {$finduser != "*"} {
-if {[matchattr $finduser $black(exceptflags) $chan]} {
+if {[matchattr $finduser $black(exceptflags) $chan] && !([string equal -nocase $hand "badchan"] && [setting:get $chan badchanall])} {
 	return
 	}
 }
