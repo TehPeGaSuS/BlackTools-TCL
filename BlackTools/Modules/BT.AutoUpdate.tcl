@@ -19,6 +19,12 @@ set black(log_file) "scripts/BT.update.log"
 set black(actdir) "scripts"
 set black(last_update_file) "scripts/BlackTools/temp/lastupdate.txt"
 
+# Where updates come from. VERSION and BlackTools.tcl are read from the repository's
+# default branch (raw URL "HEAD"), and the files are downloaded from the same branch
+# with the GitHub API. Change these two if the project moves.
+set black(update_owner) "TehPeGaSuS"
+set black(update_repo) "BlackTools-TCL"
+
 ###
 proc blacktools:check_addons {hand chan} {
     global black
@@ -361,7 +367,7 @@ proc blacktools:update_start_download {hand chan new_version last_modify} {
     set black(update_hand) $hand
     set black(update_chan) $chan
     file delete -force "$black(actdir)/BlackTools"
-    ::github::github update tclscripts BlackTools-TCL $black(actdir)
+    ::github::github update $black(update_owner) $black(update_repo) $black(actdir)
     blacktools:every 1000 {
 if {[file isdirectory $black(actdir)/BlackTools]} {
     set size [llength [glob-r "$black(actdir)/BlackTools"]]
@@ -704,7 +710,7 @@ if {$type == 0} {
 ###
 proc blacktools:update_getconfig {} {
     global black
-    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/master/BlackTools.tcl"
+    set link "https://raw.githubusercontent.com/$black(update_owner)/$black(update_repo)/HEAD/BlackTools.tcl"
     http::register https 443 [list ::tls::socket -tls1 true]
     set ipq [http::config -useragent "lynx"]
 	set error [catch {set ipq [::http::geturl $link -timeout 10000]} eror]
@@ -721,7 +727,7 @@ if {$status != "ok"} {
 ###
 proc blacktools:update_verify {} {
     global black
-    set link "https://raw.githubusercontent.com/tclscripts/BlackTools-TCL/master/VERSION"
+    set link "https://raw.githubusercontent.com/$black(update_owner)/$black(update_repo)/HEAD/VERSION"
     http::register https 443 [list ::tls::socket -tls1 true]
     set ipq [http::config -useragent "lynx"]
 	set error [catch {set ipq [::http::geturl $link -timeout 10000]} eror]

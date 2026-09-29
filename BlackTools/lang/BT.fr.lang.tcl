@@ -1382,7 +1382,7 @@ set black(say.fr.autoupdate.20) "\005\[BT\]\005 Aucune variable restaurée de l'
 set black(say.fr.autoupdate.21) "\005\[BT\]\005 Restauration des paramètres, interdictions et autres anciennes informations ..."
 set black(say.fr.autoupdate.22) "\005\[BT\]\005 Aucun paramètre, interdiction et autre information trouvés ..."
 set black(say.fr.autoupdate.23) "\005\[BT\]\005 Restauré (\002%msg.1%\002) fichiers contenant des paramètres, interdictions et autres informations."
-set black(say.fr.autoupdate.24) "\005\[BT\]\005 Mise à jour terminée pour \001BlackTools\001 dans \002%msg.1%\002 . Journal des modifications : \002https://github.com/tclscripts/BlackTools-TCL/blob/master/ChangeLog\002"
+set black(say.fr.autoupdate.24) "\005\[BT\]\005 Mise à jour terminée pour \001BlackTools\001 dans \002%msg.1%\002 . Journal des modifications : \002https://github.com/TehPeGaSuS/BlackTools-TCL/blob/HEAD/ChangeLog\002"
 set black(say.fr.autoupdate.25) "\005\[BT\]\005 Si quelque chose ne va pas, les fichiers de sauvegarde sont toujours disponibles dans \001\"%msg.1%\"\001 jusqu'à la prochaine mise à jour. Vous pouvez également consulter le journal des mises à jour dans \001\"%msg.2%\"\001"
 set black(say.fr.autoupdate.26) "\005\[BT\]\005 Rappelez-vous, pour des informations ou des problèmes de bugs, visitez le site officiel de \002BT\002 --- \001WwW.TclScripts.Net\001"
 set black(say.fr.autoupdate.27) "\005\[BT\]\005 Mise à jour commencée à \001%msg.1%\001"

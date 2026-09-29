@@ -1361,7 +1361,7 @@ set black(say.ro.autoupdate.20) "\005\[BT\]\005 Nicio variabila restaurata din v
 set black(say.ro.autoupdate.21) "\005\[BT\]\005 Readuc setari, banuri si alte informatii ..."
 set black(say.ro.autoupdate.22) "\005\[BT\]\005 Nu am gasit niciun fisier care sa contina setari, banuri sau alte informatii ..."
 set black(say.ro.autoupdate.23) "\005\[BT\]\005 Restaurat (\002%msg.1%\002) fisiere care contin setari, banuri si alte informatii."
-set black(say.ro.autoupdate.24) "\005\[BT\]\005 Update pentru \001BlackTools\001 finalizat in \002%msg.1%\002 . Changelog: \002https://github.com/tclscripts/BlackTools-TCL/blob/master/ChangeLog\002"
+set black(say.ro.autoupdate.24) "\005\[BT\]\005 Update pentru \001BlackTools\001 finalizat in \002%msg.1%\002 . Changelog: \002https://github.com/TehPeGaSuS/BlackTools-TCL/blob/HEAD/ChangeLog\002"
 set black(say.ro.autoupdate.25) "\005\[BT\]\005 Daca ceva nu a mers cum trebuie, copia de rezerva o gasiti in \001\"%msg.1%\"\001 pana la urmatorul update. Puteti vizualiza si LOG-ul de update in \001\"%msg.2%\"\001"
 set black(say.ro.autoupdate.26) "\005\[BT\]\005 Tineti minte, pentru informatii si anuntare bug-uri pentru BT --- \002WwW.TclScripts.Net\002"
 set black(say.ro.autoupdate.27) "\005\[BT\]\005 Update pornit la \001%msg.1%\001"

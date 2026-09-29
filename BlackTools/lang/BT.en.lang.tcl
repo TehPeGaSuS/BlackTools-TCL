@@ -1361,7 +1361,7 @@ set black(say.en.autoupdate.20) "\005\[BT\]\005 No variables restored from old \
 set black(say.en.autoupdate.21) "\005\[BT\]\005 Restoring settings, bans and other old information ..."
 set black(say.en.autoupdate.22) "\005\[BT\]\005 No settings, bans and other information found ..."
 set black(say.en.autoupdate.23) "\005\[BT\]\005 Restored (\002%msg.1%\002) files that contain settings, bans and other information."
-set black(say.en.autoupdate.24) "\005\[BT\]\005 Update finished for \001BlackTools\001 in \002%msg.1%\002 . Changelog: \002https://github.com/tclscripts/BlackTools-TCL/blob/master/ChangeLog\002"
+set black(say.en.autoupdate.24) "\005\[BT\]\005 Update finished for \001BlackTools\001 in \002%msg.1%\002 . Changelog: \002https://github.com/TehPeGaSuS/BlackTools-TCL/blob/HEAD/ChangeLog\002"
 set black(say.en.autoupdate.25) "\005\[BT\]\005 If something is wrong the backup FILES are stil available in \001\"%msg.1%\"\001 until next Update. Also you can check the UPDATE LOG in \001\"%msg.2%\"\001"
 set black(say.en.autoupdate.26) "\005\[BT\]\005 Remember, for information or bug issues visit the official site of \002BT\002 --- \001WwW.TclScripts.Net\001"
 set black(say.en.autoupdate.27) "\005\[BT\]\005 Update started at \001%msg.1%\001"

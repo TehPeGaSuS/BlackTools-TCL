@@ -1364,7 +1364,7 @@ set black(say.es.autoupdate.20) "\005\[BT\]\005 No se han restaurado variables d
 set black(say.es.autoupdate.21) "\005\[BT\]\005 Restaurando configuraciones, prohibiciones y otra información antigua ..."
 set black(say.es.autoupdate.22) "\005\[BT\]\005 No se encontraron configuraciones, prohibiciones y otra información ..."
 set black(say.es.autoupdate.23) "\005\[BT\]\005 Archivos restaurados (\002%msg.1%\002) que contienen configuraciones, prohibiciones y otra información"
-set black(say.es.autoupdate.24) "\005\[BT\]\005 Actualización finalizada para \001BlackTools \001 en \002%msg.1%\002. Registro de cambios: \002github/tclscripts/BlackTools-TCL/blob/master/ChangeLog\002"
+set black(say.es.autoupdate.24) "\005\[BT\]\005 Actualización finalizada para \001BlackTools \001 en \002%msg.1%\002. Registro de cambios: \002https://github.com/TehPeGaSuS/BlackTools-TCL/blob/HEAD/ChangeLog\002"
 set black(say.es.autoupdate.25) "\005\[BT\]\005 Si algo está mal, los ARCHIVOS de respaldo todavía están disponibles en \001\"%msg.1%\"\001 hasta la próxima Actualización. También puede consultar el REGISTRO DE ACTUALIZACIÓN en \001\"%msg.2%\"\001"
 set black(say.es.autoupdate.26) "\005\[BT\]\005 Recuerde, para obtener información o problemas de errores, visite el sitio oficial de \002BT\002 --- \001TclScripts\001"
 set black(say.es.autoupdate.27) "\005\[BT\]\005 Actualización iniciada en \001%msg.1%\001"
