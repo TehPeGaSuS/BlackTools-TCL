@@ -22,7 +22,7 @@ set black(glflags) "nmo"
 set black(tclconfig) "$black(backdir)/$black(tclname)"
 set black(tempdir) "$black(backdir)/BlackTools/temp"
 set black(banflag) "B"
-set black(current_modif) "1618162992"
+set black(current_modif) "1790729459"
 
 ############################### Information files ############################
 
@@ -256,6 +256,7 @@ set black(extra_str) {
     voiceonmsg-linenum voiceonmsg-idletime inviteban-reason repetitivechars-reason inviteban-bantime badchan-banwait
 	general-bantime general-banmask badchan-scantime clonescan-scantime antispam-scantime idle-scantime anunt-showtime
 	quote-showtime voiceme-showtime quitpartmsgflood-char repetitivechars-char noproxy-reason noproxy-bantime noproxy-banmask topwords-mask vote-mask
+ 	idlebanmax idleban-reason idleban-bantime idleban-banmask idleban-bantime
 }
 
 set black(extra_flag) {
@@ -264,8 +265,8 @@ set black(extra_flag) {
 	antijoinflood antichanflood xtools antibadchan anunt limit clonescan seen autoop showbadchan badchanall showtroll
 	autovoice leave topwords dontop dontdeop private silent quote note reportnick invisible forward
 	showhandle showid showcount showtime showurl next voiceonmsg autotopic greet xonly nologged settingsaved
-	idleop idlehalfop idlevoice vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
-	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy vote votegreet
+	idleop idlehalfop idlevoice idleban vprotect oprotect hoprotect badquitpart quitpartcolor quitpartmsgflood badhost nickflood seenreply
+	accessonly voiceme onlyonmode securemode strictsecured nextshortcmd inviteban quoteofday chanlink noproxy vote votegreet disablepubcmds
 }
 
 set black(validcmds) "alias exempt login anunt link note q enable disable securemode cp troll badhost antispam badrealname badquitpart badident badnick badword unset greet leave topic vr dr n id spam bw mb black bl b stick ub sb banlist r man auto antipub private tcl h ignore idle version stats chat seen limit bt badchan us s info channels userlist chuser delhost addhost del delacc add unsuspend suspend delchan addchan die jump save restart rehash update nick msg omsg set mode cycle broadcast act say v ho o uptime status t k w ungag gag show clonescan topwords myset timer i badword next helped noidle skip vote"
@@ -714,8 +715,10 @@ if {$getreason == ""} {
 if {$getlang == ""} { set getlang "[string tolower $black(default_lang)]" }
 if {[string equal -nocase $hand "NEXT"]} {
 	set getreason $black(say.$getlang.$hand.5)
-} else {
-	set getreason $black(say.$getlang.$hand.1)
+} elseif {[string equal -nocase $hand "IDLEBAN"]} {
+		set getreason $black(say.$getlang.idle.29)
+		} else {
+		set getreason $black(say.$getlang.$hand.1)
 	}
 }
 

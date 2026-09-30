@@ -18,6 +18,9 @@ proc comand:chan {nick host hand chan arg} {
 global botnick wordsdir sdir black seendir count server uptime {server-online} version lastbind
 	set cmd_chan [lindex [split $arg] 0]
 	set chan1 $chan
+ if {[setting:get $chan disablepubcmds]} {
+	return
+}
 if {[isbotnick $nick]} { return }
 
 	set split_cmd [split $cmd_chan ""]
@@ -2321,15 +2324,19 @@ default {
 if {$alias_check != 0} {
 	set counter 0
 	set text [lrange [split $arg] 1 end]
+	set split_cmd [wsplit $alias_check "|"]
+	set llength_cmd [llength $split_cmd]
 foreach a $text {
 	incr counter
 	set replace(%${counter}%) $a
 }
 	set replace(%chan%) $chan
-	set text [string map [array get replace] $alias_check]
+for {set i 0} { $i < $llength_cmd} {incr i} {
+	set text [string map [array get replace] [lindex $split_cmd $i]]
 	regsub -all {%[0-9]%} $text "" text
-	set text [join $text]
+	set text [concat [join $text]]
 	comand:chan $nick $host $hand $chan "${char}$text"
+				}	
 			}
 		}
 	}

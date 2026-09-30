@@ -136,6 +136,14 @@ if {$line != ""} {
 	set readhost [lindex [split $line] 3]
 	set chanentry [lindex [split $line] 1]
 	set time [lindex [split $line] 4]
+ if {[string tolower $chanentry] != [string tolower $chan]} {
+ 	if {[validchan $chanentry]} {
+	set chanmode [lindex [getchanmode $chanentry] 0]
+	if {[string match "*p*" $chanmode] || [string match "*s*" $chanmode]} {
+	continue
+	}
+	}
+}
 if {[info exists entry]} {
 if {[lsearch -exact [string tolower "$i%$userentry%$readhost%$time"] [string tolower $entry]] == "-1"} {
 	lappend entry "$i%$userentry%$readhost%$time"

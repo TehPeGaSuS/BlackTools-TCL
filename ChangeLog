@@ -3,6 +3,37 @@
   * to implement category TCL in witch you have all tcl and also .tcl info
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
+ 2026-10-01 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
+  * version 3.0.0: merges the work of upstream's BlackTools-3.0 branch (Nov 2023 - Feb 2025,
+    never merged into 2.5.x) with the 2.5.x fork line.
+  * IMPORTANT - what is not backwards compatible:
+    - Alias: an alias can now chain several BlackTools commands with "|"
+      (.alias add hello op %1 | voice %1). An existing alias whose command contains a
+      literal "|" (for example a badword regex like a|b) is now split there. Edit or
+      recreate such an alias.
+    - repetitivechars: it now flags a run of N identical characters ANYWHERE in the line
+      (before: only at the end of the line) and no longer counts spaces as a character.
+      A limit that is not a number, or is lower than 2, disables the check instead of
+      flagging everything.
+    - Idle: the WHOIS answers are matched to the channel that asked for them (before, a bot
+      on several channels used the last channel scanned for every answer).
+    - AutoUpdate: bots installed from upstream are updated only after you replace the
+      files once by hand (the fork's updater is in this version). The update is now
+      downloaded to a .part file first and unpacked only when complete. VERSION says
+      STATUS 1: restart the bot after updating.
+  * New (all off by default): Idle-Ban (.idle <#chan> +b, settings idlebanmax, idleban-reason,
+    idleban-bantime, idleban-banmask): bans users that idle too long (never ops, voices,
+    halfops, users with the except flags or f, or services). disablepubcmds: the
+    channel ignores commands given with the command character (botnick commands,
+    private messages and DCC still work). Alias chaining with "|". Seen no longer shows
+    entries from +p/+s channels in a global search, and only skips them (before it stopped).
+  * Notes: the handle of a note is compared without regard to case.
+  * fixed in the merge: the upstream 3.0 protection files moved antichanflood and
+    repetitivechars into namespaces that the rest of the script never called (both
+    protections would have stopped working). antichanflood is unchanged from 2.5.8;
+    repetitivechars keeps the new behaviour above as a plain procedure.
+  * fixed in the merge: the 3.0 updater downloaded a branch named BlackTools-3.0, which the
+    fork does not have; it now uses the default branch, and gives up after 10 minutes.
  2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
   * version 2.5.8
   * language files (BT.en/es/fr/ro.lang.tcl) now define the same 957 strings.

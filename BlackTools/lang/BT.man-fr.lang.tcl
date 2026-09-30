@@ -633,12 +633,12 @@ set black(say.fr.man.452) "\[MAN\] ** Remarque : Pour ajouter plus d'une phrase 
 
 #Idle
 
-set black(say.fr.man.453) "\[MAN\] \002Idle\002 interdit aux utilisateurs avec \002op (@)\002, \002halfop (+h %)\002 ou \002voice (+v)\002 d'être inactifs."
+set black(say.fr.man.453) "\[MAN\] \002Idle\002 interdit aux utilisateurs avec \002op (@)\002, \002halfop (+h %)\002 ou \002voice (+v)\002 d'être inactifs. Il peut également interdire aux utilisateurs réguliers de rester inactifs sur le canal en définissant \002(+/-)b\002"
 set black(say.fr.man.453_1) "\[MAN\] Format de la période : <X>\002m\002 = minutes, <X>\002h\002 = heures, <X>\002d\002 = jours"
 set black(say.fr.man.454) "\[MAN\] SYNTAXES D'UTILISATION :"
-set black(say.fr.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho>"
+set black(say.fr.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.fr.man.456) "\[MAN\] \002%char%idle add\002 <nick> (ajouter une exception à l'inactivité), \002%char%idle <list>\002 (lister les exceptions), \002%char%idle del\002 <nick> (supprimer l'exception)"
-set black(say.fr.man.457) "\[MAN\] Paramètres optionnels : \002idleopmax\002 <période> (temps d'inactivité par défaut pour op) ; \002idlevoicemax\002 <période> (temps d'inactivité par défaut pour voice) ; \002idlehalfopmax\002 <période> (temps d'inactivité par défaut pour halfop) ; \002idle-scantime\002 <période> (temps de scan)"
+set black(say.fr.man.457) "\[MAN\] Paramètres optionnels : \002idleopmax\002 <période> (temps d'inactivité par défaut pour op) ; \002idlevoicemax\002 <période> (temps d'inactivité par défaut pour voice) ; \002idlehalfopmax\002 <période> (temps d'inactivité par défaut pour halfop) ; \002idlebanmax\002 <période> (temps d'inactivité par défaut pour utilisateurs réguliers) ; \002idleban-reason\002 <raison> (raison du bannissement) ; \002idleban-bantime\002 <période> (temps de bannissement) ; \002idle-scantime\002 <période> (temps de scan)"
 set black(say.fr.man.458) "Afficher les paramètres d'options : \002%char%show\002 <setting> ; \002%botnick% show\002 <setting> ; \002(PRIVMSG) show\002 <#chan> <setting>"
 set black(say.fr.man.458_1) "\[MAN\] Pour des informations sur \002idlevoice\002, veuillez consulter : \002%char%man idle\002"
 set black(say.fr.man.458_2) "\[MAN\] Pour des informations sur \002idleop\002, veuillez consulter : \002%char%man idle\002"
@@ -1756,7 +1756,7 @@ set black(say.fr.man.2208) "\[MAN\] \002%char%update <on>\002 (activer l'autoupd
 
 set black(say.fr.man.2209) "\[MAN\] \002ALIAS\002 permet aux utilisateurs de créer leurs propres commandes basées sur les commandes BT. Toutes les commandes sont disponibles."
 set black(say.fr.man.2210) "\[MAN\] SYNTAXE D'UTILISATION :"
-set black(say.fr.man.2211) "\[MAN\] \002%char%alias add\002 <commande> <commande BT> \[arguments\] ; \002%char%alias del\002 <commande>"
+set black(say.fr.man.2211) "\[MAN\] \002%char%alias add\002 <commande> <commande BT 1> \[arguments\] | <commande BT 2> \[arguments\] .. ; \002%char%alias del\002 <commande>"
 set black(say.fr.man.2212) "\[MAN\] Exemple 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Vous êtes un lamer !! \[%1% - pseudo ou hôte\]"
 set black(say.fr.man.2213) "\[MAN\] Exemple 2 : \002%char%alias add\002 beer \001cycle\001 %1% %2% Je vais prendre une bière, je reviendrai \[%1% - canal ; %2% - durée du cycle\]"
 
@@ -1794,7 +1794,7 @@ set black(say.fr.man.2232) "\[MAN\] SYNTAXE D'UTILISATION : \002%char%set\002 <p
 
 #+/-disablepubcmds
 
-set black(say.fr.man.2233) "\[MAN\] Ce paramètre, une fois activé, provoquera la désactivation des commandes qui sont données sur le canal via le caractère de début (par exemple !w)"
+set black(say.fr.man.2233) "\[MAN\] Ce paramètre, une fois activé, provoquera la désactivation des commandes qui sont données sur le canal via le caractère de début (par exemple !w) (le bot reste utilisable avec botnick <commande>, en message privé et par DCC)"
 
 ##############################
 ############################################################################################################

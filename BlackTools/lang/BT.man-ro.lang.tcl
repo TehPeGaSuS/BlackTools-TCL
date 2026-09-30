@@ -633,12 +633,12 @@ set black(say.ro.man.452) "\[MAN\] Pentru a adauga mai mult de 1 propozitie intr
 
 #Idle
 
-set black(say.ro.man.453) "\[MAN\] \002Idle\002 este un modul care odata activat nu va lasa pe userii cu idle sa aibe \002op (@)\002 sau \002voice (+v)\002."
+set black(say.ro.man.453) "\[MAN\] \002Idle\002 este un modul care odata activat nu va lasa pe userii cu idle sa aibe \002op (@)\002 sau \002voice (+v)\002. Poate interzice si userilor normali sa nu faca idle pe canal (vor primi ban) prin setarea \002(+/-)b\002."
 set black(say.ro.man.453_1) "\[MAN\] Format perioada: <x>\002m\002 = minute, <x>\002h\002 = ore, <x>\002d\002 = zile"
 set black(say.ro.man.454) "\[MAN\] SINTAXE FOLOSIRE:"
-set black(say.ro.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002(PRIVMSG) idle\002 <#canal> <(+/-)o / (+/-)v / (+/-)ho>"
+set black(say.ro.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#canal> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.ro.man.456) "\[MAN\] \002%char%idle add\002 <nick> (adaugare exceptie de la idle), \002%char%idle <list>\002 (listare exceptii), \002%char%idle del\002 <nick> (stergere exceptie)"
-set black(say.ro.man.457) "\[MAN\] Setari optionale: \002idleopmax\002 <perioada> (perioada timp idledeop) ; \002idlevoicemax\002 <perioada> (perioada timp idlevoice) ; \002idlehalfopmax\002 <perioada> (perioada timp idlehalfop) ; \002idle-scantime\002 <perioada> (timp scanare)"
+set black(say.ro.man.457) "\[MAN\] Setari optionale: \002idleopmax\002 <perioada> (perioada timp idledeop) ; \002idlevoicemax\002 <perioada> (perioada timp idlevoice) ; \002idlehalfopmax\002 <perioada> (perioada timp idlehalfop) ; \002idlebanmax\002 <perioada> (perioada timp idleban) ; \002idleban-reason\002 <motiv> (motiv ban) ; \002idleban-bantime\002 <perioada> (timpul pentru ban) ; \002idle-scantime\002 <perioada> (timp scanare)"
 set black(say.ro.man.458) "Vizualizare setari optiuni: \002%char%show\002 <setare> ; \002%botnick% show\002 <setare> ; \002(PRIVMSG) show\002 <#canal> <setare>"
 set black(say.ro.man.458_1) "\[MAN\] Pentru informatii despre \002idlevoice\002 vezi: \002%char%man idle\002"
 set black(say.ro.man.458_2) "\[MAN\] Pentru informatii despre \002idleop\002 vezi: \002%char%man idle\002"
@@ -1754,7 +1754,7 @@ set black(say.ro.man.2208) "\[MAN\] \002%char%update <on>\002 (activare autoupda
 
 set black(say.ro.man.2209) "\[MAN\] \002ALIAS\002 este un modul ce va ofera oportunitatea de a va creea propriile comenzi personalizate pe baza comenzilor existente din BT. Se pot folosi toate comenzile disponibile."
 set black(say.ro.man.2210) "\[MAN\] SINTAXA FOLOSIRE:"
-set black(say.ro.man.2211) "\[MAN\] \002%char%alias add\002 <comanda> <comanda BT> \[argumente\] ; \002%char%alias del\002 <comanda>"
+set black(say.ro.man.2211) "\[MAN\] \002%char%alias add\002 <comanda> <comanda 1 BT> \[argumente\] | <comanda 2 BT> \[argumente\] .. ; \002%char%alias del\002 <comanda>"
 set black(say.ro.man.2212) "\[MAN\] Exemplu 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Esti un lamer !! \[%1% - nick sau host\]"
 set black(say.ro.man.2213) "\[MAN\] Exemplu 2 : \002%char%alias add\002 bere \001cycle\001 %1% %2% Ma duc la o bere, ma reintorc ! \[%1% - canal ;  %2% - timp cycle\]"
 
@@ -1789,7 +1789,9 @@ set black(say.ro.man.2229) "\[MAN\] \002%char%vote \002\[#canal\] <ID> <litera> 
 set black(say.ro.man.2230) "\[MAN\] Aveti la dispozitie urmatoarele metode de mask-uri:"
 set black(say.ro.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.ro.man.2232) "\[MAN\] SINTAXA FOLOSIRE: \002%char%set\002 <setare> <nr. metoda> ; \002%botnick% set\002 <setare> <nr. metoda> ; \002(PRIVMSG) set\002 <#canal> <setare> <nr. metoda>"
-set black(say.ro.man.2233) "\[MAN\] Aceasta setare, odata activata, va dezactiva comenzile date pe canal prin caracterul de inceput (de exemplu !w)"
+
+#+/-disablepubcmds
+set black(say.ro.man.2233) "\[MAN\] Aceasta setare odata activata va face ca, comenzile care se dau pe canal prin intermediul caracterului de inceput (ex. !w) sa fie dezactivate (botul poate fi folosit in continuare cu botnick <comanda>, in privat si prin DCC)"
 
 ##############################
 ############################################################################################################

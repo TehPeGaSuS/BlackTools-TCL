@@ -2652,6 +2652,13 @@ if {[matchattr $hand nmo|M $chan]} {
 	}	
 }
 
+disablepubcmds {
+if {[matchattr $hand nmo|M $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.2233 none
+ 	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}
+}
+
 default {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1_1 $nick
 		}

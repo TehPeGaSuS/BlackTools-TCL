@@ -632,12 +632,12 @@ set black(say.en.man.452) "\[MAN\] ** Note: To add more than 1 sentence in an le
 
 #Idle
 
-set black(say.en.man.453) "\[MAN\] \002Idle\002 forbids users with \002op (@)\002, \002halfop (+h %)\002 or \002voice (+v)\002 to idle."
+set black(say.en.man.453) "\[MAN\] \002Idle\002 forbids users with \002op (@)\002, \002halfop (+h %)\002 or \002voice (+v)\002 to idle. It may also ban regular users from idling on the channel by setting \002(+/-)b\002."
 set black(say.en.man.453_1) "\[MAN\] Format period: <X>\002m\002 = minutes, <X>\002h\002 = hours, <X>\002d\002 = days"
 set black(say.en.man.454) "\[MAN\] USAGE SYNTAXES:"
-set black(say.en.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho>"
+set black(say.en.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.en.man.456) "\[MAN\] \002%char%idle add\002 <nick> (add exception from idle), \002%char%idle <list>\002 (list exceptions), \002%char%idle del\002 <nick> (delete exception)"
-set black(say.en.man.457) "\[MAN\] Optional settings: \002idleopmax\002 <period> (default time idledeop) ; \002idlevoicemax\002 <period> (default time idlevoice) ; \002idlehalfopmax\002 <period> (default time idlehalfop) ; \002idle-scantime\002 <period> (scan time)"
+set black(say.en.man.457) "\[MAN\] Optional settings: \002idleopmax\002 <period> (default time idledeop) ; \002idlevoicemax\002 <period> (default time idlevoice) ; \002idlehalfopmax\002 <period> (default time idlehalfop) ; \002idlebanmax\002 <period> (default time idleban) ; \002idleban-reason\002 <reason> (ban reason) ; \002idleban-bantime\002 <period> (ban time) ; \002idle-scantime\002 <period> (scan time)"
 set black(say.en.man.458) "View options settings: \002%char%show\002 <setting> ; \002%botnick% show\002 <setting> ; \002(PRIVMSG) show\002 <#chan> <setting>"
 set black(say.en.man.458_1) "\[MAN\] For informations about \002idlevoice\002 please check: \002%char%man idle\002"
 set black(say.en.man.458_2) "\[MAN\] For informations about \002idleop\002 please check: \002%char%man idle\002"
@@ -1758,7 +1758,7 @@ set black(say.en.man.2208) "\[MAN\] \002%char%update <on>\002 (enable autoupdate
 
 set black(say.en.man.2209) "\[MAN\] \002ALIAS\002 allows users to create their own commands based on the BT commands. All commands are available"
 set black(say.en.man.2210) "\[MAN\] USAGE SYNTAX:"
-set black(say.en.man.2211) "\[MAN\] \002%char%alias add\002 <command> <BT command> \[arguments\] ; \002%char%alias del\002 <command>"
+set black(say.en.man.2211) "\[MAN\] \002%char%alias add\002 <command> <BT command 1> \[arguments\] | <BT command 2> \[arguments\] .. ; \002%char%alias del\002 <command>"
 set black(say.en.man.2212) "\[MAN\] Example 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Your are a lamer !! \[%1% - nick or host\]"
 set black(say.en.man.2213) "\[MAN\] Example 2 : \002%char%alias add\002 beer \001cycle\001 %1% %2% Going to have a beer, i will be back \[%1% - channel ;  %2% - cycle duration\]"
 
@@ -1793,7 +1793,9 @@ set black(say.en.man.2229) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <lette
 set black(say.en.man.2230) "\[MAN\] Available masks:"
 set black(say.en.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.en.man.2232) "\[MAN\] USAGE SYNTAX: \002%char%set\002 <setting> <no. method> ; \002%botnick% set\002 <setting> <no. method> ; \002(PRIVMSG) set\002 <#chan> <setting> <no. method>"
-set black(say.en.man.2233) "\[MAN\] This setting, once enabled, will disable the commands given on the channel through the start character (for example !w)"
+
+#+/-disablepubcmds
+set black(say.en.man.2233) "\[MAN\] This setting, once activated, will cause the commands that are given on the channel through the beginning character (eg !w) to be disabled (the bot can still be used with botnick <command>, in private messages and through DCC)"
 
 ##############################
 ############################################################################################################

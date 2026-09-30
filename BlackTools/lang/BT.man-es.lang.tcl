@@ -632,12 +632,12 @@ set black(say.es.man.452) "\[MAN\] ** Nota: Para agregar más de 1 oración en u
 
 #Idle
 
-set black(say.es.man.453) "\[MAN\] \002Idle\002 prohíbe a los usuarios con \002op (@)\002, \002halfop (+h %)\002 o \002voice (+v)\002 que estén inactivos."
+set black(say.es.man.453) "\[MAN\] \002Idle\002 prohíbe a los usuarios con \002op (@)\002, \002halfop (+h %)\002 o \002voice (+v)\002 que estén inactivos. También puede prohibir a los usuarios normales quedarse inactivos en el canal mediante la configuración \002(+/-)b\002."
 set black(say.es.man.453_1) "\[MAN\] Periodo de formato: <X>\002m\002 = minutes, <X>\002h\002 = hours, <X>\002d\002 = days"
 set black(say.es.man.454) "\[MAN\] SINTAXIS:"
-set black(say.es.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho>"
+set black(say.es.man.455) "\[MAN\] \002%char%idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002%botnick% idle\002 <(+/-)o / (+/-)v / (+/-)ho / (+/-)b> ; \002(PRIVMSG) idle\002 <#chan> <(+/-)o / (+/-)v / (+/-)ho / (+/-)b>"
 set black(say.es.man.456) "\[MAN\] \002%char%idle add\002 <nick> (add exception from idle), \002%char%idle <list>\002 (list exceptions), \002%char%idle del\002 <nick> (delete exception)"
-set black(say.es.man.457) "\[MAN\] Configuraciones opcionales \002idleopmax\002 <Periodo> (default time idledeop) ; \002idlevoicemax\002 <Periodo> (default time idlevoice) ; \002idlehalfopmax\002 <Periodo> (default time idlehalfop) ; \002idle-scantime\002 <Periodo> (scan time)"
+set black(say.es.man.457) "\[MAN\] Configuraciones opcionales \002idleopmax\002 <Periodo> (default time idledeop) ; \002idlevoicemax\002 <Periodo> (default time idlevoice) ; \002idlehalfopmax\002 <Periodo> (default time idlehalfop) ; \002idlebanmax\002 <Periodo> (default time idleban) ; \002idleban-reason\002 <motivo> (razón del baneo) ; \002idleban-bantime\002 <Periodo> (tiempo de prohibición) ; \002idle-scantime\002 <Periodo> (tiempo de escaneo)"
 set black(say.es.man.458) "Ver configuración de opciones: \002%char%show\002 <ajuste> ; \002%botnick% show\002 <ajuste> ; \002(PRIVMSG) show\002 <#chan> <ajuste>"
 set black(say.es.man.458_1) "\[MAN\] Para obtener información sobre \002idlevoice\002, consulte: \002%char%man idle\002"
 set black(say.es.man.458_2) "\[MAN\] Para obtener información sobre \002idleop\002 consulte: \002%char%man idle\002"
@@ -1745,7 +1745,7 @@ set black(say.es.man.2208) "\[MAN\] \002%char%update <on>\002 (habilitar actuali
 
 set black(say.es.man.2209) "\[MAN\] \002ALIAS\002 permite a los usuarios crear sus propios comandos basados en los comandos BT. Todos los comandos están disponibles"
 set black(say.es.man.2210) "\[MAN\] SINTAXIS:"
-set black(say.es.man.2211) "\[MAN\] \002%char%alias add\002 <comando> <BT comando> \[argumentos\] ; \002%char%alias del\002 <comando>"
+set black(say.es.man.2211) "\[MAN\] \002%char%alias add\002 <comando> <BT comando 1> \[argumentos\] | <BT comando 2> \[argumentos\] .. ; \002%char%alias del\002 <comando>"
 set black(say.es.man.2212) "\[MAN\] Ejemplo 1 : \002%char%alias add\002 lamer \001b\001 %1% 0 Eres un lamer !! \[%1% - nick ó host\]"
 set black(say.es.man.2213) "\[MAN\] Ejemplo 2 : \002%char%alias add\002 cerveza \001cycle\001 %1% %2% Voy a tomarme una cerveza, volveré \[%1% - canal ; %2% - duración del ciclo\]"
 
@@ -1780,7 +1780,9 @@ set black(say.es.man.2229) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <lette
 set black(say.es.man.2230) "\[MAN\] Máscaras disponibles:"
 set black(say.es.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.es.man.2232) "\[MAN\] SINTAXIS: \002%char%set\002 <setting> <no. method> ; \002%botnick% set\002 <setting> <no. method> ; \002(PRIVMSG) set\002 <#chan> <setting> <no. method>"
-set black(say.es.man.2233) "\[MAN\] Este ajuste, una vez activado, desactivará los comandos que se den en el canal mediante el carácter inicial (por ejemplo !w)"
+
+#+/-disablepubcmds
+set black(say.es.man.2233) "\[MAN\] Esta configuración, una vez activada, hará que los comandos que se dan en el canal a través del carácter inicial (por ejemplo, !w) se deshabiliten. (el bot se puede seguir usando con botnick <comando>, por mensaje privado y por DCC)"
 
 ##############################
 ############################################################################################################

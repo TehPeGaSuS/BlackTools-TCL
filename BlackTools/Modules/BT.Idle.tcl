@@ -81,6 +81,16 @@ switch [string tolower $why] {
 	blacktools:tell $nick $host $hand $chan $chan1 idle.15 none
 	antidle:unset $chan
 }
++b {
+	antidle:set $chan
+	setting:set $chan +idleban ""
+	blacktools:tell $nick $host $hand $chan $chan1 idle.27 none
+}
+-b {
+	setting:set $chan -idleban ""
+	blacktools:tell $nick $host $hand $chan $chan1 idle.28 none
+	antidle:unset $chan
+}
 
 add {
 
@@ -171,7 +181,7 @@ if {$type == "1"} {
 proc antidle:unset {chan} {
 	global black
 	set idle_activ 0
-	set options {idleop idlevoice idlehalfop}
+	set options {idleop idlevoice idlehalfop idleban}
 foreach option $options {
 	if {[setting:get $chan $option]} {
 	set idle_activ 1
@@ -190,7 +200,7 @@ if {[info exists black(idle:counter:$chan)]} {
 proc antidle:set {chan} {
 	global black
 	set idle_activ 0
-	set options {idleop idlevoice idlehalfop}
+	set options {idleop idlevoice idlehalfop idleban}
 foreach option $options {
 	if {[setting:get $chan $option]} {
 	set idle_activ 1
@@ -236,11 +246,15 @@ if {$chan != ""} {
 
 proc black:check:idle {chan} {
 	global black
-	set ::idle_chan $chan
 foreach user [chanlist $chan] {
 	set handle [nick2hand $user]
-if {[isop $user $chan] || [isvoice $user $chan] || [ishalfop $user $chan]} {
-if {![isbotnick $user]} { 
+if {([setting:get $chan idleop] && [isop $user $chan]) || ([setting:get $chan idlevoice] && [isvoice $user $chan]) || ([setting:get $chan idlehalfop] && [ishalfop $user $chan]) || ([setting:get $chan idleban] && ![isop $user $chan] && ![isvoice $user $chan] && ![ishalfop $user $chan] && ![matchattr $handle $black(exceptflags) $chan] && ![matchattr $handle "-|f" $chan] && ![string equal -nocase $user $black(chanserv)])} {
+if {![isbotnick $user]} {
+	# the reply (raw 317) says only the nick, so remember which channels asked for it
+	set key [string tolower $user]
+if {![info exists ::idle_chans($key)] || [lsearch -exact $::idle_chans($key) $chan] < 0} {
+	lappend ::idle_chans($key) $chan
+}
 	putserv "WHOIS $user $user"
 				}
 			}
@@ -251,10 +265,19 @@ if {![isbotnick $user]} {
 proc idleprocespublic {nick int arg} {
 global black
 	set nick [string tolower [lindex [split $arg] 1]]
-	set handle [nick2hand $nick]
 	set idler [string tolower [lindex [split $arg] 2]]
+if {![info exists ::idle_chans($nick)] || ![string is integer -strict $idler]} { return }
 	set minutesidle [expr $idler / 60]
-	set chan $::idle_chan
+	set chans $::idle_chans($nick)
+	unset ::idle_chans($nick)
+foreach chan $chans {
+	idleprocess:chan $nick $minutesidle $chan
+	}
+}
+
+proc idleprocess:chan {nick minutesidle chan} {
+	global black
+	set handle [nick2hand $nick]
 if {[onchan $nick $chan]} {
 	set idlevoicetime [setting:get $chan idlevoicemax]
 if {$idlevoicetime == ""} { set idlevoicetime "$black(idlevoicemax)" }
@@ -262,9 +285,15 @@ if {$idlevoicetime == ""} { set idlevoicetime "$black(idlevoicemax)" }
 if {$idleoptime == ""} { set idleoptime "$black(idleopmax)" }
 	set idlehalfoptime [setting:get $chan idlehalfopmax]
 if {$idlehalfoptime == ""} { set idlehalfoptime "$black(idlehalfopmax)" }
+	set idlebantime [setting:get $chan idlebanmax]
+if {$idlebantime == ""} { set idlebantime "$black(idlebanmax)" }
 	set idlevoicetime [time_return_minute $idlevoicetime]
 	set idleoptime [time_return_minute $idleoptime]
 	set idlehalfoptime [time_return_minute $idlehalfoptime]
+	set idlebantime [time_return_minute $idlebantime]
+	# an invalid time gives -1, which would ban everybody: use the default, and never less than 1 minute
+if {![string is integer -strict $idlebantime] || $idlebantime < 1} { set idlebantime [time_return_minute $black(idlebanmax)] }
+if {![string is integer -strict $idlebantime] || $idlebantime < 1} { set idlebantime 30 }
 if {![info exists black(voiceonmsg:$nick:$chan)]} {
 if {[setting:get $chan idlevoice]} {
 if {(![matchattr $handle "-|gf" $chan]) && [isvoice $nick $chan]} {
@@ -297,6 +326,14 @@ if {[setting:get $chan xonly] && [onchan $black(chanserv) $chan]} {
 } else {
 	pushmode $chan -h $nick
 						}
+					}
+				}
+			}
+if {[setting:get $chan idleban]} {
+if {(![matchattr $handle $black(exceptflags) $chan]) && (![matchattr $handle "-|f" $chan]) && (![ishalfop $nick $chan] && ![isop $nick $chan] && ![isvoice $nick $chan])} {
+if {$minutesidle > $idlebantime} {
+	blacktools:banner:2 $nick "IDLEBAN" $chan $chan [getchanhost $nick $chan] "0" ""
+	who:chan $chan
 					}
 				}
 			}
