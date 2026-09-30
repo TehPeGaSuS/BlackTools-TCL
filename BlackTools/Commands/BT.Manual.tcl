@@ -135,7 +135,7 @@ if {[matchattr $hand nmo|MAOV $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.882_1 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.883 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.884 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.884_5 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.884_1 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
 	}
 }
@@ -1212,7 +1212,7 @@ if {[matchattr $hand nmo|M]} {
 language {
 if {[matchattr $hand nmo|MAOV $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.487 none
-	blacktools:tell $nick $host $hand $chan $chan1 man.487_2 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.487_1 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.488 none
 if {[matchattr $hand nmo|M]} {	
 	blacktools:tell $nick $host $hand $chan $chan1 man.489 none
@@ -2194,6 +2194,16 @@ if {[matchattr $hand nmo|M $chan]} {
 	blacktools:tell $nick $host $hand $chan $chan1 man.1247 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.1248 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.1249 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
+	}
+}
+
+badchanfloodcontrol {
+if {[matchattr $hand nmo|M $chan]} {
+	blacktools:tell $nick $host $hand $chan $chan1 man.1274 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.1275 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.1276 none
+	blacktools:tell $nick $host $hand $chan $chan1 man.1277 none
 	blacktools:tell $nick $host $hand $chan $chan1 man.showtip none
 	}
 }

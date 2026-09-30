@@ -565,7 +565,7 @@ set black(say.fr.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick
 set black(say.fr.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[raison\] (ajouter badchan) ; \002%char%badchan \[#chan\] list\002 (voir la liste des badchans)"
 set black(say.fr.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[raison\]\002 ; \002%char%badchan del\002 <no. list> \[global\] ; \002%char%badchan list\002 \[global\]"
 set black(say.fr.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (ajouter des exceptions) ; \002%char%badchan regex\002 <#regex> \[raison\] \001(regex \001exemple : #\[a-z\]+\[0-9\]\[0-9\])\001 , ajoute un type BADCHAN REGEX, les canaux qui correspondent à cette expression seront considérés comme des BADCHANS)"
-set black(say.fr.man.416) "\[MAN\] Paramètres optionnels : \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan, badchanall"
+set black(say.fr.man.416) "\[MAN\] Paramètres optionnels : \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, badchan-floodcontrol, showbadchan, badchanall"
 
 #Anunt
 

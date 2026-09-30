@@ -565,7 +565,7 @@ set black(say.en.man.412) "\[MAN\] \002%char%badchan\002 <ON|OFF> ; \002%botnick
 set black(say.en.man.413) "\[MAN\] \002%char%badchan add\002 <#badchan> \[reason\] (add badchan) ; \002%char%badchan \[#chan\] list\002 (see badchans list)"
 set black(say.en.man.414) "\[MAN\] \002%char%badchan add\002 <#badchan> \[global\] \[reason\]\002 ; %char%badchan del\002 <no. list> \[global\] ; \002%char%badchan list\002 \[global\]"
 set black(say.en.man.415) "\[MAN\] \002%char%badchan add\002 <+#badchan> (add exceptions) ; \002%char%badchan regex\002 <#regex> \[reason\] \001(regex \001example: #\[a-z\]+\[0-9\]\[0-9\])\001 , adds a REGEX type BADCHAN, the channels that matches this expression will be considered BADCHANS)"
-set black(say.en.man.416) "\[MAN\] Optional settings: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, showbadchan, badchanall"
+set black(say.en.man.416) "\[MAN\] Optional settings: \002badchan-reason\002, badchan-bantime, \002badchan-bmethod\002, badchan-scantime, \002badchan-banwait\002, badchan-floodcontrol, showbadchan, badchanall"
 
 #Anunt
 
@@ -689,7 +689,7 @@ set black(say.en.man.486_1) "\[MAN\] For informations about \002silent\002 pleas
 #Language
 
 set black(say.en.man.487) "\[MAN\] \002Lang\002 allows you to select the language in which eggdrop will reply to you and also sets the default language messages used in kick/ban reasons."
-set black(say.en.man.487_1) "\[MAN\] Languages available: \002RO\002 = romanian ; \002EN\002 = english ; \002ES\002 = spanish"
+set black(say.en.man.487_1) "\[MAN\] Languages available: \002RO\002 = romanian ; \002EN\002 = english ; \002ES\002 = spanish ; \002FR\002 = french"
 set black(say.en.man.488) "\[MAN\] USAGE SYNTAXES:"
 set black(say.en.man.489) "\[MAN\] \002%char%set\002 \[#chan\] lang <language> ; \002%botnick% set\002 \[#chan\] lang <language> ; \002(PRIVMSG) set\002 \[#chan\] lang <language>"
 set black(say.en.man.489_1) "\[MAN\] \002%char%myset\002 lang <language> ; \002%botnick% myset\002 lang <language> ; \002(PRIVMSG) myset\002 lang <language> (default user language)"
@@ -1379,7 +1379,7 @@ set black(say.en.man.1177) "\[MAN\] \002%char%set\002 antispam-scantime <period>
 set black(say.en.man.1179) "\[MAN\] \002Idle-ScanTime\002 is an extra option for the \002idle\002 module that allows you to define the maximum time interval between scans after users with \002op (@)\002 or \002voice (+v)\002 who are idleing."
 set black(say.en.man.1179_1) "\[MAN\] Format period: <X>\002m\002 = minutes ; <X>\002h\002 = hours"
 set black(say.en.man.1180) "\[MAN\] USAGE SYNTAX:"
-set black(say.en.man.1181) "\[MAN\] \002%set%set\002 idle-scantime <period> ; \002%botnick% set\002 idle-scantime <period> ; \002(PRIVMSG) set\002 idle-scantime <period>"
+set black(say.en.man.1181) "\[MAN\] \002%char%set\002 idle-scantime <period> ; \002%botnick% set\002 idle-scantime <period> ; \002(PRIVMSG) set\002 idle-scantime <period>"
 
 #CloneScan-ScanTime
 
@@ -1794,6 +1794,7 @@ set black(say.en.man.2229) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <lette
 set black(say.en.man.2230) "\[MAN\] Available masks:"
 set black(say.en.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.en.man.2232) "\[MAN\] USAGE SYNTAX: \002%char%set\002 <setting> <no. method> ; \002%botnick% set\002 <setting> <no. method> ; \002(PRIVMSG) set\002 <#chan> <setting> <no. method>"
+set black(say.en.man.2233) "\[MAN\] This setting, once enabled, will disable the commands given on the channel through the start character (for example !w)"
 
 ##############################
 ############################################################################################################

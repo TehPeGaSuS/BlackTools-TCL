@@ -4,6 +4,18 @@
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
  2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
+  * manual: the four manual language files (BT.man-*.lang.tcl) now define the same
+    strings. Romanian gained the manual page of badchan-floodcontrol (1274-1277), and
+    en/es/ro gained man.2233 (present only in French).
+  * manual: "man language" and "man ho" stopped with a Tcl error after their first
+    lines (they called strings that don't exist: man.487_2 and man.884_5, typos of
+    man.487_1 and man.884_1). Fixed. "man language" now lists French in every language.
+  * manual: "man badchan-floodcontrol" now works (the topic was never in the dispatch).
+    man.416 lists that setting in every language.
+  * manual, wrong text: en/es man.1181 said "%set%set" (not a placeholder) instead of
+    "%char%set"; ro man.865 (xonly) held an unrelated sentence, and ro man.965, 1117,
+    439 and 632 were shorter than the other languages (missing lines/placeholders).
+ 2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
   * version 2.5.7
   * man: new setting black(docs_url) in BlackTools.tcl. "man" also tells the user
     to visit that address (the hosted docs.html, by default

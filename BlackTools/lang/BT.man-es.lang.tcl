@@ -690,7 +690,7 @@ set black(say.es.man.486_1) "\[MAN\] Para obtener información sobre \002silent\
 #Language
 
 set black(say.es.man.487) "\[MAN\] \002Lang\002 le permite seleccionar el idioma en el que Eggdrop le responderá y también establece los mensajes de idioma predeterminados utilizados en razones de expulsión/prohibición."
-set black(say.es.man.487_1) "\[MAN\] Idiomas disponibles: \002RO\002 = romanian ; \002EN\002 = english ; \002ES\002 = spanish"
+set black(say.es.man.487_1) "\[MAN\] Idiomas disponibles: \002RO\002 = romanian ; \002EN\002 = english ; \002ES\002 = spanish ; \002FR\002 = french"
 set black(say.es.man.488) "\[MAN\] SINTAXIS:"
 set black(say.es.man.489) "\[MAN\] \002%char%set\002 \[#chan\] lang <lenguaje> ; \002%botnick% set\002 \[#chan\] lang <lenguaje> ; \002(PRIVMSG) set\002 \[#chan\] lang <lenguaje>"
 set black(say.es.man.489_1) "\[MAN\] \002%char%myset\002 lang <lenguaje> ; \002%botnick% myset\002 lang <lenguaje> ; \002(PRIVMSG) myset\002 lang <lenguaje> (idioma de usuario predeterminado)"
@@ -1379,7 +1379,7 @@ set black(say.es.man.1177) "\[MAN\] \002%char%set\002 antispam-scantime <Periodo
 set black(say.es.man.1179) "\[MAN\] \002Idle-ScanTime\002 es una opción adicional para el módulo \002idle\002 que le permite definir el intervalo de tiempo máximo entre escaneos después de usuarios con \002op (@)\002 o \002voice (+v)\002 que están inactivos."
 set black(say.es.man.1179_1) "\[MAN\] Periodo de formato: <X>\002m\002 = minutos ; <X>\002h\002 = horas"
 set black(say.es.man.1180) "\[MAN\] SINTAXIS:"
-set black(say.es.man.1181) "\[MAN\] \002%set%set\002 idle-scantime <Periodo> ; \002%botnick% set\002 idle-scantime <Periodo> ; \002(PRIVMSG) set\002 idle-scantime <Periodo>"
+set black(say.es.man.1181) "\[MAN\] \002%char%set\002 idle-scantime <Periodo> ; \002%botnick% set\002 idle-scantime <Periodo> ; \002(PRIVMSG) set\002 idle-scantime <Periodo>"
 
 #CloneScan-ScanTime
 
@@ -1781,6 +1781,7 @@ set black(say.es.man.2229) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <lette
 set black(say.es.man.2230) "\[MAN\] Máscaras disponibles:"
 set black(say.es.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.es.man.2232) "\[MAN\] SINTAXIS: \002%char%set\002 <setting> <no. method> ; \002%botnick% set\002 <setting> <no. method> ; \002(PRIVMSG) set\002 <#chan> <setting> <no. method>"
+set black(say.es.man.2233) "\[MAN\] Este ajuste, una vez activado, desactivar� los comandos que se den en el canal mediante el car�cter inicial (por ejemplo !w)"
 
 ##############################
 ############################################################################################################
