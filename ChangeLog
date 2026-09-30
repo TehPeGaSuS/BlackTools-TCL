@@ -16,6 +16,9 @@
     and the text shown by !version (vers.3), which referred to a removed string.
   * removed the show branches of the guestnick settings (the module was removed in
     2021), and pointed massdeop and "set" at strings that exist (o.1, gl.novalidchan).
+  * Romanian set.2/set.4/set.7 opened the highlighted setting name with one code and
+    closed it with another; now they match the other languages. man.680 (invite) was
+    defined twice in the manual files; the unused first definition is gone.
   * strings that were wrongly saved as Latin-1 in BT.es.lang.tcl and BT.man-es.lang.tcl
     are UTF-8 again.
   * manual: the four manual language files (BT.man-*.lang.tcl) now define the same

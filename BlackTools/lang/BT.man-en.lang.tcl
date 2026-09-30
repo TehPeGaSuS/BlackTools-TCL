@@ -843,7 +843,6 @@ set black(say.en.man.678) "\[MAN\] \002%char%addinfo\002 <text|reset> ; \002%bot
 #Invite 
 
 set black(say.en.man.679) "\[MAN\] \002Invite\002 invites a user to the channel. The eggdrop must be a channel operator (@)."
-set black(say.en.man.680) "\[MAN\] USAGE SYNTAX:"
 set black(say.en.man.680) "\[MAN\] \002%char%invite\002 <#chan> <nick> ; \002%botnick% invite\002 <#chan> <nick> ; \002(PRIVMSG) invite\002 <#chan> <nick>"
 
 #Say

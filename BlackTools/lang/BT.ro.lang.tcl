@@ -893,12 +893,12 @@ set black(say.ro.mode.6) "\005\[BT\]\005 Am aplicat modurile \001%msg.1%\001 pe 
 ################################### Set ###################################
 
 set black(say.ro.set.1) "\005\[BT\]\005 Am setat \001%msg.1%\001 \004%msg.set%\004"
-set black(say.ro.set.2) "\005\[BT\]\005 Nu am putut seta \002%msg.1%\001 \004%msg.set%\004"
+set black(say.ro.set.2) "\005\[BT\]\005 Nu am putut seta \001%msg.1%\001 \004%msg.set%\004"
 set black(say.ro.set.3) "\005\[BT\]\005 Este deja setat \001%msg.1%\001 \004%msg.set%\004 pe \002%chan%\002."
-set black(say.ro.set.4) "\005\[BT\]\005 Este deja setat \001%msg.1%\002 pe \002%chan%\002."
+set black(say.ro.set.4) "\005\[BT\]\005 Este deja setat \001%msg.1%\001 pe \002%chan%\002."
 set black(say.ro.set.5) "\005\[BT\]\005 Nu am putut seta \001%msg.1%\001 pe \002%chan%\002."
 set black(say.ro.set.6) "\005\[BT\]\005 Am setat \001%msg.1%\001 \002%chan%\002."
-set black(say.ro.set.7) "\005\[BT\]\005 Nu am putut seta \002%msg.1%\001 \004%msg.set%\004 pe \002%chan%\002."
+set black(say.ro.set.7) "\005\[BT\]\005 Nu am putut seta \001%msg.1%\001 \004%msg.set%\004 pe \002%chan%\002."
 set black(say.ro.set.8) "\005\[BT\]\005 Am setat \001%msg.1%\001 \004%msg.set%\004 pentru \002%chan%\002."
 set black(say.ro.set.9) "\005\[BT\]\005 Este deja setat \001%msg.1%\001 \004%msg.set%\004"
 set black(say.ro.set.14) "\005\[BT\]\005 Setare invalida."

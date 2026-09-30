@@ -843,7 +843,6 @@ set black(say.ro.man.678) "\[MAN\] \002%char%addinfo\002 <text|reset> ; \002%bot
 #Invite 
 
 set black(say.ro.man.679) "\[MAN\] \002Invite\002 este o comanda care data pe PRIVAT pentru a primi invite pe un anumit canal."
-set black(say.ro.man.680) "\[MAN\] SINTAXA FOLOSIRE:"
 set black(say.ro.man.680) "\[MAN\] \002%char%invite\002 <#canal> <nick> ; \002%botnick% invite\002 <#canal> <nick> ; \002(PRIVMSG) invite\002 <#canal> <nick>"
 
 #Say
