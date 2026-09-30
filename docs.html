@@ -271,6 +271,21 @@ footer a{color:var(--muted)}
   </div>
 </div>
 
+<!-- ================= IMPORTANT (pinned) ================= -->
+<div class="warn" id="important"><b>IMPORTANT &mdash; v3.0.0 is not fully backwards compatible:</b>
+    <ul>
+      <li><b>Alias:</b> an alias can now chain commands with <code>|</code> (<code>.alias add hello op %1 | voice %1</code>).
+      An existing alias whose command has a literal <code>|</code> (a badword regex such as <code>a|b</code>, say) is now
+      split there: edit or recreate it.</li>
+      <li><b>repetitivechars:</b> now flags a run of N identical characters <i>anywhere</i> in the line (before: only at the
+      end) and ignores spaces. A limit that is not a number, or is lower than 2, turns the check off instead of flagging
+      everything.</li>
+      <li><b>Idle:</b> the WHOIS answers are matched to the channel that asked (before, a bot on several channels used the
+      last channel scanned for all of them).</li>
+      <li><b>Updating:</b> bots installed from upstream must have the files replaced by hand once to start following this
+      repository. <code>VERSION</code> says <code>STATUS 1</code>: restart the bot after the update.</li>
+    </ul></div>
+
 <!-- ================= OVERVIEW ================= -->
 <section id="overview">
   <h2><span class="hash">#</span>Overview</h2>
@@ -300,19 +315,7 @@ footer a{color:var(--muted)}
   <h2><span class="hash">#</span>What's new in 3.0.0</h2>
   <p class="sec-intro">This version merges the upstream <code>BlackTools-3.0</code> branch (2023&ndash;2025, never merged
   into the 2.5.x line) with the fork's 2.5.x work.</p>
-  <div class="warn"><b>IMPORTANT &mdash; not backwards compatible:</b>
-    <ul>
-      <li><b>Alias:</b> an alias can now chain commands with <code>|</code> (<code>.alias add hello op %1 | voice %1</code>).
-      An existing alias whose command has a literal <code>|</code> (a badword regex such as <code>a|b</code>, say) is now
-      split there: edit or recreate it.</li>
-      <li><b>repetitivechars:</b> now flags a run of N identical characters <i>anywhere</i> in the line (before: only at the
-      end) and ignores spaces. A limit that is not a number, or is lower than 2, turns the check off instead of flagging
-      everything.</li>
-      <li><b>Idle:</b> the WHOIS answers are matched to the channel that asked (before, a bot on several channels used the
-      last channel scanned for all of them).</li>
-      <li><b>Updating:</b> bots installed from upstream must have the files replaced by hand once to start following this
-      repository. <code>VERSION</code> says <code>STATUS 1</code>: restart the bot after the update.</li>
-    </ul></div>
+  <p>The changes that are <b>not backwards compatible</b> are listed in the <a href="#important">IMPORTANT box</a> at the top of this page.</p>
   <div class="table-scroll"><table>
     <tr><th style="width:160px">Change</th><th>Description</th></tr>
     <tr><td><code>idle +b</code></td><td>New Idle-Ban option (off by default): bans regular users who idle longer than
