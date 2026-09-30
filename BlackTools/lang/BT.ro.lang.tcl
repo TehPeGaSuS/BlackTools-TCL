@@ -73,7 +73,6 @@ set black(say.ro.gl.invalidlevel) "\005\[BT\]\005 Nu poti aplica ban pe nivelul 
 set black(say.ro.gl.nounban) "\005\[BT\]\005 Nu poti scoate banul \002%msg.1%\002, deoarece este de nivel mai mare ca al tau."
 set black(say.ro.gl.hasop) "\005\[BT\]\005 Are OP si nu pot executa."
 set black(say.ro.gl.notonline) "\005\[BT\]\005 \002%msg.1%\002 nu este ONLINE."
-set black(say.ro.gl.xonlyban) "\005\[BT\]\005 Am adaugat ban pe \001%msg.1%\001 prin \002%msg.2%\002 pe \001%chan%\001 \[Modul \002XonlY\002 activat.\]"
 set black(say.ro.gl.showline) "#\004%msg.1%\004 %msg.8%"
 set black(say.ro.gl.wordexists) "\005\[BT\]\005 Cuvantul \001%msg.1%\001 este deja in lista canalului \002%chan%\002."
 set black(say.ro.gl.noset) "N/A"
@@ -208,7 +207,7 @@ set black(say.ro.badquitpart.6) "\005\[BT\]\005 Am adaugat in lista de badquitpa
 set black(say.ro.antibadquitpart.7) "\005\[BT\]\005 Lista de \002badquitpart\002 pentru %chan% este:"
 set black(say.ro.antibadquitpart.8) "\005\[BT\]\005 Pentru afisarea urmatoarelor inregistrari foloseste: \001%char%badquitpart list -next\001 (\002%counter%\002 inregistrari ramase)"
 set black(say.ro.antibadquitpart.9) "\005\[BT\]\005 Pentru afisarea urmatoarelor inregistrari foloseste: \001%char%badquitpart %chan% list -next\001 (\002%counter%\002 inregistrari ramase)"
-set black(say.ro.antibadquitpart.10) "\005\[BT\]\005 Am adaugat in lista de badquitpart ca exceptie \001%msg.8%\001 cu nr.\002%msg.1%\002 pentru \002%chan%\002."
+set black(say.ro.badquitpart.10) "\005\[BT\]\005 Am adaugat in lista de badquitpart ca exceptie \001%msg.8%\001 cu nr.\002%msg.1%\002 pentru \002%chan%\002."
 
 ################################### AntiJoinPart ###############################
 
@@ -903,6 +902,8 @@ set black(say.ro.set.7) "\005\[BT\]\005 Nu am putut seta \002%msg.1%\001 \004%ms
 set black(say.ro.set.8) "\005\[BT\]\005 Am setat \001%msg.1%\001 \004%msg.set%\004 pentru \002%chan%\002."
 set black(say.ro.set.9) "\005\[BT\]\005 Este deja setat \001%msg.1%\001 \004%msg.set%\004"
 set black(say.ro.set.14) "\005\[BT\]\005 Setare invalida."
+set black(say.ro.egg.5) "\005\[BT\]\005 Nu am putut seta \001%msg.1%\001 la \004%msg.set%\004 deoarece nu exista un fisier de limba pentru ea."
+set black(say.ro.vers.3) "\005\[BT\]\005 \001%msg.1%\001 foloseste: \002%msg.set%\002"
 
 #################################### unSet #################################
 

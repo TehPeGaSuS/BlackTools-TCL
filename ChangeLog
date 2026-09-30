@@ -4,6 +4,20 @@
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
  2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
+  * language files (BT.en/es/fr/ro.lang.tcl) now define the same 957 strings.
+    Missing strings were added, strings that only existed in one language were
+    renamed or removed, and a string defined twice (the later one silently won) was
+    reduced to one definition.
+  * !seen: the French module was almost entirely missing (every !seen reply raised a
+    Tcl error in French); added. Some seen.* strings were in the wrong language.
+  * "set defaultlang xx" with a language that has no file raised a Tcl error and then
+    printed a second, wrong message. It now answers once (egg.5) and stops.
+  * fixed placeholders that were never substituted in Spanish (e.g. "% badchans%"),
+    and the text shown by !version (vers.3), which referred to a removed string.
+  * removed the show branches of the guestnick settings (the module was removed in
+    2021), and pointed massdeop and "set" at strings that exist (o.1, gl.novalidchan).
+  * strings that were wrongly saved as Latin-1 in BT.es.lang.tcl and BT.man-es.lang.tcl
+    are UTF-8 again.
   * manual: the four manual language files (BT.man-*.lang.tcl) now define the same
     strings. Romanian gained the manual page of badchan-floodcontrol (1274-1277), and
     en/es/ro gained man.2233 (present only in French).

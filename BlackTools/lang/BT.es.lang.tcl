@@ -80,9 +80,9 @@ set black(say.es.gl.banexists) "\005\[BT\]\005 \002%msg.1%\002 Ya está cubierto
 set black(say.es.gl.noipv4) "\005\[BT\]\005 \002%msg.1%\002 No es una IPv4 para usar la prohibición de CIDR."
 set black(say.es.gl.fullbans) "\005\[BT\]\005 \002AVISO\002: \002%chan%\002's Actualmente se detectó que la lista de prohibición era *COMPLETA* con \002%numbans%\002 entradas. Borrar la lista de canales.."
 set black(say.es.gl.banblack) "\005\[BT\]\005 ERROR: No se puede ejecutar, el usuario está en LISTA NEGRA."
+set black(say.es.gl.noxonly) "\005\[BT\]\005 ERROR: No estoy conectado a \002*X*\002."
 set black(say.es.gl.protexcept) "\002excepción\002"
 set black(say.es.gl.nobanlevel) "\005\[BT\]\005 Lo siento, no tienes acceso suficiente para colocar la prohibición \002%msg.1%\002."
-set black(say.es.gl.nobanlevel) "\005\[BT\]\005 Lo siento, no tienes acceso suficiente para colocar la prohibición. \002%msg.1%\002."
 
 #############################################################################################################################
 #                                                                                                                           #
@@ -161,7 +161,7 @@ set black(say.es.badhost.1) "Su IP no está permitida en el canal."
 set black(say.es.badhost.3) "\005\[BT\]\005 *** Fin de la Lista BadHosts ***"
 set black(say.es.badhost.4) "\005\[BT\]\005 ERROR: No hay entradas que coincidan con el no. \001%msg.1%\001 en \002BadHostsList\002 de \001%chan%\001."
 set black(say.es.badhost.5) "\005\[BT\]\005 Se eliminó \002badhost\002 con no. \001%msg.1%\001 de \002%chan%\002."
-set black(say.es.badhost.6) "\005\[BT\]\005 Se agregó \001%msg.8%\001 con no. \001% msg.1%\001 a la lista de BadHosts para \002%chan%\002."
+set black(say.es.badhost.6) "\005\[BT\]\005 Se agregó \001%msg.8%\001 con no. \001%msg.1%\001 a la lista de BadHosts para \002%chan%\002."
 set black(say.es.badhost.7) "\005\[BT\]\005 \002Lista de BadHosts\002 para \001%chan%\001 es:"
 set black(say.es.badhost.8) "\005\[BT\]\005 Para ver el siguiente conjunto de entradas, escriba: \001%char%badhost list -next\001 (\002%counter%\002 BadHosts restantes)"
 set black(say.es.badhost.9) "\005\[BT\]\005 Para ver el siguiente conjunto de entradas, escriba: \001%char%badhost %chan% list -next\001 (\002%counter%\002 BadHosts restantes)"
@@ -343,11 +343,7 @@ set black(say.es.securemode.11) "Modo seguro: off"
 
 ################################## VoiceMe #####################################
 
-set black(say.es.voiceme.1) "El canal está \002moderado (modo +m)\002. Si quieres chatear en \002%chan%\002, usa: \002/msg
-
-
-
-botnick% voiceme %chan%\002. Requiere estar registrado \002yregistrado en la red\002."
+set black(say.es.voiceme.1) "El canal está \002moderado (modo +m)\002. Si quieres chatear en \002%chan%\002, usa:\002 /msg %botnick% voiceme %chan%\002. Requiere estar \002registrado e identificado en X\002. Si no tienes un usuario de Cservice, ve a \002https://cservice.undernet.org/live\002 y crea uno."
 set black(say.es.voiceme.2) "El canal ya NO está \002moderado (modo +m)\002. ¡Disfruta!"
 set black(say.es.voiceme.3) "Recibió \002voice (+v)\002 en \002 %chan%\002. Que tengas un buen chat!"
 set black(say.es.voiceme.4) "Estás listo \002voice (+v)\002 en \002%chan%\002."
@@ -416,7 +412,7 @@ set black(say.es.private.7) "\005\[BT\]\005 \001%msg.1%\001 Ya está en mi base 
 set black(say.es.private.8) "\005\[BT\]\005 Se agregó \001%msg.1%\001 con máscara \002%msg.2%\002 como una excepción en \001%chan%\001."
 set black(say.es.private.9) "\005\[BT\]\005 Remover \001%msg.1%\001 de my \002Exception List\002 on \002%chan%\002."
 set black(say.es.private.10) "\005\[BT\]\005 \001%msg.1%\001 Se agregó como una excepción en \002%chan%\002."
-set black(say.es.private.11) "\005\[BT\]\005 Usuarios en \002Exception List\002 de \002%chan%\002 son: \001%msg%\001."
+set black(say.es.private.11) "\005\[BT\]\005 Usuarios en \002Exception List\002 de \002%chan%\002 son:"
 
 ################################# BadChan ######################################
 
@@ -436,7 +432,7 @@ set black(say.es.badchan.17) "\005\[BT\]\005 ERROR: No hay entradas que coincida
 set black(say.es.badchan.18) "\005\[BT\]\005 Removido no. \001%msg.1%\001 de \002%chan%\002's BadChans List."
 set black(say.es.badchan.19) "\005\[BT\]\005 Removido no. \001%msg.1%\001 de \002GLOBAL\002 BadChans List."
 set black(say.es.badchan.39) "Se te ha encontrado canalizando conjuntamente en uno o más canales de la lista negra"
-set black(say.es.badchan.40) "\002ATENCIÓN!\002 ¡Te encontraron sentado en uno o más canales de la lista negra! Tienes \002%time% segundos \002 para salir: \002% badchans%\002, de lo contrario quedarás excluido. ¡Gracias!"
+set black(say.es.badchan.40) "\002ATENCIÓN!\002 ¡Te encontraron sentado en uno o más canales de la lista negra! Tienes\002 %time% segundos\002 para salir:\002 %badchans%\002, de lo contrario quedarás excluido. ¡Gracias!"
 set black(say.es.badchan.41) "\005\[BT\]\005 Para ver el siguiente conjunto de entradas, escriba: \001%char%badchan %chan% list -next\001 (\002%counter%\002 BadChans restantes)"
 set black(say.es.badchan.42) "\005\[BT\]\005 \001%msg.1%\001 Ya está configurado para \002GLOBAL\002 BadChans List"
 set black(say.es.badchan.43) "\005\[BT\]\005 \002BadChan\002 ya está activado."
@@ -473,7 +469,7 @@ set black(say.es.autobroadcast.2) "\005\[BT\]\005 ERROR: No hay entradas que coi
 set black(say.es.autobroadcast.3) "\005\[BT\]\005 \002AUTOBROADCAST\002 is already enabled."
 set black(say.es.autobroadcast.4) "\005\[BT\]\005 \002AUTOBROADCAST\002 módulo convertido \001ON\001."
 set black(say.es.autobroadcast.5) "\005\[BT\]\005 \002AUTOBROADCAST\002 módulo convertido \001OFF\001."
-set black(say.es.autobroadcast.6) "\005\[BT\]\005 AutoBroadcast con No. \001%msg.2%\001 Se agregó in my database list."
+set black(say.es.autobroadcast.6) "\005\[BT\]\005 AutoBroadcast con No. \001%msg.1%\001 agregado a mi lista de la base de datos."
 set black(say.es.autobroadcast.7) "#\002%msg.1%\002) %msg.8%"
 set black(say.es.autobroadcast.8) "\005\[BT\]\005 There are no \002AutoBroadcasts\002 in my database list..."
 set black(say.es.autobroadcast.9) "\005\[BT\]\005 \002Lista AutoBroadcasts\002 es:"
@@ -529,15 +525,15 @@ set black(say.es.seen.29) "\005\[BT\]\005 %entry% (%host%) fue visto por última
 set black(say.es.seen.30) "\005\[BT\]\005 Encontrado (%num%) resultados \"%entry%\". Más reciente \002%latest%\002 (%host%) fue visto por última vez en %chan%.%nowon%"
 set black(say.es.seen.31) "\005\[BT\]\005 Hasta donde yo sé, \002%userentry%\002 no ha dicho nada."
 set black(say.es.seen.32) "\005\[BT\]\005 Hasta donde sé, %output% ago, \002%userentry%\002 (%host%) dijo en %chan%: \"%lastmsg%\""
-set black(say.es.seen.33) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) left %chan% about %output% ago %date% with message: \"%reason%\", %staymsg%"
-set black(say.es.seen.34) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) left IRC about %output% ago %date% with message: \"%reason%\", %staymsg%"
-set black(say.es.seen.35) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) joined %chan% about %output% ago %date%.%nowon%"
-set black(say.es.seen.36) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) left in *.net *.split about %output% ago %date%, %staymsg%"
-set black(say.es.seen.37) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) was kicked out de %chan% about %output% ago %date% with Motivo: \"%reason%\", %staymsg%"
-set black(say.es.seen.38) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) changed his/her nickname in %newnick% about %output% ago %date%. %nowon%"
+set black(say.es.seen.33) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) salió de %chan% hace aproximadamente %output% %date% con el mensaje: \"%reason%\", %staymsg%"
+set black(say.es.seen.34) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) salió de IRC hace aproximadamente %output% %date% con el mensaje: \"%reason%\", %staymsg%"
+set black(say.es.seen.35) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) entró en %chan% hace aproximadamente %output% %date%.%nowon%"
+set black(say.es.seen.36) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) salió en *.net *.split hace aproximadamente %output% %date%, %staymsg%"
+set black(say.es.seen.37) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) fue expulsado de %chan% hace aproximadamente %output% %date% con el motivo: \"%reason%\", %staymsg%"
+set black(say.es.seen.38) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) cambió su apodo a %newnick% hace aproximadamente %output% %date%. %nowon%"
 set black(say.es.seen.39) "\005\[BT\]\005 Hey %msg.1%, debe saber que \002%msg.2%\002 lo estaba buscando con \002seen\002 en \002%chan%\002 aproximadamente \002%msg.3%\002."
 set black(say.es.seen.40) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Más reciente \002%latest%\002 (%host%) fue visto por última vez en %chan%.%nowon%"
-set black(say.es.seen.41) "\005\[BT\]\005 Encontrado más de (\002%num%\002) resultados. Por favor sea más explícito."
+set black(say.es.seen.41) "\005\[BT\]\005 Encontrado más de (\002100\002) resultados. Por favor sea más explícito."
 
 ################################# Greet ######################################
 
@@ -572,7 +568,7 @@ set black(say.es.idle.26) "\005\[BT\]\005 \002Idle-HalfOp\002 módulo convertido
 
 set black(say.es.tcl.2) "\005\[BT\]\005 *** Fin de la Lista tcls ***"
 set black(say.es.tcl.3) "\005\[BT\]\005 No se pudo cargar el script: \001%msg.1%\001. Motivo: \002%msg.8%\002"
-set black(say.es.tcl.4) "\005\[BT\]\005 El script \002\"% msg.1%\"\002 ya está cargado."
+set black(say.es.tcl.4) "\005\[BT\]\005 El script \002\"%msg.1%\"\002 ya está cargado."
 set black(say.es.tcl.5) "\005\[BT\]\005 El script \002\"%msg.1%\"\002 se ha cargado correctamente."
 set black(say.es.tcl.7) "\005\[BT\]\005 El script \ 002 \"%msg.1%\"\ 002 no está cargado."
 set black(say.es.tcl.8) "\005\[BT\]\005 Deshabilitó el script \002\"%msg.1%\"\002."
@@ -629,7 +625,7 @@ set black(say.es.quote.20) "Creado en:"
 
 #################################### Notes #####################################
 
-set black(say.es.notes.1) "\005\[BT\]\005 Guardado \002nota\002 con No. \002% msg.1%\002 en su base de datos."
+set black(say.es.notes.1) "\005\[BT\]\005 Guardada \002nota\002 con No. \002%msg.1%\002 en su base de datos."
 set black(say.es.notes.2) "\005\[BT\]\005 Note sent to \002%msg.1%\002/%msg.2% usuarios."
 set black(say.es.notes.3) "\005\[BT\]\005 Nota enviada a \002%msg.1%\002/%msg.2% usuarios. Usuarios inválidos: \001%msg.7%\001."
 set black(say.es.notes.4) "\005\[BT\]\005 ERROR: No hay entradas que coincidan con no. #\002%msg.1%\002."
@@ -730,8 +726,8 @@ set black(say.es.b.5) {"Comportamiento inadecuado en el canal."
 			"Comportamiento inadecuado en el canal."
 			}
 set black(say.es.b.6) "\005\[BT\]\005 La duración máxima de su nivel de prohibición es \0027de\002 (20160 minutos)"
-set black(say.es.b.7) "\005\[BT\]\005 Agregado ban \[LOCAL\] en \002%chan%\002"
-set black(say.es.b.8) "\005\[BT\]\005 Agregado ban \[GLOBAL\]"
+set black(say.es.b.7) "\005\[BT\]\005 Agregado ban \[LOCAL\] en \002%chan%\002 con \[ID: \001%msg.1%\001\]"
+set black(say.es.b.8) "\005\[BT\]\005 Agregado ban \[GLOBAL\] con \[ID: \001%msg.1%\001\]"
 set black(say.es.b.9) "\005\[BT\]\005 \002MassBan\002 ¡No se permite!"
 set black(say.es.b.10) "\005\[BT\]\005 \002%msg.1%\002 NO es una máscara válida."
 set black(say.es.b.11) "\005\[BT\]\005 \002%msg.1%\002 NO es una expresión regular válida."
@@ -873,14 +869,14 @@ set black(say.es.chat.2) "\005\[BT\]\005 No ha establecido una contraseña, hág
 
 ################################## Version ##################################
 
-set black(say.es.version.1) "\005\[BT\]\005 SCRIPT VERSION: \001BlackTools %msg.1%\001 hecho por \002BLaCkShaDoW\002."
+set black(say.es.version.1) "\005\[BT\]\005 SCRIPT VERSION: \001BlackTools %msg.1%\001 (Última actualización: %msg.8%) hecho por \002BLaCkShaDoW\002. Para otros detalles ---= \002WwW.TclScripts.Net\002 o #TCL-HELP @ UNDERNET"
 
 ################################# ub ######################################
 
 set black(say.es.ub.1) "\005\[BT\]\005 No he encontrado ninguna prohibición que coincida con \002%msg.1%\002"
-set black(say.es.ub.2) "\005\[BT\]\005 Removido \001%msg.1%\001 bans (\002%msg.2%\002 encontrado),"
-set black(say.es.ub.3) "\005\[BT\]\005 No he encontrado ninguna prohibición \[GLOBAL\],"
-set black(say.es.ub.4) "\005\[BT\]\005 Removido \001%msg.1%\001 ban \[GLOBAL\]."
+set black(say.es.ub.2) "\005\[BT\]\005 Removido \001%msg.1%\001 bans (\002%msg.2%\002 encontrado) que coincidían con \001%msg.3%\001"
+set black(say.es.ub.3) "\005\[BT\]\005 No he encontrado ninguna prohibición \[GLOBAL\] que coincida con \002%msg.1%\002"
+set black(say.es.ub.4) "\005\[BT\]\005 Removido \001%msg.1%\001 bans \[GLOBAL\] que coincidían con \002%msg.2%\002"
 set black(say.es.ub.5) "\005\[BT\]\005 No tiene acceso suficiente para eliminar BanList."
 set black(say.es.ub.6) "\005\[BT\]\005 Ban Removido de \002%chan%\002's BanList."
 set black(say.es.ub.7) "\005\[BT\]\005 Removido \001%msg.1%\001 bans de \002%msg.2%\002 canales \002LINKED\002"
@@ -905,6 +901,8 @@ set black(say.es.set.7) "\005\[BT\]\005 ERROR: No se puede establecer \001%msg.1
 set black(say.es.set.8) "\005\[BT\]\005 Set \001%msg.1%\001 \004%msg.set%\004 para \002%chan%\002"
 set black(say.es.set.9) "\005\[BT\]\005 \001%msg.1%\001 ya está configurado en \002%msg.set%\002"
 set black(say.es.set.14) "\005\[BT\]\005 Configuración inválida."
+set black(say.es.egg.5) "\005\[BT\]\005 ERROR: No se puede establecer \001%msg.1%\001 en \004%msg.set%\004, no existe un archivo de idioma para él."
+set black(say.es.vers.3) "\005\[BT\]\005 \001%msg.1%\001 está usando: \002%msg.set%\002"
 
 #################################### unSet #################################
 
@@ -1008,7 +1006,7 @@ set black(say.es.add.20) "\005\[BT\]\005 \001%msg.1%\001 tiene acceso de nivel \
 
 ################################### DelAcc #########################################
 
-set black(say.es.delacc.1) "\005\[BT\]\005 Removido \001% msg.1%\001's acceso de \002%chan%\002."
+set black(say.es.delacc.1) "\005\[BT\]\005 Removido el acceso de \001%msg.1%\001 en \002%chan%\002."
 set black(say.es.delacc.2) "\005\[BT\]\005 Removido \002OWNER\002 acceso de \001%msg.1%\001."
 set black(say.es.delacc.3) "\005\[BT\]\005 No tiene acceso \002OWNER\002."
 set black(say.es.delacc.4) "\005\[BT\]\005 Removido \002MASTER\002 acceso de \001%msg.1%\001."
@@ -1169,7 +1167,7 @@ set black(say.es.disable.4) "\005\[BT\]\005 Deshabilitado \001%msg.1%\001 para \
 set black(say.es.disable.5) "\005\[BT\]\005 \001%msg.1%\001 Ya está deshabilitado para \002%msg.2%\002 en \002%chan%\002"
 set black(say.es.disable.6) "\005\[BT\]\005 \002GLOBALMENTE\002 deshabilitado \001%msg.1%\001"
 set black(say.es.disable.7) "\005\[BT\]\005 \001%msg.1%\001 Ya está \002GLOBALMENTE\002 deshabilitado."
-set black(say.es.disable.8) "\005\[BT\]\005 No se puede deshabilitar el comando \002% msg.1%\002."
+set black(say.es.disable.8) "\005\[BT\]\005 No se puede deshabilitar el comando \002%msg.1%\002."
 
 ################################### Module #######################################
 
@@ -1341,7 +1339,7 @@ set black(say.es.exempt.16) "\005\[BT\]\005 No hay excepción que coincida \002%
 
 ###################################### AutoUpdate ################################
 
-set black(say.es.autoupdate.1) "\005\[BT\]\005 No se pudo iniciar% msg.1%: No hay ningún paquete TLS disponible"
+set black(say.es.autoupdate.1) "\005\[BT\]\005 No se pudo iniciar %msg.1% : No hay ningún paquete TLS disponible."
 set black(say.es.autoupdate.2) "\005\[BT\]\005 Error en la actualización, no se pudieron obtener nuevas actualizaciones"
 set black(say.es.autoupdate.3) "\005\[BT\]\005 Found \001NEW\001 BlackTools \002%msg.1%\002 versión, comenzando a descargar .."
 set black(say.es.autoupdate.4) "\005\[BT\]\005 Encontradas \001BUG\001 arreglos para la versión instalada actual \002BlackTools%msg.1%\002, comenzando la descarga .."
@@ -1386,8 +1384,9 @@ set black(say.es.autoupdate.42) "\005\[BT\]\005 Establecer tiempo para \001AutoU
 set black(say.es.autoupdate.43) "\005\[BT\]\005 AutoUpdate encontrado nuevo \001update\001 para: BlackTools \002%msg.1%\002 (Última actualización: \001%msg.2%\001)"
 set black(say.es.autoupdate.45) "\005\[BT\]\005 Para completar esta actualización es necesario reiniciar el eggdrop usando el \001recomando start\002"
 set black(say.es.autoupdate.46) "\005\[BT\]\005 005 Automatic \002restart\002 en 10 segundos para completar la actualización"
-set black(say.es.autoupdate.47) "\005\[BT\]\005 005 La última actualización (\001% msg.1%\001) fue instalada por otro eggdrop del mismo archivo. Usa \001%char%update start\001 para finalizar la actualización"
-set black(say.es.autoupdate.48) "\005\[BT\]\005 005 Se encontró la última actualización (\001%msg.1%\001) instalada por otro eggdrop del mismo archivo. Finalizando la actualización ..."
+set black(say.es.autoupdate.47) "\005\[BT\]\005 La última actualización (\001%msg.1%\001) fue instalada por otro eggdrop del mismo archivo. Usa \001%char%update start\001 para finalizar la actualización."
+set black(say.es.autoupdate.48) "\005\[BT\]\005 Se encontró la última actualización (\001%msg.1%\001) instalada por otro eggdrop del mismo archivo. Finalizando la actualización ..."
+set black(say.es.autoupdate.49) "\005\[BT\]\005 \001AutoUpdate\001 está desactivado."
 
 ######################################## ALIAS ###################################
 
@@ -1405,7 +1404,7 @@ set black(say.es.vote.1) "\005\[BT\]\005 Usa \002%char%vote\002 add <nombre del 
 set black(say.es.vote.2) "\005\[BT\]\005 Especifique una hora de vencimiento válida \[DD/MM/YY HH:MM\] como \00225/12/21 00:00\002"
 set black(say.es.vote.3) "\005\[BT\]\005 Especifique un tipo de votación válido \[-type 1/0\] (\0021\002 - Usuarios válidos, \0020\002 - todos los usuarios)"
 set black(say.es.vote.4) "\005\[BT\]\005 Hay otra votación almacenada con ese nombre. Por favor elije otro."
-set black(say.es.vote.5) "\005\[BT\]\005 Se agregó \"% msg.1%\" como Votación, con ID: \002%msg.3%\002 y opciones \[%msg.2%\]. Expira: \002NUNCA\002."
+set black(say.es.vote.5) "\005\[BT\]\005 Se agregó \"%msg.1%\" como Votación, con ID: \002%msg.3%\002 y opciones \[%msg.2%\]. Expira: \002NUNCA\002."
 set black(say.es.vote.6) "\005\[BT\]\005 Se agregó \"%msg.1%\" como Votación, con ID: \002%msg.4%\002 y opciones \[%msg.2%\]. Expira: \002%msg.3%\002."
 set black(say.es.vote.7) "\005\[BT\]\005 Usa \002%char%vote\002 del <id>"
 set black(say.es.vote.8) "\005\[BT\]\005 No se encontró votación con ID: \002%msg.1%\002"
@@ -1431,8 +1430,8 @@ set black(say.es.vote.27) "\005\[BT\]\005 Para ver el siguiente conjunto de voto
 set black(say.es.vote.28) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001%char%vote %chan% list -next \001(\002%counter%\002 votos restantes) "
 set black(say.es.vote.29) "\005\[BT\]\005 La lista de votantes para %chan% es:"
 set black(say.es.vote.30) "\005\[BT\]\005 No hay votaciones para% chan%"
-set black(say.es.vote.31) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001char%vote list %id% -next\001 (\002%counter%\002 votos restantes) "
-set black(say.es.vote.32) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001%char% vote% chan% list% id% -next \001(\002%counter%\002 votos restantes)"
+set black(say.es.vote.31) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001%char%vote list %id% -next\001 (\002%counter%\002 votos restantes)"
+set black(say.es.vote.32) "\005\[BT\]\005 Para ver el siguiente conjunto de votos, escribe: \001%char%vote %chan% list %id% -next\001 (\002%counter%\002 votos restantes)"
 set black(say.es.vote.33) "\005\[BT\]\005 No hay votos para votar con ID \002%msg.1%\002 en %chan%"
 set black(say.es.vote.34) "\002#%msg.1%\002 Nombre: \002%msg.2%\002; Host: %msg.3% ; Vote: \002%msg.4%\002; Fecha de votación: \002%msg.5%\002 "
 set black(say.es.vote.35) "\005\[BT\]\005 Lista de votos para ID: \002%msg.1%\002 en %chan% es:"

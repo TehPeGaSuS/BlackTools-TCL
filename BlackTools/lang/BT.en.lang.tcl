@@ -413,7 +413,7 @@ set black(say.en.private.7) "\005\[BT\]\005 \001%msg.1%\001 is already in my dat
 set black(say.en.private.8) "\005\[BT\]\005 Added \001%msg.1%\001 with mask \002%msg.2%\002 as an exception on \001%chan%\001."
 set black(say.en.private.9) "\005\[BT\]\005 Removed \001%msg.1%\001 from my \002Exception List\002 on \002%chan%\002."
 set black(say.en.private.10) "\005\[BT\]\005 \001%msg.1%\001 added as an exception on \002%chan%\002."
-set black(say.en.private.11) "\005\[BT\]\005 Users in \002Exception List\002 from \002%chan%\002 are: \001%msg%\001."
+set black(say.en.private.11) "\005\[BT\]\005 Users in \002Exception List\002 from \002%chan%\002 are:"
 
 ################################# BadChan ######################################
 
@@ -470,7 +470,7 @@ set black(say.en.autobroadcast.2) "\005\[BT\]\005 FAILED: No entries matching fo
 set black(say.en.autobroadcast.3) "\005\[BT\]\005 \002AUTOBROADCAST\002 is already enabled."
 set black(say.en.autobroadcast.4) "\005\[BT\]\005 \002AUTOBROADCAST\002 module turned \001ON\001."
 set black(say.en.autobroadcast.5) "\005\[BT\]\005 \002AUTOBROADCAST\002 module turned \001OFF\001."
-set black(say.en.autobroadcast.6) "\005\[BT\]\005 AutoBroadcast with no. \001%msg.2%\001 added in my database list."
+set black(say.en.autobroadcast.6) "\005\[BT\]\005 AutoBroadcast with no. \001%msg.1%\001 added in my database list."
 set black(say.en.autobroadcast.7) "#\002%msg.1%\002) %msg.8%"
 set black(say.en.autobroadcast.8) "\005\[BT\]\005 There are no \002AutoBroadcasts\002 in my database list..."
 set black(say.en.autobroadcast.9) "\005\[BT\]\005 \002AutoBroadcasts List\002 is:"
@@ -534,7 +534,7 @@ set black(say.en.seen.37) "\005\[BT\]\005 Found more than (\002%num%\002) result
 set black(say.en.seen.38) "\005\[BT\]\005 Found more than (\002%num%\002) results. Most recently \002%latest%\002 (%host%) changed his/her nickname in %newnick% about %output% ago %date%. %nowon%"
 set black(say.en.seen.39) "\005\[BT\]\005 Heya %msg.1%, you need to know that \002%msg.2%\002 was looking for you with \002seen\002 on \002%chan%\002 about \002%msg.3%\002 ago."
 set black(say.en.seen.40) "\005\[BT\]\005 Found more than (\002%num%\002) results. Most recently \002%latest%\002 (%host%) was last seen on %chan%.%nowon%"
-set black(say.en.seen.41) "\005\[BT\]\005 Found more than (\002%num%\002) results. Please be more explicit."
+set black(say.en.seen.41) "\005\[BT\]\005 Found more than (\002100\002) results. Please be more explicit."
 
 ################################# Greet ######################################
 
@@ -877,7 +877,7 @@ set black(say.en.version.1) "\005\[BT\]\005 SCRIPT VERSION: \001BlackTools %msg.
 set black(say.en.ub.1) "\005\[BT\]\005 I haven't found any bans matching \002%msg.1%\002"
 set black(say.en.ub.2) "\005\[BT\]\005 Removed \001%msg.1%\001 bans (\002%msg.2%\002 found) that matched \001%msg.3%\001"
 set black(say.en.ub.3) "\005\[BT\]\005 I haven't found any \[GLOBAL\] bans that matched \002%msg.1%\002"
-set black(say.en.ub.4) "\005\[BT\]\005 Removed \001%msg.1%\001 \[GLOBAL\] bans that matched \002%msg.2%\003"
+set black(say.en.ub.4) "\005\[BT\]\005 Removed \001%msg.1%\001 \[GLOBAL\] bans that matched \002%msg.2%\002"
 set black(say.en.ub.5) "\005\[BT\]\005 You don't have enough access to delete BanList."
 set black(say.en.ub.6) "\005\[BT\]\005 Ban removed from \002%chan%\002's BanList."
 set black(say.en.ub.7) "\005\[BT\]\005 Removed \001%msg.1%\001 bans from \002%msg.2%\002 channels \002LINKED\002"
@@ -902,6 +902,8 @@ set black(say.en.set.7) "\005\[BT\]\005 FAILED: Unable to set \001%msg.1%\001 \0
 set black(say.en.set.8) "\005\[BT\]\005 Set \001%msg.1%\001 \004%msg.set%\004 for \002%chan%\002"
 set black(say.en.set.9) "\005\[BT\]\005 \001%msg.1%\001 is already set to \002%msg.set%\002"
 set black(say.en.set.14) "\005\[BT\]\005 Invalid setting."
+set black(say.en.egg.5) "\005\[BT\]\005 FAILED: Unable to set \001%msg.1%\001 to \004%msg.set%\004, there is no language file for it."
+set black(say.en.vers.3) "\005\[BT\]\005 \001%msg.1%\001 is using: \002%msg.set%\002"
 
 #################################### unSet #################################
 

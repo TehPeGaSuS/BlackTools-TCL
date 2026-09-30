@@ -634,7 +634,7 @@ if {[string equal -nocase $arg "-"]} {
 if {![ishalfop $hopnick $chan]} { continue }
 if {[isbotnick $hopnick]} { continue }
 if {[onchan $black(chanserv) $chan] && ![setting:get $chan xonly]} {
-	blacktools:tell $nick $host $hand $chan $chan1 massdeop.429 $black(chanserv)
+	blacktools:tell $nick $host $hand $chan $chan1 o.1 $black(chanserv)
 	return
 		}
 if {$xban == "0"} {
@@ -1859,6 +1859,8 @@ if {$return == "0"} {
 	} elseif {$return == "1"} {
 	blacktools:tell $nick $host $hand $chan $chan1 set.1 "$flags $type"
 	return
+	} elseif {$return == "3"} {
+	return
 	} else {
 	blacktools:tell $nick $host $hand $chan $chan1 set.9 "$flags $type"
 	return
@@ -2110,7 +2112,7 @@ if {$why == "1"} { blacktools:tell $nick $host $hand $chan $chan1 set.7 "$flags 
 } else {
 if {[string equal -nocase $flags "backchan"]} {
 if {![validchan $type]} {
-	blacktools:tell $nick $host $hand $chan $chan1 set.12 $type
+	blacktools:tell $nick $host $hand $chan $chan1 gl.novalidchan none
 	return
 	}	
 }
@@ -2723,12 +2725,6 @@ clonescan-maxclone {
 
 clonescan-action {
 	set replyinfo "message"
-				}
-guestnick-message {
-	set replyinfo $black(say.$getlang.guestnick.10)
-				}
-guestnick-msgmethod {
-	set replyinfo $black(guestnick:msgmethod)
 				}
 voiceonmsg-idletime {
 	set replyinfo $black(voiceonmsg:idletime)

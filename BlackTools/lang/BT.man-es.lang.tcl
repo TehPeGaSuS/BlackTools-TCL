@@ -1781,7 +1781,7 @@ set black(say.es.man.2229) "\[MAN\] \002%char%vote \002\[#chan\]\002 <ID> <lette
 set black(say.es.man.2230) "\[MAN\] M√°scaras disponibles:"
 set black(say.es.man.2231) "\[MAN\] \002#1\002 *!*@host ; \002#2\002 *!user@host ; \002#3\002 nick!user@host ; \002#4\002 nick!*@* ; \002#5\002 *!user@*"
 set black(say.es.man.2232) "\[MAN\] SINTAXIS: \002%char%set\002 <setting> <no. method> ; \002%botnick% set\002 <setting> <no. method> ; \002(PRIVMSG) set\002 <#chan> <setting> <no. method>"
-set black(say.es.man.2233) "\[MAN\] Este ajuste, una vez activado, desactivar· los comandos que se den en el canal mediante el car·cter inicial (por ejemplo !w)"
+set black(say.es.man.2233) "\[MAN\] Este ajuste, una vez activado, desactivar√° los comandos que se den en el canal mediante el car√°cter inicial (por ejemplo !w)"
 
 ##############################
 ############################################################################################################

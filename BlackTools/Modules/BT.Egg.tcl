@@ -215,7 +215,7 @@ if {[string equal -nocase $result $the_lang]} {
 }
 if {$found_lang == 0} {
 	blacktools:tell $unick $host $hand $chan $chan1 egg.5 "defaultlang $result"
-	return
+	return 3
 }
 	set error [config:save $tcl_config "set black(default_lang) \"*\"" "set black(default_lang) \"$result\""]
 if {$error == "0"} {
