@@ -4,6 +4,7 @@
     to get info like bind pub, flags, strings from that TCL. [ pending ]
   * to implement .update reinstall [ pending ]
  2026-09-30 TehPeGaSuS  <25697531+TehPeGaSuS@users.noreply.github.com>
+  * version 2.5.8
   * language files (BT.en/es/fr/ro.lang.tcl) now define the same 957 strings.
     Missing strings were added, strings that only existed in one language were
     renamed or removed, and a string defined twice (the later one silently won) was

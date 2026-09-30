@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BlackTools v2.5.7 — Documentation</title>
+<title>BlackTools v2.5.8 — Documentation</title>
 <style>
 :root{
   --bg:#0b0e13;
@@ -221,13 +221,14 @@ footer a{color:var(--muted)}
 <nav class="sidebar">
   <div class="logo">
     <span class="leaf">🛠️</span>
-    <div><b>Black<span>Tools</span></b><small>v2.5.7 · DOCUMENTATION</small></div>
+    <div><b>Black<span>Tools</span></b><small>v2.5.8 · DOCUMENTATION</small></div>
   </div>
   <input id="search" type="text" placeholder="Filter commands… ( / )" autocomplete="off">
   <div class="search-hint"><span id="search-count"></span>&nbsp;</div>
   <div class="nav" id="nav">
     <h5>Start here</h5>
     <a href="#overview">Overview</a>
+    <a href="#whatsnew258">What's new in 2.5.8</a>
     <a href="#whatsnew257">What's new in 2.5.7</a>
     <a href="#whatsnew256">What's new in 2.5.6</a>
     <a href="#whatsnew">What's new in 2.5.5</a>
@@ -260,7 +261,7 @@ footer a{color:var(--muted)}
   <p class="tagline">The Ultimate Channel Control Script — <em>One TCL. One smart Eggdrop.</em><br>
   A complete reference for every command, protection and module.</p>
   <div class="badges">
-    <span class="badge hot">v2.5.7</span>
+    <span class="badge hot">v2.5.8</span>
     <span class="badge">Eggdrop ≥ 1.8</span>
     <span class="badge">Tcl ≥ 8.5</span>
     <span class="badge gold">Undernet · X service</span>
@@ -280,7 +281,7 @@ footer a{color:var(--muted)}
     owner/manager toggles the protections, modules and commands they want.
   </p>
   <table>
-    <tr><th style="width:170px">Script</th><td>BlackTools v2.5.7 (GitHub master, 2026)</td></tr>
+    <tr><th style="width:170px">Script</th><td>BlackTools v2.5.8 (GitHub master, 2026)</td></tr>
     <tr><th>Author</th><td>Daniel Voipan (BLaCkShaDoW) — <a href="http://www.tclscripts.net">www.tclscripts.net</a></td></tr>
     <tr><th>Requirements</th><td>Eggdrop 1.8.x or newer · Tcl 8.5 or newer</td></tr>
     <tr><th>Languages</th><td>English · Romanian · Spanish · French (lang files auto-loaded from <code>lang/</code>)</td></tr>
@@ -291,6 +292,20 @@ footer a{color:var(--muted)}
   <div class="tip"><b>The two most important commands:</b> <code>!h</code> shows every command available
   <em>to you</em> at your access level, and <code>!man &lt;command&gt;</code> shows the built-in manual page for any
   command, protection or module. When in doubt — <code>!man</code> it.</div>
+</section>
+
+<!-- ================= WHAT'S NEW IN 2.5.8 ================= -->
+<section id="whatsnew258">
+  <h2><span class="hash">#</span>What's new in 2.5.8</h2>
+  <div class="table-scroll"><table>
+    <tr><th style="width:160px">Change</th><th>Description</th></tr>
+    <tr><td>Language files</td><td>The four language files (and the four manual files) now define the same strings, so no
+    language is missing replies any more. The French <code>!seen</code> module, which raised an error on every reply, works again;
+    <code>!man language</code> and <code>!man ho</code> are no longer cut short; <code>set defaultlang xx</code> with a language
+    that has no file answers once instead of failing; misspelled placeholders in Spanish and the <code>!version</code> text
+    were corrected.</td></tr>
+    <tr><td><code>!man badchan-floodcontrol</code></td><td>The manual page of this setting now works in every language.</td></tr>
+  </table></div>
 </section>
 
 <!-- ================= WHAT'S NEW IN 2.5.7 ================= -->
@@ -1673,7 +1688,7 @@ source scripts/BlackTools.tcl
 </section>
 
 <footer>
-  <p><b>BlackTools v2.5.7</b> — © 2008–2021 Daniel Voipan (BLaCkShaDoW) ·
+  <p><b>BlackTools v2.5.8</b> — © 2008–2021 Daniel Voipan (BLaCkShaDoW) ·
   <a href="http://www.tclscripts.net">tclscripts.net</a> ·
   <a href="https://github.com/tclscripts/BlackToolS-TCL">GitHub</a> ·
   help: <code>#TCL-HELP</code> @ Undernet</p>
